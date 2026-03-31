@@ -1,6 +1,6 @@
 let cart=[];
 
-/* PAGE */
+/* PAGE FIX */
 function showPage(id){
 document.querySelectorAll(".page").forEach(p=>{
 p.classList.remove("active");
@@ -50,16 +50,28 @@ updateCart();
 function updateCart(){
 let el=document.getElementById("cartList");
 let total=0;
+
 el.innerHTML="";
 
-cart.forEach(i=>{
-el.innerHTML+=`<div>${i.n} - Rp${i.h/1000}K</div>`;
+cart.forEach((i,index)=>{
+el.innerHTML+=`
+<div>
+${i.n} - Rp${i.h/1000}K 
+<button onclick="removeItem(${index})">❌</button>
+</div>`;
 total+=i.h;
 });
 
 document.getElementById("total").innerText="Total: Rp"+total/1000+"K";
 }
 
+/* HAPUS ITEM */
+function removeItem(i){
+cart.splice(i,1);
+updateCart();
+}
+
+/* CLEAR CART */
 function clearCart(){
 cart=[];
 updateCart();
@@ -74,9 +86,13 @@ setTimeout(()=>p.classList.remove("active"),1000);
 
 /* WA */
 function orderWA(){
-if(cart.length==0){alert("Keranjang kosong");return;}
+if(cart.length==0){
+alert("Keranjang kosong!");
+return;
+}
 
-let text="🛒 ORDER V1PEDIA%0A%0A";
+let text="🛒 ORDER V1PEDIA STORE%0A%0A";
+
 cart.forEach(i=>{
 text+=`• ${i.n} - Rp${i.h/1000}K%0A`;
 });
