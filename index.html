@@ -3,163 +3,151 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>V1PEDIASTORE</title>
+<title>V1PEDIA STORE</title>
+
 <link rel="stylesheet" href="style.css">
+
+<style>
+/* LOADING SCREEN */
+#loading{
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  background:linear-gradient(135deg,#2563eb,#1e3a8a);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  z-index:99999;
+  color:#fff;
+}
+
+.logo-load{
+  font-size:26px;
+  font-weight:bold;
+  animation:zoom 1.5s infinite alternate;
+  text-shadow:0 0 20px #fff,0 0 40px #60a5fa;
+}
+
+.sub-load{
+  margin-top:10px;
+  font-size:13px;
+  opacity:.8;
+}
+
+@keyframes zoom{
+  from{transform:scale(1);}
+  to{transform:scale(1.2);}
+}
+
+.hide{
+  opacity:0;
+  pointer-events:none;
+  transition:.5s;
+}
+</style>
 </head>
 
 <body>
 
 <!-- LOADING -->
-<div id="loading" style="
-position:fixed;inset:0;background:#5f8bff;
-display:flex;align-items:center;justify-content:center;
-z-index:9999;color:#fff;font-size:22px;font-weight:bold;">
-💎 V1PEDIASTORE 💎
+<div id="loading">
+  <div class="logo-load">💎 V1PEDIA STORE</div>
+  <div class="sub-load">Loading premium experience...</div>
 </div>
 
 <!-- ================= HOME ================= -->
-<div id="home" class="page active">
+<div id="homePage" class="page active">
 
-  <div class="header">
-    <h1>Layanan Digital Service </h1>
-    <p>v 1 p e d i a s t o r e
-    </p>
-  </div>
+<div class="header">
+  <h1>💎 V1PEDIA STORE 💎</h1>
+  <p>v 1 p e d i a s t o r e</p>
+</div>
 
-  <div class="card brand-card" style="text-align:center;">
-    <h2>💎 V1PEDIASTORE 💎</h2>
-    <p>Fast Response • Aman • Bergaransi</p>
-  </div>
+<div class="card brand-card">
+  <h2>💎 V1PEDIA STORE 💎</h2>
+  <p>Fast Response • Aman • Bergaransi</p>
+</div>
 
-  <div class="card stats">
-    <div><b>18.9K</b><br>⭐ Terjual</div>
-    <div><b>27.5K</b><br>⭐ Pelanggan</div>
-    <div><b>99%</b><br>⭐ Kepuasan</div>
-  </div>
+<div class="card stats">
+  <div><b id="sold">59.9K</b> Terjual ⭐⭐⭐⭐⭐</div>
+  <div><b>57.6K</b> Pelanggan ⭐⭐⭐⭐⭐</div>
+  <div><b>99%</b> Kepuasan ⭐⭐⭐⭐⭐</div>
+</div>
 
-  <!-- PANEL -->
-  <div class="card">
-    <h3>Panel Bot WhatsApp</h3>
-    <div id="panel-list"></div>
-  </div>
+<div class="tabs">
+  <div class="tab active" onclick="switchTab(event,'panel')">Panel Bot WA</div>
+  <div class="tab" onclick="switchTab(event,'followers')">Followers IG</div>
+</div>
 
-  <!-- FOLLOWERS -->
-  <div class="card">
-    <h3>Followers Instagram</h3>
-    <div id="followers-list"></div>
-  </div>
+<div id="panel-list"></div>
+<div id="followers-list" style="display:none;"></div>
 
 </div>
 
 <!-- ================= KERANJANG ================= -->
 <div id="cartPage" class="page">
 
-  <div class="card">
-    <h2>🛒 Keranjang</h2>
+<div class="card">
+  <h2>🛒 Keranjang Anda</h2>
+  <p>Pastikan pesanan sudah benar sebelum checkout.</p>
+  <div id="cartList"></div>
+  <h3 id="total">Total: Rp0</h3>
 
-    <div id="cartList"></div>
-
-    <h3 id="total">Total: Rp0</h3>
-
-    <button class="btn" onclick="orderWA()">Order ke WhatsApp</button>
-    <button class="btn" onclick="clearCart()">Hapus</button>
-
-    <p style="margin-top:10px;font-size:13px;opacity:.7;">
-      Pesanan diproses cepat & otomatis. Jika error, hubungi admin via WhatsApp.
-    </p>
-  </div>
+  <button class="btn" onclick="orderWA()">Order ke WhatsApp</button>
+  <button class="btn" onclick="clearCart()" style="background:red;margin-top:10px;">Hapus Riwayat</button>
+</div>
 
 </div>
 
 <!-- ================= PROFILE ================= -->
 <div id="profilePage" class="page">
 
-  <div class="card" style="text-align:center;">
-    <h2>💎 V1PEDIASTORE 💎</h2>
-    <p>Official Digital Service</p>
-  </div>
+<div class="card">
+  <h2>👤 Profile</h2>
 
-  <div class="card">
+  <p><b>Instagram Pribadi:</b><br>@kenzodistaananta</p>
+  <p><b>Instagram Bisnis:</b><br>@v1pediastore</p>
+  <p><b>WhatsApp:</b><br>083143490913</p>
+  <p><b>Email:</b><br>payakumbuhpediastoreid@gmail.com</p>
+  <p><b>Alamat:</b><br>Jalan Agus Salim, Padang Tiakar, Kota Payakumbuh</p>
 
-    <h3>📱 Kontak</h3>
+  <p style="margin-top:10px;font-size:12px;">
+  Jika order website error, silakan hubungi WhatsApp langsung.
+  </p>
 
-    <div style="margin:10px 0;cursor:pointer;" onclick="openWA()">
-      📞 WhatsApp<br>
-      <b>083143490913</b>
-    </div>
-
-    <div style="margin:10px 0;cursor:pointer;" onclick="openIG()">
-      📸 Instagram<br>
-      <b>@kenzodistaananta</b>
-    </div>
-
-    <h3>📍 Alamat</h3>
-    <p>Jalan Agus Salim, Padang Tiakar, Kota Payakumbuh</p>
-
-    <h3>📧 Email</h3>
-    <p>payakumbuhpediastoreid@gmail.com</p>
-
-    <button class="btn" onclick="toggleDark()">🌙 Dark Mode</button>
-
-    <p style="margin-top:20px;font-size:12px;opacity:.6;">
-      © 2026 V1PEDIASTORE — All Rights Reserved
-    </p>
-
-  </div>
+  <p style="margin-top:20px;font-size:12px;">
+  © 2026 V1PEDIA STORE - All Rights Reserved
+  </p>
+</div>
 
 </div>
 
-<!-- FLOAT WA -->
-<div onclick="openWA()" style="
-position:fixed;bottom:90px;right:15px;
-background:#25D366;color:#fff;
-padding:14px;border-radius:50%;
-font-size:18px;z-index:999;">
-💬
-</div>
-
-<!-- ================= NAVBAR ================= -->
+<!-- NAVBAR -->
 <div class="navbar">
-
-  <div onclick="showPage('home')" style="cursor:pointer;">
-    🏠<br>Home
-  </div>
-
-  <div onclick="showPage('cartPage')" style="cursor:pointer;">
-    🛒<br>Keranjang <span id="badge">0</span>
-  </div>
-
-  <div onclick="showPage('profilePage')" style="cursor:pointer;">
-    👤<br>Profile
-  </div>
-
+  <div onclick="navClick(this);showPage('homePage')">🏠<br>Home</div>
+  <div onclick="navClick(this);showPage('cartPage')">🛒<br>Keranjang <span id="badge">0</span></div>
+  <div onclick="navClick(this);showPage('profilePage')">👤<br>Profile</div>
 </div>
+
+<div id="popup" class="popup">💎Ditambahkan</div>
+<div id="liveOrder" class="live-order"></div>
 
 <script src="data.js"></script>
 <script src="script.js"></script>
 
 <script>
 /* LOADING */
-setTimeout(()=>{
-  document.getElementById("loading").style.display="none";
-},1200);
+window.addEventListener("load",()=>{
+  setTimeout(()=>{
+    document.getElementById("loading").classList.add("hide");
+  },1800);
+});
 
-/* NAVIGATION */
+/* NAV PAGE */
 function showPage(id){
-  document.querySelectorAll(".page").forEach(p=>{
-    p.style.display="none";
-  });
-
-  document.getElementById(id).style.display="block";
-}
-
-/* LINK */
-function openWA(){
-  window.location.href="https://wa.me/6283143490913";
-}
-
-function openIG(){
-  window.location.href="https://instagram.com/kenzodistaananta";
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
 }
 </script>
 
