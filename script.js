@@ -1,136 +1,92 @@
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:sans-serif;
-}
+let cart=[];
 
-body{
-  background:#f5f6fa;
-  padding-bottom:90px;
-}
+/* SOUND */
+const clickSound=new Audio("https://www.soundjay.com/buttons/sounds/button-16.mp3");
 
 /* LOADING */
-#loading{
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:linear-gradient(135deg,#5f8bff,#7aa6ff);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  color:#fff;
-  font-size:22px;
-  z-index:9999;
+window.onload=()=>{
+  setTimeout(()=>{
+    document.getElementById("loading").style.display="none";
+  },1500);
+};
+
+/* NAVIGATION */
+function showPage(id){
+  clickSound.play();
+
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+
+  document.querySelectorAll(".navbar div").forEach(n=>n.classList.remove("active-nav"));
+  event.currentTarget.classList.add("active-nav");
 }
 
-/* HEADER */
-.header{
-  background:linear-gradient(135deg,#5f8bff,#7aa6ff);
-  color:#fff;
-  text-align:center;
-  padding:40px 20px 100px;
-  border-radius:0 0 40px 40px;
+/* RENDER */
+function render(){
+  let list=document.getElementById("home-list");
+  list.innerHTML="";
+
+  panel.forEach(i=>{
+    list.innerHTML+=`
+    <div class="product">
+      <div>${i.nama}<br>Rp${i.harga/1000}K</div>
+      <button class="btn" onclick="add('${i.nama}',${i.harga})">Order</button>
+    </div>`;
+  });
+
+  followers.forEach(i=>{
+    list.innerHTML+=`
+    <div class="product">
+      <div>${i.nama}<br>Rp${i.harga/1000}K</div>
+      <button class="btn" onclick="add('${i.nama}',${i.harga})">Order</button>
+    </div>`;
+  });
 }
 
-/* CARD */
-.card{
-  background:#fff;
-  margin:15px;
-  padding:15px;
-  border-radius:20px;
-  box-shadow:0 8px 20px rgba(0,0,0,.08);
+/* ADD CART */
+function add(n,h){
+  clickSound.play();
+
+  cart.push({n,h});
+  updateCart();
+  popup();
 }
 
-/* STATS */
-.stats{
-  display:flex;
-  text-align:center;
-}
-.stats div{flex:1;}
-.stats b{
-  display:block;
-  font-size:18px;
+/* UPDATE CART */
+function updateCart(){
+  let el=document.getElementById("cartList");
+  let total=0;
+
+  el.innerHTML="";
+  cart.forEach(i=>{
+    el.innerHTML+=`<div>${i.n} - ${i.h/1000}K</div>`;
+    total+=i.h;
+  });
+
+  document.getElementById("total").innerText="Total: Rp"+total/1000+"K";
+  document.getElementById("badge").innerText=cart.length;
 }
 
-/* PRODUCT */
-.product{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin:10px 15px;
-  padding:12px;
-  background:#fff;
-  border-radius:15px;
-}
-
-.btn{
-  background:#5f8bff;
-  color:#fff;
-  border:none;
-  padding:10px 15px;
-  border-radius:12px;
-}
-
-/* NAVBAR */
-.navbar{
-  position:fixed;
-  bottom:0;
-  width:100%;
-  display:flex;
-  justify-content:space-around;
-  background:#fff;
-  padding:10px;
-  border-top:1px solid #ddd;
-  z-index:1000;
-}
-
-.navbar div{
-  text-align:center;
-  font-size:14px;
-}
-
-/* ACTIVE */
-.active-nav{
-  color:#5f8bff;
-  font-weight:bold;
-}
-
-/* BADGE */
-.badge{
-  position:absolute;
-  top:-5px;
-  right:20px;
-  background:red;
-  color:#fff;
-  font-size:10px;
-  padding:2px 6px;
-  border-radius:50%;
-}
-
-/* PAGE */
-.page{
-  display:none;
-}
-.page.active{
-  display:block;
+/* CLEAR CART */
+function clearCart(){
+  cart=[];
+  updateCart();
 }
 
 /* POPUP */
-.popup{
-  position:fixed;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%) scale(0);
-  background:#fff;
-  padding:20px;
-  border-radius:20px;
-}
-.popup.active{
-  transform:translate(-50%,-50%) scale(1);
+function popup(){
+  let p=document.getElementById("popup");
+  p.classList.add("active");
+  setTimeout(()=>p.classList.remove("active"),1200);
 }
 
-/* PROFILE */
-.profile p{
-  margin:8px 0;
+/* WA */
+function orderWA(){
+  let text="🔥 ORDER V1PEDIA 🔥%0A";
+  cart.forEach(i=>text+="• "+i.n+"%0A");
+
+  window.location.href="https://wa.me/6283143490913?text="+text;
 }
+
+/* INIT */
+render();
