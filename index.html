@@ -5,114 +5,163 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>V1PEDIASTORE</title>
 <link rel="stylesheet" href="style.css">
-
-<style>
-
-/* ANIMASI TEKS HEADER */
-.text-anim{
-background:linear-gradient(90deg,#00f0ff,#5f8bff,#00f0ff);
-background-size:200%;
--webkit-background-clip:text;
-color:transparent;
-animation:shine 3s linear infinite;
-}
-
-@keyframes shine{
-0%{background-position:0%;}
-100%{background-position:200%;}
-}
-
-/* PROFILE ANIMASI */
-.profile-anim{
-animation:slideUp .6s ease;
-}
-
-@keyframes slideUp{
-from{opacity:0;transform:translateY(20px);}
-to{opacity:1;}
-}
-
-</style>
 </head>
 
 <body>
 
+<!-- LOADING -->
+<div id="loading" style="
+position:fixed;inset:0;background:#5f8bff;
+display:flex;align-items:center;justify-content:center;
+z-index:9999;color:#fff;font-size:22px;font-weight:bold;">
+💎 V1PEDIASTORE 💎
+</div>
+
 <!-- ================= HOME ================= -->
 <div id="home" class="page active">
 
-<div class="header">
-<h1 class="text-anim">💎 V1PEDIASTORE 💎</h1>
+  <div class="header">
+    <h1>💎 Layanan Digital Services
+     💎</h1>
+    <p>v 1 p e d i a s t o r e</p>
+  </div>
 
-<p class="text-anim" style="font-size:14px;">
-Layanan Digital Services
-</p>
+  <div class="card brand-card" style="text-align:center;">
+    <h2>💎 V1PEDIASTORE 💎</h2>
+    <p>Fast Response • Aman • Bergaransi</p>
+  </div>
 
-<p style="font-size:13px;opacity:.9;margin-top:5px;">
-Solusi cepat • Harga bersahabat • Proses instan tanpa ribet ⚡
-</p>
+  <div class="card stats">
+    <div><b>18.9K</b><br>⭐ Terjual</div>
+    <div><b>27.5K</b><br>⭐ Pelanggan</div>
+    <div><b>99%</b><br>⭐ Kepuasan</div>
+  </div>
+
+  <!-- PANEL -->
+  <div class="card">
+    <h3>Panel Bot WhatsApp</h3>
+    <div id="panel-list"></div>
+  </div>
+
+  <!-- FOLLOWERS -->
+  <div class="card">
+    <h3>Followers Instagram</h3>
+    <div id="followers-list"></div>
+  </div>
+
 </div>
 
-<div class="card brand-card" style="text-align:center;">
-<h2 class="text-anim">💎 V1PEDIASTORE 💎</h2>
-<p>Fast Response • Aman • Bergaransi</p>
-</div>
+<!-- ================= KERANJANG ================= -->
+<div id="cartPage" class="page">
 
-<div class="card stats">
-<div><b>18.9K</b><br>⭐ Terjual</div>
-<div><b>27.5K</b><br>⭐ Pelanggan</div>
-<div><b>99%</b><br>⭐ Kepuasan</div>
-</div>
+  <div class="card">
+    <h2>🛒 Keranjang</h2>
 
-<div class="card">
-<h3>🤖 Panel Bot WhatsApp</h3>
-<div id="panel-list" class="grid"></div>
-</div>
+    <div id="cartList"></div>
 
-<div class="card">
-<h3>📈 Followers Instagram</h3>
-<div id="followers-list" class="grid"></div>
-</div>
+    <h3 id="total">Total: Rp0</h3>
+
+    <button class="btn" onclick="orderWA()">Order ke WhatsApp</button>
+    <button class="btn" onclick="clearCart()">Hapus</button>
+
+    <p style="margin-top:10px;font-size:13px;opacity:.7;">
+      Pesanan diproses cepat & otomatis. Jika error, hubungi admin via WhatsApp.
+    </p>
+  </div>
 
 </div>
 
 <!-- ================= PROFILE ================= -->
 <div id="profilePage" class="page">
 
-<div class="card profile-anim" style="text-align:center;">
-<h2 class="text-anim">💎 V1PEDIASTORE 💎</h2>
-<p class="text-anim">Official Digital Service</p>
+  <div class="card" style="text-align:center;">
+    <h2>💎 V1PEDIASTORE 💎</h2>
+    <p>Official Digital Service</p>
+  </div>
+
+  <div class="card">
+
+    <h3>📱 Kontak</h3>
+
+    <div style="margin:10px 0;cursor:pointer;" onclick="openWA()">
+      📞 WhatsApp<br>
+      <b>083143490913</b>
+    </div>
+
+    <div style="margin:10px 0;cursor:pointer;" onclick="openIG()">
+      📸 Instagram<br>
+      <b>@kenzodistaananta</b>
+    </div>
+
+    <h3>📍 Alamat</h3>
+    <p>Jalan Agus Salim, Padang Tiakar, Kota Payakumbuh</p>
+
+    <h3>📧 Email</h3>
+    <p>payakumbuhpediastoreid@gmail.com</p>
+
+    <button class="btn" onclick="toggleDark()">🌙 Dark Mode</button>
+
+    <p style="margin-top:20px;font-size:12px;opacity:.6;">
+      © 2026 V1PEDIASTORE — All Rights Reserved
+    </p>
+
+  </div>
+
 </div>
 
-<div class="card profile-anim">
-
-<h3>📱 Kontak</h3>
-
-<div onclick="openWA()" style="margin:10px 0;cursor:pointer;">
-📞 WhatsApp<br><b>083143490913</b>
+<!-- FLOAT WA -->
+<div onclick="openWA()" style="
+position:fixed;bottom:90px;right:15px;
+background:#25D366;color:#fff;
+padding:14px;border-radius:50%;
+font-size:18px;z-index:999;">
+💬
 </div>
 
-<div onclick="openIG()" style="margin:10px 0;cursor:pointer;">
-📸 Instagram<br><b>@kenzodistaananta</b>
-</div>
+<!-- ================= NAVBAR ================= -->
+<div class="navbar">
 
-<h3>📍 Alamat</h3>
-<p>Jalan Agus Salim, Padang Tiakar, Kota Payakumbuh</p>
+  <div onclick="showPage('home')" style="cursor:pointer;">
+    🏠<br>Home
+  </div>
 
-<h3>📧 Email</h3>
-<p>payakumbuhpediastoreid@gmail.com</p>
+  <div onclick="showPage('cartPage')" style="cursor:pointer;">
+    🛒<br>Keranjang <span id="badge">0</span>
+  </div>
 
-<button class="btn" onclick="toggleDark()">🌙 Dark Mode</button>
-
-<p style="margin-top:20px;font-size:12px;opacity:.6;">
-© 2026 V1PEDIASTORE — All Rights Reserved
-</p>
-
-</div>
+  <div onclick="showPage('profilePage')" style="cursor:pointer;">
+    👤<br>Profile
+  </div>
 
 </div>
 
 <script src="data.js"></script>
 <script src="script.js"></script>
+
+<script>
+/* LOADING */
+setTimeout(()=>{
+  document.getElementById("loading").style.display="none";
+},1200);
+
+/* NAVIGATION */
+function showPage(id){
+  document.querySelectorAll(".page").forEach(p=>{
+    p.style.display="none";
+  });
+
+  document.getElementById(id).style.display="block";
+}
+
+/* LINK */
+function openWA(){
+  window.location.href="https://wa.me/6283143490913";
+}
+
+function openIG(){
+  window.location.href="https://instagram.com/kenzodistaananta";
+}
+</script>
 
 </body>
 </html>
