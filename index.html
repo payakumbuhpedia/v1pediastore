@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V1PEDIASTORE</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
+
+body{
+background:#f4f6fb;
+transition:0.3s;
+}
+
+/* HEADER */
+.header{
+background:linear-gradient(135deg,#4e73df,#6f8cff);
+color:#fff;
+padding:35px 20px 60px;
+text-align:center;
+border-bottom-left-radius:30px;
+border-bottom-right-radius:30px;
+}
+
+/* PROFILE */
+.profile{
+margin:-40px 15px 15px;
+background:#fff;
+padding:20px;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+text-align:center;
+}
+
+.stats{
+display:flex;
+justify-content:space-around;
+margin-top:10px;
+font-size:14px;
+}
+
+/* CARD */
+.card{
+background:#fff;
+margin:15px;
+padding:18px;
+border-radius:18px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* GRID */
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+}
+
+.item{
+background:#f1f3f8;
+padding:15px;
+border-radius:14px;
+text-align:center;
+cursor:pointer;
+transition:0.2s;
+position:relative;
+overflow:hidden;
+}
+.item:active{transform:scale(0.95)}
+
+/* NAV */
+.nav{
+position:fixed;
+bottom:0;
+width:100%;
+background:#fff;
+display:flex;
+justify-content:space-around;
+padding:12px;
+box-shadow:0 -2px 10px rgba(0,0,0,0.1);
+}
+
+/* BADGE */
+.badge{
+position:absolute;
+top:-5px;
+right:-5px;
+background:red;
+color:#fff;
+font-size:12px;
+padding:2px 6px;
+border-radius:10px;
+}
+
+/* BUTTON */
+.btn{
+width:100%;
+padding:14px;
+border:none;
+border-radius:12px;
+background:linear-gradient(135deg,#4e73df,#6f8cff);
+color:#fff;
+font-weight:bold;
+margin-top:12px;
+}
+
+/* PAGE */
+.page{display:none;padding-bottom:80px}
+.active{display:block}
+
+/* CART */
+.cart-item{
+display:flex;
+justify-content:space-between;
+background:#f1f3f8;
+padding:10px;
+border-radius:10px;
+margin-bottom:10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HOME -->
+<div id="home" class="page active">
+<div class="header">
+<h2>V1PEDIASTORE</h2>
+<p>Digital Services Premium</p>
+</div>
+
+<div class="profile">
+<h3>V1PEDIASTORE INFINITY</h3>
+<p>⭐ 4.9 | 1.2K Review</p>
+<div class="stats">
+<div>13.7K<br>Terjual</div>
+<div>8.2K<br>Pelanggan</div>
+<div>98%<br>Kepuasan</div>
+</div>
+</div>
+
+<div class="card">
+<h3>Layanan</h3>
+<div class="grid">
+<div class="item" onclick="go('panel')">Panel Bot</div>
+<div class="item" onclick="go('followers')">Followers</div>
+<div class="item" onclick="go('osint')">OSINT</div>
+<div class="item" onclick="go('tracking')">Pelacakan</div>
+</div>
+</div>
+</div>
+
+<!-- PANEL -->
+<div id="panel" class="page">
+<div class="header"><h3>Panel Bot</h3></div>
+<div class="card grid">
+<div class="item" onclick="add(event,'1GB Panel','2K')">1GB - 2K</div>
+<div class="item" onclick="add(event,'2GB Panel','3K')">2GB - 3K</div>
+<div class="item" onclick="add(event,'3GB Panel','4K')">3GB - 4K</div>
+<div class="item" onclick="add(event,'4GB Panel','5K')">4GB - 5K</div>
+<div class="item" onclick="add(event,'5GB Panel','6K')">5GB - 6K</div>
+<div class="item" onclick="add(event,'6GB Panel','7K')">6GB - 7K</div>
+<div class="item" onclick="add(event,'7GB Panel','8K')">7GB - 8K</div>
+<div class="item" onclick="add(event,'8GB Panel','9K')">8GB - 9K</div>
+<div class="item" onclick="add(event,'9GB Panel','10K')">9GB - 10K</div>
+<div class="item" onclick="add(event,'10GB Panel','11K')">10GB - 11K</div>
+<div class="item" onclick="add(event,'11GB Panel','12K')">11GB - 12K</div>
+</div>
+</div>
+
+<!-- FOLLOWERS -->
+<div id="followers" class="page">
+<div class="header"><h3>Followers</h3></div>
+<div class="card grid">
+<div class="item" onclick="add(event,'1K Followers','40K')">1K - 40K</div>
+<div class="item" onclick="add(event,'2K Followers','80K')">2K - 80K</div>
+<div class="item" onclick="add(event,'3K Followers','120K')">3K - 120K</div>
+<div class="item" onclick="add(event,'5K Followers','200K')">5K - 200K</div>
+<div class="item" onclick="add(event,'10K Followers','400K')">10K - 400K</div>
+<div class="item" onclick="add(event,'50K Followers','1JT')">50K - 1JT</div>
+</div>
+</div>
+
+<!-- OSINT -->
+<div id="osint" class="page">
+<div class="header"><h3>OSINT</h3></div>
+<div class="card grid">
+<div class="item" onclick="add(event,'Cek Data','50K')">Cek Data - 50K</div>
+<div class="item" onclick="add(event,'Lacak Nomor','100K')">Lacak Nomor - 100K</div>
+</div>
+</div>
+
+<!-- TRACK -->
+<div id="tracking" class="page">
+<div class="header"><h3>Pelacakan</h3></div>
+<div class="card">Tracking dilakukan setelah pembayaran.</div>
+</div>
+
+<!-- CART -->
+<div id="cart" class="page">
+<div class="header"><h3>Keranjang</h3></div>
+
+<div class="card" id="list"></div>
+
+<div class="card">
+<p>DANA: 083143490913</p>
+<p>A/N: M.Kharihal Kezo</p>
+</div>
+
+<button class="btn" onclick="checkout()">Checkout WhatsApp</button>
+</div>
+
+<!-- PROFILE -->
+<div id="profile" class="page">
+<div class="header"><h3>Kontak</h3></div>
+<div class="card">
+<p>📍 Jl. Agus Salim, Payakumbuh</p>
+<p>📞 083143490913</p>
+<p>📧 payakumbuhpediastoreid@gmail.com</p>
+<p>🕒 09:00 - 21:00 WIB</p>
+</div>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+<div onclick="go('home')">🏠</div>
+<div onclick="go('cart')">🛒 <span id="badge" class="badge">0</span></div>
+<div onclick="go('tracking')">📦</div>
+<div onclick="go('profile')">👤</div>
+</div>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function go(id){
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+render();
+}
+
+function add(e,n,h){
+cart.push({n,h});
+save();
+alert("Ditambahkan ke keranjang");
+}
+
+function save(){
+localStorage.setItem("cart",JSON.stringify(cart));
+updateBadge();
+render();
+}
+
+function updateBadge(){
+document.getElementById("badge").innerText=cart.length;
+}
+
+function render(){
+let html="";
+let total=0;
+
+cart.forEach((i,index)=>{
+let harga=parseInt(i.h.replace(/\D/g,''))||0;
+total+=harga;
+
+html+=`
+<div class="cart-item">
+<div>${i.n}<br>${i.h}</div>
+<div onclick="del(${index})" style="color:red;cursor:pointer">✕</div>
+</div>`;
+});
+
+html+=`<hr><b>Total: ${total}K</b>
+<button class="btn" onclick="clearCart()">Hapus Semua</button>`;
+
+document.getElementById("list").innerHTML=html;
+updateBadge();
+}
+
+function del(i){
+cart.splice(i,1);
+save();
+}
+
+function clearCart(){
+cart=[];
+save();
+}
+
+function checkout(){
+if(cart.length==0)return alert("Kosong");
+
+let kode="ORD"+Math.floor(Math.random()*9999);
+
+let pesan="🛒 ORDER V1PEDIASTORE%0A";
+cart.forEach(i=>{
+pesan+=`• ${i.n} - ${i.h}%0A`;
+});
+
+pesan+=`%0AKode: ${kode}%0A`;
+pesan+=`%0ADANA: 083143490913%0A`;
+pesan+=`A/N: M.Kharihal Kezo%0A`;
+pesan+=`Kirim bukti pembayaran.`;
+
+// FIX WA 100%
+window.open("https://wa.me/6283143490913?text="+pesan,"_blank");
+}
+
+updateBadge();
+render();
+</script>
+
+</body>
+</html>
