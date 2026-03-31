@@ -1,17 +1,35 @@
 let cart=[];
 
+/* INIT */
+document.addEventListener("DOMContentLoaded",()=>{
+  render();
+});
+
+/* PAGE */
+function openPage(page,nav){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.getElementById(page).classList.add("active");
+
+  document.querySelectorAll(".nav-item").forEach(n=>n.classList.remove("active"));
+  document.getElementById(nav).classList.add("active");
+}
+
 /* RENDER */
 function render(){
   let p=document.getElementById("panel-list");
   let f=document.getElementById("followers-list");
 
+  p.innerHTML="";
+  f.innerHTML="";
+
   panel.forEach(i=>p.innerHTML+=html(i));
   followers.forEach(i=>f.innerHTML+=html(i));
 }
+
 function html(i){
-  return `<div class="product" onclick="clickEffect(this)">
+  return `<div class="card">
     <div>${i.nama}<br>Rp${i.harga/1000}K</div>
-    <button class="btn" onclick="event.stopPropagation();add('${i.nama}',${i.harga})">Order</button>
+    <button class="btn" onclick="add('${i.nama}',${i.harga})">Order</button>
   </div>`;
 }
 
@@ -23,13 +41,7 @@ function switchTab(e,t){
   e.target.classList.add("active");
 }
 
-/* CLICK EFFECT */
-function clickEffect(el){
-  el.style.transform="scale(.97)";
-  setTimeout(()=>el.style.transform="",150);
-}
-
-/* ADD CART */
+/* ADD */
 function add(n,h){
   cart.push({n,h});
   popup();
@@ -40,39 +52,40 @@ function add(n,h){
 function updateCart(){
   let el=document.getElementById("cartList");
   let total=0;
+
   el.innerHTML="";
   cart.forEach(i=>{
     el.innerHTML+=`<div>${i.n} - ${i.h/1000}K</div>`;
     total+=i.h;
   });
+
   document.getElementById("total").innerText="Total: Rp"+total/1000+"K";
+  document.getElementById("cartCount").innerText=cart.length;
+}
+
+function clearCart(){
+  cart=[];
+  updateCart();
 }
 
 /* POPUP */
 function popup(){
   let p=document.getElementById("popup");
   p.classList.add("active");
-  setTimeout(()=>p.classList.remove("active"),1200);
+  setTimeout(()=>p.classList.remove("active"),1000);
 }
 
 /* WA */
 function orderWA(){
-  let text="🛒 ORDER V1PEDIA%0A";
-  cart.forEach(i=>text+=i.n+"%0A");
+  let text="🛒 ORDER V1PEDIA STORE%0A";
+  cart.forEach(i=>{
+    text+=`• ${i.n} - ${i.h/1000}K%0A`;
+  });
+
   window.location.href="https://wa.me/6283143490913?text="+text;
 }
 
-/* NAV EFFECT */
-function navClick(el){
-  el.style.transform="scale(.85)";
-  setTimeout(()=>el.style.transform="",150);
-}
-
-/* SCROLL */
-function scrollToTop(){window.scrollTo({top:0,behavior:"smooth"});}
-function scrollToCart(){window.scrollTo({top:document.body.scrollHeight,behavior:"smooth"});}
-
-/* LIVE ORDER */
+/* LIVE */
 setInterval(()=>{
   let names=["Budi","Andi","Rizky","Dika"];
   let all=[...panel,...followers];
@@ -80,7 +93,7 @@ setInterval(()=>{
 
   let box=document.getElementById("liveOrder");
   box.style.display="block";
-  box.innerText=names[Math.random()*4|0]+" baru order "+item.nama;
+  box.innerText=names[Math.random()*4|0]+" order "+item.nama;
 
   setTimeout(()=>box.style.display="none",3000);
 },5000);
@@ -90,5 +103,3 @@ setInterval(()=>{
   let s=document.getElementById("sold");
   s.innerText=parseInt(s.innerText)+1;
 },4000);
-
-render();
