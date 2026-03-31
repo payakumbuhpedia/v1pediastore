@@ -1,122 +1,136 @@
-let cart=[];
-
-/* PAGE FIX */
-function showPage(id){
-document.querySelectorAll(".page").forEach(p=>{
-p.classList.remove("active");
-});
-document.getElementById(id).classList.add("active");
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:sans-serif;
 }
 
-/* RENDER */
-function render(){
-let p=document.getElementById("panel-list");
-let f=document.getElementById("followers-list");
-
-p.innerHTML="";
-f.innerHTML="";
-
-panel.forEach(i=>p.innerHTML+=html(i));
-followers.forEach(i=>f.innerHTML+=html(i));
+body{
+  background:#f5f6fa;
+  padding-bottom:90px;
 }
 
-function html(i){
-return `
-<div class="product">
-<div>
-<b>${i.nama}</b><br>
-Rp${i.harga/1000}K
-</div>
-<button class="btn" onclick="add('${i.nama}',${i.harga})">Order</button>
-</div>`;
+/* LOADING */
+#loading{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:linear-gradient(135deg,#5f8bff,#7aa6ff);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:#fff;
+  font-size:22px;
+  z-index:9999;
 }
 
-/* TAB */
-function switchTab(e,t){
-document.getElementById("panel-list").style.display=t=="panel"?"block":"none";
-document.getElementById("followers-list").style.display=t=="followers"?"block":"none";
-
-document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
-e.target.classList.add("active");
+/* HEADER */
+.header{
+  background:linear-gradient(135deg,#5f8bff,#7aa6ff);
+  color:#fff;
+  text-align:center;
+  padding:40px 20px 100px;
+  border-radius:0 0 40px 40px;
 }
 
-/* CART */
-function add(n,h){
-cart.push({n,h});
-popup();
-updateCart();
+/* CARD */
+.card{
+  background:#fff;
+  margin:15px;
+  padding:15px;
+  border-radius:20px;
+  box-shadow:0 8px 20px rgba(0,0,0,.08);
 }
 
-function updateCart(){
-let el=document.getElementById("cartList");
-let total=0;
-
-el.innerHTML="";
-
-cart.forEach((i,index)=>{
-el.innerHTML+=`
-<div>
-${i.n} - Rp${i.h/1000}K 
-<button onclick="removeItem(${index})">❌</button>
-</div>`;
-total+=i.h;
-});
-
-document.getElementById("total").innerText="Total: Rp"+total/1000+"K";
+/* STATS */
+.stats{
+  display:flex;
+  text-align:center;
+}
+.stats div{flex:1;}
+.stats b{
+  display:block;
+  font-size:18px;
 }
 
-/* HAPUS ITEM */
-function removeItem(i){
-cart.splice(i,1);
-updateCart();
+/* PRODUCT */
+.product{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:10px 15px;
+  padding:12px;
+  background:#fff;
+  border-radius:15px;
 }
 
-/* CLEAR CART */
-function clearCart(){
-cart=[];
-updateCart();
+.btn{
+  background:#5f8bff;
+  color:#fff;
+  border:none;
+  padding:10px 15px;
+  border-radius:12px;
+}
+
+/* NAVBAR */
+.navbar{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  display:flex;
+  justify-content:space-around;
+  background:#fff;
+  padding:10px;
+  border-top:1px solid #ddd;
+  z-index:1000;
+}
+
+.navbar div{
+  text-align:center;
+  font-size:14px;
+}
+
+/* ACTIVE */
+.active-nav{
+  color:#5f8bff;
+  font-weight:bold;
+}
+
+/* BADGE */
+.badge{
+  position:absolute;
+  top:-5px;
+  right:20px;
+  background:red;
+  color:#fff;
+  font-size:10px;
+  padding:2px 6px;
+  border-radius:50%;
+}
+
+/* PAGE */
+.page{
+  display:none;
+}
+.page.active{
+  display:block;
 }
 
 /* POPUP */
-function popup(){
-let p=document.getElementById("popup");
-p.classList.add("active");
-setTimeout(()=>p.classList.remove("active"),1000);
+.popup{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%) scale(0);
+  background:#fff;
+  padding:20px;
+  border-radius:20px;
+}
+.popup.active{
+  transform:translate(-50%,-50%) scale(1);
 }
 
-/* WA */
-function orderWA(){
-if(cart.length==0){
-alert("Keranjang kosong!");
-return;
+/* PROFILE */
+.profile p{
+  margin:8px 0;
 }
-
-let text="🛒 ORDER V1PEDIA STORE%0A%0A";
-
-cart.forEach(i=>{
-text+=`• ${i.n} - Rp${i.h/1000}K%0A`;
-});
-
-window.location.href="https://wa.me/6283143490913?text="+text;
-}
-
-/* LIVE ORDER */
-setInterval(()=>{
-let names=["Budi","Andi","Rizky","Dika"];
-let all=[...panel,...followers];
-let item=all[Math.random()*all.length|0];
-
-let box=document.getElementById("liveOrder");
-box.style.display="block";
-box.innerText=names[Math.random()*4|0]+" order "+item.nama;
-
-setTimeout(()=>box.style.display="none",3000);
-},5000);
-
-/* COUNTER */
-setInterval(()=>{
-let s=document.getElementById("sold");
-s.innerText=parseInt(s.innerText)+1;
-},4000);
-
-render();
