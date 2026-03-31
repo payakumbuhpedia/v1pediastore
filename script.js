@@ -69,18 +69,36 @@ function clearCart(){
   cart=[];
   updateCart();
 }
-
-/* WA */
 function orderWA(){
   if(cart.length===0){
     alert("Keranjang kosong!");
     return;
   }
 
-  let text="🛒 ORDER V1PEDIASTORE%0A";
-  cart.forEach(i=>text+=i.n+"%0A");
+  let code="V1-"+Math.random().toString(36).substr(2,6).toUpperCase();
+
+  let text=`✨ *V1PEDIA STORE* ✨%0A`;
+  text+=`━━━━━━━━━━━━━━━━━━━%0A%0A`;
+  text+=`👋 Halo Admin,%0A`;
+  text+=`Saya ingin melakukan pemesanan:%0A%0A`;
+
+  text+=`📦 *Detail Order:*%0A`;
+  cart.forEach((i,index)=>{
+    text+=`${index+1}. ${i.n} - Rp${i.h/1000}K%0A`;
+  });
+
+  let total=cart.reduce((a,b)=>a+b.h,0);
+
+  text+=`%0A━━━━━━━━━━━━━━━━━━━%0A`;
+  text+=`💰 *Total Pembayaran:* Rp${total/1000}K%0A`;
+  text+=`🧾 *Kode Order:* ${code}%0A`;
+  text+=`%0A━━━━━━━━━━━━━━━━━━━%0A`;
+  text+=`⚡ Mohon diproses secepatnya ya kak 🙏%0A`;
+  text+=`Terima kasih 💎`;
 
   window.location.href="https://wa.me/6283143490913?text="+text;
+}
+
 }
 
 /* DARK MODE */
