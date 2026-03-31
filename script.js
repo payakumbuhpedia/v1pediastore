@@ -1,93 +1,78 @@
 let cart=[];
 
-/* CLICK FX */
+/* LOADING */
+window.onload=()=>{
+  setTimeout(()=>{
+    document.getElementById("loading").style.display="none";
+  },1200);
+}
+
+/* NAV */
+function showPage(id){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  clickFX();
+}
+
+/* EFFECT */
 function clickFX(){
-  if(navigator.vibrate){
-    navigator.vibrate(30);
-  }
-
-  let fx=document.createElement("div");
-  fx.className="click-fx";
-  fx.innerHTML="💎";
-  document.body.appendChild(fx);
-
-  setTimeout(()=>fx.remove(),500);
+  navigator.vibrate(50);
 }
 
-/* GLOBAL CLICK */
-document.addEventListener("click",(e)=>{
-  if(e.target.tagName!=="BODY"){
-    clickFX();
-  }
-});
-
-/* RENDER */
-function render(){
-  let p=document.getElementById("panel-list");
-  let f=document.getElementById("followers-list");
-
-  if(!p||!f)return;
-
-  p.innerHTML="";
-  f.innerHTML="";
-
-  panel.forEach(i=>p.innerHTML+=html(i));
-  followers.forEach(i=>f.innerHTML+=html(i));
-}
-
-function html(i){
-  return `
-  <div class="product">
-    <div>${i.nama}<br><b>Rp${i.harga/1000}K</b></div>
-    <button class="btn" onclick="add('${i.nama}',${i.harga})">Order</button>
-  </div>`;
-}
+/* MENU */
+function openPanel(){showPage("panelPage")}
+function openFollowers(){showPage("followersPage")}
 
 /* CART */
-function add(n,h){
-  cart.push({n,h});
+function addToCart(name,price){
+  cart.push({name,price});
   updateCart();
 }
 
 function updateCart(){
-  let el=document.getElementById("cartList");
+  let list=document.getElementById("cartList");
   let total=0;
+  list.innerHTML="";
 
-  if(!el)return;
-
-  el.innerHTML="";
   cart.forEach(i=>{
-    el.innerHTML+=`<div>${i.n} - Rp${i.h/1000}K</div>`;
-    total+=i.h;
+    total+=i.price;
+    list.innerHTML+=`<div>${i.name} - Rp${i.price}</div>`;
   });
 
-  document.getElementById("total").innerText="Total: Rp"+(total/1000)+"K";
+  document.getElementById("total").innerText="Total: Rp"+total;
   document.getElementById("badge").innerText=cart.length;
 }
 
+/* CLEAR */
 function clearCart(){
   cart=[];
   updateCart();
 }
 
-/* WA */
+/* ORDER WA PRO */
 function orderWA(){
-  if(cart.length===0){
-    alert("Keranjang kosong!");
-    return;
-  }
+  if(cart.length==0)return alert("Keranjang kosong");
 
-  let text="🛒 ORDER V1PEDIASTORE%0A";
-  cart.forEach(i=>text+=i.n+"%0A");
+  let kode="V1P-"+Math.floor(Math.random()*9999);
 
-  window.location.href="https://wa.me/6283143490913?text="+text;
+  let text=`Halo Admin V1PEDIASTORE%0A`;
+  text+=`Saya ingin order:%0A`;
+
+  cart.forEach(i=>{
+    text+=`- ${i.name} Rp${i.price}%0A`;
+  });
+
+  text+=`Kode Order: ${kode}`;
+
+  window.location.href=`https://wa.me/6283143490913?text=${text}`;
 }
 
-/* DARK MODE */
+/* LINK */
+function openWA(){
+  window.location.href="https://wa.me/6283143490913";
+}
+
+/* DARK */
 function toggleDark(){
   document.body.classList.toggle("dark");
 }
-
-/* INIT */
-render();
-updateCart();
