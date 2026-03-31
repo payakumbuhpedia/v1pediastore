@@ -1,0 +1,93 @@
+<!DOCTYPE html><html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V1PEDIASTORE</title>
+<style>
+body{font-family:Arial;margin:0;background:#f5f6fa}
+.header{background:linear-gradient(135deg,#4e73df,#6f86ff);color:#fff;text-align:center;padding:30px}
+.card{background:#fff;margin:15px;padding:20px;border-radius:15px;box-shadow:0 4px 10px rgba(0,0,0,0.1)}
+.btn{background:#4e73df;color:#fff;padding:12px;border:none;border-radius:10px;width:100%;cursor:pointer;margin-top:10px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.item{background:#f1f2f6;padding:15px;border-radius:10px;text-align:center;cursor:pointer}
+.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);display:none;justify-content:center;align-items:center}
+.modal-content{background:#fff;padding:20px;border-radius:15px;width:90%;max-width:400px;text-align:center}
+</style>
+</head>
+<body><div class="header">
+<h1>V1PEDIASTORE</h1>
+<p>Panel Bot WA • Followers • Script • OSINT</p>
+</div><div class="card">
+<h2>Panel Bot WhatsApp</h2>
+<div class="grid" id="panel"></div>
+</div><div class="card">
+<h2>Followers Indonesia</h2>
+<div class="grid" id="followers"></div>
+</div><div class="modal" id="paymentModal">
+<div class="modal-content">
+<h3>Pembayaran</h3>
+<p id="detail"></p>
+<p><b>DANA:</b> 083143490913<br>Atas Nama: M.Kharihal Kezo</p>
+<button class="btn" onclick="lanjutWA()">Saya Sudah Bayar</button>
+<button class="btn" onclick="tutupModal()">Batal</button>
+</div>
+</div><script>
+let currentProduct='';
+let currentPrice=0;
+
+const panelData=[
+['1GB RAM',2000],['2GB RAM',3000],['3GB RAM',4000],['4GB RAM',5000],
+['5GB RAM',6000],['6GB RAM',7000],['7GB RAM',8000],['8GB RAM',9000],
+['9GB RAM',10000],['11GB RAM',11000],['Unlimited RAM',13000],
+['Reseller Panel',16000],['Admin Panel',18000]
+];
+
+const followersData=[];
+for(let i=1;i<=50;i++){
+followersData.push([i+'K Followers', i*40000]);
+}
+
+function formatRupiah(num){
+return 'Rp '+num.toLocaleString('id-ID');
+}
+
+function render(){
+const panel=document.getElementById('panel');
+panelData.forEach(p=>{
+const div=document.createElement('div');
+div.className='item';
+div.innerHTML=`${p[0]}<br>${formatRupiah(p[1])}`;
+div.onclick=()=>openModal(p[0],p[1]);
+panel.appendChild(div);
+});
+
+const followers=document.getElementById('followers');
+followersData.forEach(f=>{
+const div=document.createElement('div');
+div.className='item';
+div.innerHTML=`${f[0]}<br>${formatRupiah(f[1])}`;
+div.onclick=()=>openModal(f[0],f[1]);
+followers.appendChild(div);
+});
+}
+
+function openModal(product,price){
+currentProduct=product;
+currentPrice=price;
+document.getElementById('detail').innerHTML=`${product}<br>${formatRupiah(price)}`;
+document.getElementById('paymentModal').style.display='flex';
+}
+
+function tutupModal(){
+document.getElementById('paymentModal').style.display='none';
+}
+
+function lanjutWA(){
+const kode='V1PS-'+Math.floor(Math.random()*9999);
+const msg=`Halo admin V1PEDIASTORE\n\nSaya ingin order:\n\nProduk: ${currentProduct}\nHarga: ${formatRupiah(currentPrice)}\n\nKode Order: ${kode}\n\nSaya sudah melakukan pembayaran via DANA (M.Kharihal Kezo)\nBerikut bukti pembayaran saya kirim 🙏`;
+window.open(`https://wa.me/6283143490913?text=${encodeURIComponent(msg)}`,'_blank');
+}
+
+render();
+</script></body>
+</html>
