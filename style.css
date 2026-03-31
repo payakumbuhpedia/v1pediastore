@@ -1,0 +1,132 @@
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family:Arial;
+background:#f2f2f2;
+padding-bottom:120px;
+}
+
+/* HEADER */
+.header{
+background:linear-gradient(135deg,#5f7cff,#6fa3ff);
+color:#fff;
+text-align:center;
+padding:50px 20px;
+border-radius:0 0 40px 40px;
+}
+
+/* CARD */
+.card{
+background:#fff;
+margin:16px;
+padding:18px;
+border-radius:20px;
+box-shadow:0 4px 14px rgba(0,0,0,0.08);
+}
+
+/* BRAND */
+.brand-card{
+background:#fff;
+margin:-50px 16px 16px;
+padding:20px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 6px 18px rgba(0,0,0,0.1);
+}
+
+.verified{
+background:#4da6ff;
+color:#fff;
+border-radius:50%;
+padding:3px 7px;
+font-size:12px;
+}
+
+/* ⭐ RATING FIX */
+.rating{
+display:flex;
+align-items:center;
+gap:6px;
+font-size:15px;
+margin-bottom:10px;
+}
+
+/* 📊 STATS FIX */
+.stats{
+display:flex;
+justify-content:space-between;
+text-align:center;
+}
+.stats div{
+flex:1;
+}
+
+/* LAYANAN GRID */
+.services{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+margin-top:10px;
+}
+
+/* ITEM */
+.item{
+background:#f9f9f9;
+padding:12px;
+border-radius:12px;
+display:flex;
+flex-direction:column;
+gap:6px;
+transition:0.2s;
+position:relative;
+overflow:hidden;
+}
+
+/* ANIMASI KLIK */
+.item:active{
+transform:scale(0.95);
+}
+
+/* BUTTON */
+button{
+border:none;
+padding:8px;
+border-radius:10px;
+background:#5f7cff;
+color:#fff;
+cursor:pointer;
+transition:0.2s;
+}
+button:active{
+transform:scale(0.9);
+background:#4c63d6;
+}
+
+/* NAVBAR */
+.navbar{
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+display:flex;
+justify-content:space-around;
+background:rgba(255,255,255,0.8);
+backdrop-filter:blur(10px);
+padding:10px;
+border-top:1px solid rgba(0,0,0,0.1);
+}
+
+/* TOAST */
+.toast{
+position:fixed;
+bottom:90px;
+left:50%;
+transform:translateX(-50%);
+background:#000;
+color:#fff;
+padding:10px 15px;
+border-radius:10px;
+opacity:0;
+transition:0.3s;
+}
+.toast.show{opacity:1}
