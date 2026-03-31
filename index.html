@@ -1,0 +1,159 @@
+<!DOCTYPE html><html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V1PEDIASTORE INFINITY</title><style>
+body{margin:0;font-family:Arial;background:#f5f6fa;}
+.header{background:linear-gradient(135deg,#5a7cff,#6f8cff);color:white;padding:30px;text-align:center;border-bottom-left-radius:30px;border-bottom-right-radius:30px;}
+.card{background:white;margin:15px;padding:15px;border-radius:20px;box-shadow:0 5px 15px rgba(0,0,0,0.1);} 
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.item{background:#f1f2f6;padding:15px;border-radius:15px;text-align:center;cursor:pointer;}
+.nav{position:fixed;bottom:0;width:100%;background:white;display:flex;justify-content:space-around;padding:10px;box-shadow:0 -2px 10px rgba(0,0,0,0.1);} 
+.page{display:none;padding-bottom:70px;} .active{display:block;}
+.btn{width:100%;padding:12px;background:#5a7cff;color:white;border:none;border-radius:12px;margin-top:10px;}
+.cart-item{background:#f9f9f9;padding:10px;border-radius:10px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;}
+.qty{display:flex;gap:10px;align-items:center;}
+.small-btn{background:red;color:white;border:none;border-radius:5px;padding:5px 8px;}
+.desc{font-size:13px;color:#666;margin-top:5px;}
+</style></head>
+<body><!-- HOME --><div id="home" class="page active">
+<div class="header">
+<h2>V1PEDIASTORE</h2>
+<p>Digital Services Premium</p>
+</div><div class="card">
+<h3>V1PEDIASTORE INFINITY</h3>
+<p>⭐ 4.9 | 1.2K Review</p>
+<div class="grid">
+<div>12.5K<br>Terjual</div>
+<div>8.2K<br>Pelanggan</div>
+<div>98%<br>Kepuasan</div>
+</div>
+</div><div class="card">
+<h3>Layanan</h3>
+<div class="grid">
+<div class="item" onclick="go('order')">
+<b>Panel Bot</b>
+<div class="desc">Hosting bot WhatsApp stabil & cepat</div>
+</div>
+<div class="item" onclick="go('order')">
+<b>Followers</b>
+<div class="desc">Tambah followers real & aman</div>
+</div>
+<div class="item" onclick="go('order')">
+<b>OSINT</b>
+<div class="desc">Pencarian data publik & informasi</div>
+</div>
+<div class="item" onclick="go('order')">
+<b>Pelacakan</b>
+<div class="desc">Tracking nomor & aktivitas digital</div>
+</div>
+</div>
+</div>
+</div><!-- ORDER --><div id="order" class="page">
+<div class="header"><h3>Produk</h3></div><div class="card">
+<h3>Panel Pterodactyl</h3>
+<p class="desc">Panel hosting bot/game dengan performa stabil & harga terjangkau</p>
+<div class="grid" id="panel"></div>
+</div><div class="card">
+<h3>Followers Indonesia</h3>
+<p class="desc">Followers aktif & aman tanpa resiko banned</p>
+<div class="grid" id="followers"></div>
+</div><div class="card">
+<h3>OSINT Tools</h3>
+<p class="desc">Layanan pencarian data nomor, email, sosial media</p>
+<div class="grid">
+<div class="item" onclick="add('OSINT Basic',10000)">Basic<br>Rp 10.000</div>
+<div class="item" onclick="add('OSINT Pro',25000)">Pro<br>Rp 25.000</div>
+</div>
+</div><div class="card">
+<h3>Pelacakan</h3>
+<p class="desc">Pelacakan nomor & aktivitas digital secara detail</p>
+<div class="grid">
+<div class="item" onclick="add('Tracking Basic',15000)">Basic<br>Rp 15.000</div>
+<div class="item" onclick="add('Tracking Pro',30000)">Pro<br>Rp 30.000</div>
+</div>
+</div>
+</div><!-- CART --><div id="cart" class="page">
+<div class="header"><h3>Keranjang Belanja</h3></div><div class="card" id="cartList"></div><div class="card">
+<div id="total"></div>
+<button class="btn" onclick="checkout()">Lanjut ke Pembayaran</button>
+<button class="btn" onclick="clearCart()" style="background:red">Hapus Semua</button>
+</div>
+</div><!-- PROFILE --><div id="profile" class="page">
+<div class="header"><h3>Kontak Saya</h3></div>
+<div class="card">
+<p><b>Alamat</b><br>Jalan Agus Salim, Padang Tiakar, Payakumbuh</p>
+<p><b>WhatsApp</b><br>083143490913</p>
+<p><b>Email</b><br>payakumbuhpediastoreid@gmail.com</p>
+<p><b>Jam Operasional</b><br>09:00 - 21:00 WIB</p>
+</div>
+</div><!-- NAV --><div class="nav">
+<div onclick="go('home')">🏠</div>
+<div onclick="go('order')">🛒</div>
+<div onclick="go('cart')">📦</div>
+<div onclick="go('profile')">👤</div>
+</div><script>
+let cart=[];
+
+function go(id){
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+renderCart();
+}
+
+function add(name,price){
+cart.push({name,price,qty:1});
+renderCart();
+}
+
+function renderCart(){
+let html=''; let total=0;
+cart.forEach((item,i)=>{
+total+=item.price*item.qty;
+html+=`<div class="cart-item">
+<div>
+<b>${item.name}</b><br>Rp ${item.price}
+</div>
+<div class="qty">
+<button onclick="min(${i})">-</button>
+${item.qty}
+<button onclick="plus(${i})">+</button>
+<button class="small-btn" onclick="del(${i})">X</button>
+</div>
+</div>`;
+});
+
+document.getElementById('cartList').innerHTML=html||'Keranjang kosong';
+document.getElementById('total').innerHTML="<b>Total: Rp "+total+"</b>";
+}
+
+function plus(i){cart[i].qty++;renderCart();}
+function min(i){if(cart[i].qty>1)cart[i].qty--;renderCart();}
+function del(i){cart.splice(i,1);renderCart();}
+function clearCart(){cart=[];renderCart();}
+
+function checkout(){
+if(cart.length==0)return alert('Keranjang kosong');
+let text='Order:%0A';
+cart.forEach(i=>{
+text+=`${i.name} x${i.qty} - Rp ${i.price*i.qty}%0A`;
+});
+window.location.href=`https://wa.me/6283143490913?text=${text}`;
+}
+
+// PANEL
+let phtml='';
+for(let i=1;i<=11;i++){
+phtml+=`<div class="item" onclick="add('${i}GB Panel',${i*1000})">${i}GB<br>Rp ${i*1000}</div>`;
+}
+document.getElementById('panel').innerHTML=phtml;
+
+// FOLLOWERS
+let fhtml='';
+for(let i=1;i<=50;i++){
+fhtml+=`<div class="item" onclick="add('${i}K Followers',${i*40000})">${i}K<br>Rp ${i*40000}</div>`;
+}
+document.getElementById('followers').innerHTML=fhtml;
+
+</script></body>
+</html>
