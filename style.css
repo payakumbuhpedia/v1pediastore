@@ -1,7 +1,13 @@
-body{
+*{
   margin:0;
+  padding:0;
+  box-sizing:border-box;
   font-family:sans-serif;
+}
+
+body{
   background:#f5f6fa;
+  padding-bottom:110px;
 }
 
 /* HEADER */
@@ -13,25 +19,13 @@ body{
   border-radius:0 0 40px 40px;
 }
 
-/* PAGE */
-.page{
-  position:absolute;
-  width:100%;
-  top:0;
-  left:100%;
-  transition:.4s;
-}
-.page.active{
-  left:0;
-}
-
 /* CARD */
 .card{
+  background:#fff;
   margin:15px;
   padding:15px;
-  background:#fff;
   border-radius:20px;
-  box-shadow:0 8px 20px rgba(0,0,0,.08);
+  box-shadow:0 6px 15px rgba(0,0,0,.08);
 }
 
 .brand-card{
@@ -44,7 +38,13 @@ body{
   display:flex;
   text-align:center;
 }
-.stats div{flex:1;}
+.stats div{
+  flex:1;
+}
+.stats b{
+  display:block;
+  font-size:18px;
+}
 
 /* TABS */
 .tabs{
@@ -52,38 +52,41 @@ body{
   margin:15px;
   background:#fff;
   border-radius:15px;
+  overflow:hidden;
 }
 .tab{
   flex:1;
   text-align:center;
   padding:12px;
+  cursor:pointer;
 }
 .tab.active{
   background:#5f8bff;
   color:#fff;
 }
 
-/* PRODUCT */
+/* LIST */
+.list{
+  margin-bottom:10px;
+}
+
 .product{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
   margin:10px 15px;
-  padding:12px;
+  padding:15px;
   background:#fff;
   border-radius:15px;
+  box-shadow:0 4px 10px rgba(0,0,0,.05);
 }
 
 /* BUTTON */
 .btn{
   background:#5f8bff;
   color:#fff;
-  padding:10px;
   border:none;
-  border-radius:10px;
-}
-.btn-danger{
-  background:red;
-  color:#fff;
-  padding:10px;
-  border:none;
+  padding:10px 15px;
   border-radius:10px;
 }
 
@@ -96,35 +99,11 @@ body{
   justify-content:space-around;
   background:#fff;
   padding:10px;
-  box-shadow:0 -5px 15px rgba(0,0,0,.1);
+  border-top:1px solid #eee;
 }
-
-.nav-item{
-  font-size:20px;
-  opacity:.5;
-  transition:.3s;
-  position:relative;
-}
-.nav-item.active{
-  opacity:1;
-  transform:scale(1.2);
-}
-
-/* BADGE */
-#cartCount{
-  position:absolute;
-  top:-5px;
-  right:-10px;
-  background:red;
-  color:#fff;
-  font-size:10px;
-  padding:2px 6px;
-  border-radius:10px;
-}
-
-/* PROFILE */
-.profile{
+.navbar div{
   text-align:center;
+  font-size:14px;
 }
 
 /* POPUP */
@@ -135,20 +114,21 @@ body{
   transform:translate(-50%,-50%) scale(0);
   background:#fff;
   padding:20px;
-  border-radius:20px;
+  border-radius:15px;
   transition:.3s;
 }
 .popup.active{
   transform:translate(-50%,-50%) scale(1);
 }
 
-/* LIVE */
+/* LIVE ORDER */
 .live-order{
   position:fixed;
-  bottom:100px;
+  bottom:90px;
   left:10px;
   background:#fff;
   padding:10px;
   border-radius:10px;
   display:none;
+  box-shadow:0 5px 10px rgba(0,0,0,.1);
 }
