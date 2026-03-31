@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V1PEDIASTORE INFINITY</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <h1 class="fade">V1PEDIASTORE</h1>
+  <p class="fade">Digital Services Premium</p>
+</div>
+
+<!-- PROFILE -->
+<div class="profile-card fade">
+
+  <div class="profile-img">
+    <img src="https://i.ibb.co/6y5J0Jg/avatar.png">
+  </div>
+
+  <div class="profile-right">
+    <h2>Hello my store</h2>
+    <h3>V1 PEDIA STORE <span class="verified">✔</span></h3>
+
+    <div class="profile-info">
+      <div class="info-btn">📷 v1pediastore</div>
+      <div class="info-btn">👤 Kenzo Dista Ananta</div>
+      <div class="info-btn">💬 0831-4349-0913</div>
+    </div>
+
+    <p class="alamat">
+      📍 Jalan Agus Salim, Padang Tiakar, Kota Payakumbuh
+    </p>
+
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="card fade">
+  ⭐ 4.9 | 1.2K Review
+  <div class="stats">
+    <div><b>12.5K</b><br>Terjual</div>
+    <div><b>8.2K</b><br>Pelanggan</div>
+    <div><b>98%</b><br>Kepuasan</div>
+  </div>
+</div>
+
+<!-- LIVE -->
+<div class="live fade">
+  🔥 <span id="liveOrder">Menunggu order...</span>
+</div>
+
+<!-- MENU -->
+<div class="card fade">
+  <h2>Layanan</h2>
+
+  <p class="label">Panel Bot WhatsApp</p>
+  <button onclick="showPanel()">Buka Panel</button>
+
+  <p class="label">Followers Instagram Indonesia</p>
+  <button onclick="showFollowers()">Buka Followers</button>
+</div>
+
+<div id="list"></div>
+
+<!-- CART -->
+<div id="cartPopup" class="cartPopup">
+  <h3>Keranjang</h3>
+  <div id="cartItems"></div>
+  <button onclick="checkout()">Checkout</button>
+</div>
+
+<!-- NOTIF -->
+<div id="notif" class="notif">✔ Ditambahkan</div>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <div onclick="goHome()">🏠<br>Home</div>
+  <div onclick="showCart()">🛒<br>Keranjang</div>
+  <div onclick="showProfile()">👤<br>Profile</div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>© 2026 V1 PEDIA STORE</p>
+  <p>Website ini dilindungi & aman digunakan</p>
+</div>
+
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
