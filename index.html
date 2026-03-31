@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V1PEDIASTORE</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:#f5f6fa;
+}
+
+/* HEADER */
+.header{
+  background:linear-gradient(135deg,#4e73df,#6c8cff);
+  color:white;
+  text-align:center;
+  padding:30px;
+}
+
+.header h1{margin:0;}
+.header p{opacity:0.9;}
+
+/* STATS */
+.stats{
+  display:flex;
+  justify-content:space-around;
+  background:white;
+  margin:15px;
+  padding:15px;
+  border-radius:15px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.stat{text-align:center;}
+
+/* CARD */
+.container{padding:10px;}
+
+.card{
+  background:white;
+  margin:15px;
+  padding:15px;
+  border-radius:15px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.title{
+  font-size:18px;
+  margin-bottom:10px;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.item{
+  background:#f1f1f1;
+  padding:15px;
+  border-radius:12px;
+  text-align:center;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.item:hover{
+  background:#dfe6ff;
+}
+
+/* POPUP */
+.popup{
+  position:fixed;
+  top:0;left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.5);
+  display:none;
+  justify-content:center;
+  align-items:center;
+}
+
+.popup-content{
+  background:white;
+  padding:20px;
+  border-radius:15px;
+  width:85%;
+  text-align:center;
+}
+
+.btn{
+  display:block;
+  background:#4e73df;
+  color:white;
+  padding:12px;
+  margin-top:10px;
+  border-radius:10px;
+  text-decoration:none;
+}
+
+/* FOOTER */
+.footer{
+  background:#111;
+  color:white;
+  padding:20px;
+  margin-top:20px;
+}
+
+.footer h3{
+  margin-top:0;
+}
+
+.footer p{
+  margin:5px 0;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <h1>V1PEDIASTORE</h1>
+  <p>Panel Bot WA • Followers • Script • OSINT</p>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <h2>12.5K</h2>
+    <p>Terjual</p>
+  </div>
+  <div class="stat">
+    <h2>8.2K</h2>
+    <p>Pelanggan</p>
+  </div>
+  <div class="stat">
+    <h2>98%</h2>
+    <p>Kepuasan</p>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- PANEL -->
+<div class="card">
+<div class="title">Panel Bot WhatsApp</div>
+<div class="grid">
+<script>
+for(let i=1;i<=11;i++){
+let harga=[2000,3000,4000,5000,6000,7000,8000,9000,10000,0,11000];
+if(harga[i-1]!=0){
+document.write(`<div class="item" onclick="order('${i}GB RAM','${harga[i-1]}')">
+${i}GB RAM<br>Rp ${harga[i-1].toLocaleString()}
+</div>`);
+}
+}
+</script>
+</div>
+</div>
+
+<!-- FOLLOWERS -->
+<div class="card">
+<div class="title">Followers Indonesia</div>
+<div class="grid">
+<script>
+for(let i=1;i<=50;i++){
+document.write(`
+<div class="item" onclick="order('${i}K Followers','${i*40000}')">
+${i}K<br>Rp ${(i*40000).toLocaleString()}
+</div>
+`);
+}
+</script>
+</div>
+</div>
+
+<!-- LAYANAN -->
+<div class="card">
+<div class="title">Layanan Digital</div>
+<div class="grid">
+<div class="item" onclick="order('Pelacakan Nomor WA','100000')">
+Pelacakan WA<br>Rp 100.000
+</div>
+
+<div class="item" onclick="order('OSINT','100000')">
+OSINT<br>Rp 100.000
+</div>
+
+<div class="item" onclick="order('Script Bot Custom','100000')">
+Script Custom<br>Rp 100.000
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+<div class="popup-content">
+<h3>Pembayaran</h3>
+<p id="detail"></p>
+
+<p><b>DANA: 083143490913</b></p>
+<p>Atas Nama: M.Kharihal Kezo</p>
+
+<a class="btn" id="wa">Saya Sudah Bayar</a>
+<a class="btn" onclick="closePop()">Batal</a>
+</div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+<h3>Kontak Kami</h3>
+<p>WhatsApp: 083143490913</p>
+<p>Email: payakumbuhpediastoreid</p>
+<p>IG Bisnis: @v1pediastore</p>
+<p>IG Pribadi: @kenzodistaananta</p>
+
+<h3>Tentang Kami</h3>
+<p>V1PEDIASTORE menyediakan layanan digital seperti Panel Bot WhatsApp, Followers Indonesia, Script Bot Custom, dan layanan OSINT profesional.</p>
+
+<p style="margin-top:15px;font-size:12px;">
+© 2026 V1PEDIASTORE. All Rights Reserved.
+</p>
+</div>
+
+<script>
+function order(produk,harga){
+  document.getElementById("popup").style.display="flex";
+
+  document.getElementById("detail").innerHTML =
+  produk+"<br>Rp "+Number(harga).toLocaleString();
+
+  let kode="ORD"+Math.floor(Math.random()*99999);
+
+  let pesan=`Halo Admin V1PEDIASTORE
+Order: ${produk}
+Harga: Rp ${harga}
+Kode: ${kode}
+
+Saya sudah bayar, ini bukti transfer`;
+
+  document.getElementById("wa").href =
+  "https://wa.me/6283143490913?text="+encodeURIComponent(pesan);
+}
+
+function closePop(){
+  document.getElementById("popup").style.display="none";
+}
+</script>
+
+</body>
+</html>
