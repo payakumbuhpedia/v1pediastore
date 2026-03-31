@@ -1,20 +1,6 @@
 let cart=[];
 
-/* INIT */
-document.addEventListener("DOMContentLoaded",()=>{
-  render();
-});
-
-/* PAGE */
-function openPage(page,nav){
-  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-  document.getElementById(page).classList.add("active");
-
-  document.querySelectorAll(".nav-item").forEach(n=>n.classList.remove("active"));
-  document.getElementById(nav).classList.add("active");
-}
-
-/* RENDER */
+/* RENDER FIX (ANTI DUPLIKAT) */
 function render(){
   let p=document.getElementById("panel-list");
   let f=document.getElementById("followers-list");
@@ -27,21 +13,26 @@ function render(){
 }
 
 function html(i){
-  return `<div class="card">
-    <div>${i.nama}<br>Rp${i.harga/1000}K</div>
+  return `
+  <div class="product">
+    <div>
+      <b>${i.nama}</b><br>
+      Rp${i.harga/1000}K
+    </div>
     <button class="btn" onclick="add('${i.nama}',${i.harga})">Order</button>
   </div>`;
 }
 
 /* TAB */
 function switchTab(e,t){
-  document.getElementById("panel-list").style.display=t=="panel"?"block":"none";
-  document.getElementById("followers-list").style.display=t=="followers"?"block":"none";
+  document.getElementById("panel-list").style.display = t==="panel"?"block":"none";
+  document.getElementById("followers-list").style.display = t==="followers"?"block":"none";
+
   document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
   e.target.classList.add("active");
 }
 
-/* ADD */
+/* ADD CART */
 function add(n,h){
   cart.push({n,h});
   popup();
@@ -54,18 +45,13 @@ function updateCart(){
   let total=0;
 
   el.innerHTML="";
+
   cart.forEach(i=>{
     el.innerHTML+=`<div>${i.n} - ${i.h/1000}K</div>`;
     total+=i.h;
   });
 
-  document.getElementById("total").innerText="Total: Rp"+total/1000+"K";
-  document.getElementById("cartCount").innerText=cart.length;
-}
-
-function clearCart(){
-  cart=[];
-  updateCart();
+  document.getElementById("total").innerText="Total: Rp"+(total/1000)+"K";
 }
 
 /* POPUP */
@@ -75,25 +61,44 @@ function popup(){
   setTimeout(()=>p.classList.remove("active"),1000);
 }
 
-/* WA */
+/* WHATSAPP FIX */
 function orderWA(){
-  let text="🛒 ORDER V1PEDIA STORE%0A";
+  if(cart.length===0){
+    alert("Keranjang kosong!");
+    return;
+  }
+
+  let text="🛒 *ORDER V1PEDIA STORE*%0A%0A";
   cart.forEach(i=>{
-    text+=`• ${i.n} - ${i.h/1000}K%0A`;
+    text+=`• ${i.n} - Rp${i.h/1000}K%0A`;
   });
 
   window.location.href="https://wa.me/6283143490913?text="+text;
 }
 
-/* LIVE */
+/* NAV */
+function navClick(el){
+  document.querySelectorAll(".navbar div").forEach(x=>x.style.color="#000");
+  el.style.color="#5f8bff";
+}
+
+/* SCROLL */
+function scrollToTop(){
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function scrollToCart(){
+  window.scrollTo({top:document.body.scrollHeight,behavior:"smooth"});
+}
+
+/* LIVE ORDER */
 setInterval(()=>{
   let names=["Budi","Andi","Rizky","Dika"];
   let all=[...panel,...followers];
-  let item=all[Math.random()*all.length|0];
+  let item=all[Math.floor(Math.random()*all.length)];
 
   let box=document.getElementById("liveOrder");
   box.style.display="block";
-  box.innerText=names[Math.random()*4|0]+" order "+item.nama;
+  box.innerText=names[Math.floor(Math.random()*names.length)]+" baru order "+item.nama;
 
   setTimeout(()=>box.style.display="none",3000);
 },5000);
@@ -103,3 +108,6 @@ setInterval(()=>{
   let s=document.getElementById("sold");
   s.innerText=parseInt(s.innerText)+1;
 },4000);
+
+/* INIT */
+render();
