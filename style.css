@@ -1,0 +1,79 @@
+body {
+  margin:0;
+  font-family: Arial;
+  background:#f2f2f2;
+}
+
+.header {
+  background: linear-gradient(135deg,#5f7cff,#6fa3ff);
+  color:white;
+  text-align:center;
+  padding:40px;
+  border-bottom-left-radius:30px;
+  border-bottom-right-radius:30px;
+}
+
+.card {
+  background:white;
+  margin:20px;
+  padding:20px;
+  border-radius:20px;
+  text-align:center;
+}
+
+.stats {
+  display:flex;
+  justify-content:space-around;
+}
+
+.menu {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.menu button {
+  padding:15px;
+  border:none;
+  border-radius:15px;
+  background:#eee;
+}
+
+.item {
+  background:white;
+  margin:10px;
+  padding:15px;
+  border-radius:15px;
+  display:flex;
+  justify-content:space-between;
+}
+
+/* LIVE ORDER */
+.live {
+  text-align:center;
+  font-size:14px;
+  color:#555;
+}
+
+/* CART */
+.cartPopup {
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:white;
+  padding:15px;
+  border-radius:20px 20px 0 0;
+  display:none;
+}
+
+/* WA */
+.wa {
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  color:white;
+  padding:15px;
+  border-radius:50%;
+}
