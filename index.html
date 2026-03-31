@@ -1,115 +1,86 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>V1PEDIASTORE</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V1PEDIASTORE</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- LOADING SCREEN -->
-<div id="loading">
-  <div>
-    <h1>💎 V1PEDIASTORE 💎</h1>
-    <p>Loading...</p>
-  </div>
+<!-- LOADING -->
+<div id="loading">💎 V1PEDIASTORE 💎</div>
+
+<!-- HOME -->
+<section id="home" class="page active">
+
+<div class="header">
+<h1>V1PEDIASTORE</h1>
+<p>Trusted Digital Services</p>
 </div>
 
-<!-- ================= HOME ================= -->
-<div id="home" class="page active">
-
-  <div class="header">
-    <h1>V1PEDIASTORE</h1>
-    <p>Trusted Digital Services</p>
-  </div>
-
-  <div class="card">
-    <h2>💎 V1PEDIASTORE 💎</h2>
-    <p>Fast Response • Aman • Bergaransi</p>
-  </div>
-
-  <!-- STATS -->
-  <div class="card stats">
-    <div>
-      <b id="sold">18.9K</b>
-      Terjual<br>⭐
-    </div>
-    <div>
-      <b>27.5K</b>
-      Pelanggan<br>⭐
-    </div>
-    <div>
-      <b>99%</b>
-      Kepuasan<br>⭐
-    </div>
-  </div>
-
-  <!-- LIST PRODUK -->
-  <div id="home-list"></div>
-
+<div class="card brand">
+<h2>💎 V1PEDIASTORE 💎</h2>
+<p>Fast Response • Aman • Bergaransi</p>
 </div>
 
-<!-- ================= KERANJANG ================= -->
-<div id="cart" class="page">
-
-  <div class="card">
-    <h2>Keranjang 🛒</h2>
-
-    <div id="cartList"></div>
-
-    <h3 id="total">Total: Rp0</h3>
-
-    <button class="btn" onclick="orderWA()">Order ke WhatsApp</button>
-    <br><br>
-    <button class="btn" onclick="clearCart()">Hapus Semua</button>
-  </div>
-
+<div class="card stats">
+<div><b>24.9K</b>⭐<br>Terjual</div>
+<div><b>27.5K</b>⭐<br>Pelanggan</div>
+<div><b>99%</b>⭐<br>Kepuasan</div>
 </div>
 
-<!-- ================= PROFILE ================= -->
-<div id="profile" class="page">
-
-  <div class="card profile">
-    <h2>Profile 👤</h2>
-
-    <p><b>Instagram Pribadi:</b><br>kenzo.dista.ananta</p>
-    <p><b>Instagram Bisnis:</b><br>V1PediaStore</p>
-    <p><b>Email:</b><br>payakumbuPediaStoreID@gmail.com</p>
-    <p><b>Alamat:</b><br>Jalan Agus Salim, Padang Tiakar, Kota Payakumbuh</p>
-
-    <br>
-    <p style="font-size:12px;opacity:.6;">
-      © 2026 V1PEDIASTORE - All Rights Reserved
-    </p>
-  </div>
-
+<div class="tabs">
+<div class="tab active" onclick="switchTab(event,'panel')">Panel Bot WA</div>
+<div class="tab" onclick="switchTab(event,'followers')">Followers IG</div>
 </div>
 
-<!-- ================= NAVBAR ================= -->
+<div id="panel-list"></div>
+<div id="followers-list" style="display:none;"></div>
+
+</section>
+
+<!-- CART -->
+<section id="cartPage" class="page">
+<div class="card">
+<h2>Keranjang 🛒</h2>
+<div id="cartList"></div>
+<h3 id="total">Total: Rp0</h3>
+
+<p class="desc">
+Pesanan kamu akan diproses otomatis dengan sistem cepat & aman.
+Pastikan data sudah benar sebelum order.
+</p>
+
+<button class="btn" onclick="orderWA()">Order WhatsApp</button>
+<button class="btn danger" onclick="clearCart()">Hapus</button>
+</div>
+</section>
+
+<!-- PROFILE -->
+<section id="profilePage" class="page">
+<div class="card">
+<h2>Profile 👤</h2>
+
+<p>📸 IG: kenzodistaananta</p>
+<p>🏪 IG Bisnis: V1PediaStore</p>
+<p>📧 Email: payakumbuhpediastoreid@gmail.com</p>
+<p>📍 Alamat: Jalan Agus Salim, Padang Tiakar, Payakumbuh</p>
+<p>📱 WA: 083143490913</p>
+
+<hr>
+<p class="copy">© 2026 All Rights Reserved</p>
+</div>
+</section>
+
+<!-- NAVBAR -->
 <div class="navbar">
-
-  <div class="active-nav" onclick="showPage('home')">
-    🏠<br>Home
-  </div>
-
-  <div style="position:relative;" onclick="showPage('cart')">
-    🛒<br>Keranjang
-    <span id="badge" class="badge">0</span>
-  </div>
-
-  <div onclick="showPage('profile')">
-    👤<br>Profile
-  </div>
-
+<div onclick="openPage('home',this)">🏠<br>Home</div>
+<div onclick="openPage('cartPage',this)">🛒<br>Keranjang <span id="badge">0</span></div>
+<div onclick="openPage('profilePage',this)">👤<br>Profile</div>
 </div>
 
-<!-- POPUP -->
-<div id="popup" class="popup">✔ Ditambahkan</div>
-
-<!-- SCRIPT -->
 <script src="data.js"></script>
 <script src="script.js"></script>
-
 </body>
 </html>
