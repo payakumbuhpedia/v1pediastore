@@ -6,81 +6,134 @@
 <title>V1PEDIASTORE</title>
 <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <!-- LOADING -->
-<div id="loading">💎 V1PEDIASTORE 💎</div>
+<div id="loading">
+  <h1>💎 V1PEDIASTORE 💎</h1>
+</div>
 
 <!-- HOME -->
-<section id="home" class="page active">
+<div id="home" class="page active">
 
-<div class="header">
-<h1>V1PEDIASTORE</h1>
-<p>Trusted Digital Services</p>
+  <div class="header">
+    <h1>💎 V1PEDIASTORE 💎</h1>
+    <p>Fast Response • Aman • Bergaransi</p>
+  </div>
+
+  <div class="card center">
+    <h2>✔ WEB DIGITAL SERVICE</h2>
+    <p>Layanan cepat, aman & terpercaya sejak 2020</p>
+  </div>
+
+  <div class="card stats">
+    <div>⭐ <b>18.9K</b><br>Terjual</div>
+    <div>⭐ <b>27.5K</b><br>Pelanggan</div>
+    <div>⭐ <b>99%</b><br>Kepuasan</div>
+  </div>
+
+  <!-- MENU -->
+  <div class="card">
+    <h3>Panel Bot WhatsApp</h3>
+    <div id="panel-list"></div>
+  </div>
+
+  <div class="card">
+    <h3>Followers Instagram</h3>
+    <div id="followers-list"></div>
+  </div>
+
 </div>
 
-<div class="card brand">
-<h2>💎 V1PEDIASTORE 💎</h2>
-<p>Fast Response • Aman • Bergaransi</p>
+<!-- KERANJANG -->
+<div id="cartPage" class="page">
+
+  <div class="card">
+    <h2>🛒 Keranjang</h2>
+    <div id="cartList"></div>
+    <h3 id="total">Total: Rp0</h3>
+
+    <button class="btn" onclick="orderWA()">Order ke WhatsApp</button>
+    <button class="btn danger" onclick="clearCart()">Hapus Semua</button>
+
+    <p class="desc">
+      Semua pesanan diproses cepat (1–10 menit).  
+      Jika terjadi kendala, langsung hubungi admin via WhatsApp.
+    </p>
+  </div>
+
 </div>
-
-<div class="card stats">
-<div><b>24.9K</b>⭐<br>Terjual</div>
-<div><b>27.5K</b>⭐<br>Pelanggan</div>
-<div><b>99%</b>⭐<br>Kepuasan</div>
-</div>
-
-<div class="tabs">
-<div class="tab active" onclick="switchTab(event,'panel')">Panel Bot WA</div>
-<div class="tab" onclick="switchTab(event,'followers')">Followers IG</div>
-</div>
-
-<div id="panel-list"></div>
-<div id="followers-list" style="display:none;"></div>
-
-</section>
-
-<!-- CART -->
-<section id="cartPage" class="page">
-<div class="card">
-<h2>Keranjang 🛒</h2>
-<div id="cartList"></div>
-<h3 id="total">Total: Rp0</h3>
-
-<p class="desc">
-Pesanan kamu akan diproses otomatis dengan sistem cepat & aman.
-Pastikan data sudah benar sebelum order.
-</p>
-
-<button class="btn" onclick="orderWA()">Order WhatsApp</button>
-<button class="btn danger" onclick="clearCart()">Hapus</button>
-</div>
-</section>
 
 <!-- PROFILE -->
-<section id="profilePage" class="page">
-<div class="card">
-<h2>Profile 👤</h2>
+<div id="profilePage" class="page">
 
-<p>📸 IG: kenzodistaananta</p>
-<p>🏪 IG Bisnis: V1PediaStore</p>
-<p>📧 Email: payakumbuhpediastoreid@gmail.com</p>
-<p>📍 Alamat: Jalan Agus Salim, Padang Tiakar, Payakumbuh</p>
-<p>📱 WA: 083143490913</p>
+  <div class="card center">
+    <h2>💎 V1PEDIASTORE 💎</h2>
+    <p>Official Digital Service</p>
+  </div>
 
-<hr>
-<p class="copy">© 2026 All Rights Reserved</p>
+  <div class="card profile-box">
+
+    <h3>📱 Kontak</h3>
+
+    <div class="contact" onclick="openWA()">
+      📞 WhatsApp<br>
+      <span>083143490913</span>
+    </div>
+
+    <div class="contact" onclick="openIG()">
+      📸 Instagram<br>
+      <span>@kenzodistaananta</span>
+    </div>
+
+    <h3>📍 Alamat</h3>
+    <p>Jalan Agus Salim, Padang Tiakar, Kota Payakumbuh</p>
+
+    <h3>📧 Email</h3>
+    <p>payakumbuPediaStoreID@gmail.com</p>
+
+    <button class="btn" onclick="toggleDark()">🌙 Dark Mode</button>
+
+    <p class="copyright">
+      © 2026 V1PEDIASTORE — All Rights Reserved
+    </p>
+
+  </div>
+
 </div>
-</section>
+
+<!-- FLOAT WA -->
+<div class="wa-float" onclick="openWA()">💬</div>
 
 <!-- NAVBAR -->
 <div class="navbar">
-<div onclick="openPage('home',this)">🏠<br>Home</div>
-<div onclick="openPage('cartPage',this)">🛒<br>Keranjang <span id="badge">0</span></div>
-<div onclick="openPage('profilePage',this)">👤<br>Profile</div>
+  <div onclick="showPage('home')">🏠<br>Home</div>
+  <div onclick="showPage('cartPage')">🛒<br>Keranjang <span id="badge">0</span></div>
+  <div onclick="showPage('profilePage')">👤<br>Profile</div>
 </div>
 
 <script src="data.js"></script>
 <script src="script.js"></script>
+
+<script>
+/* LOADING */
+setTimeout(()=>document.getElementById("loading").style.display="none",1500);
+
+/* NAV PAGE */
+function showPage(id){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+
+/* LINK */
+function openWA(){
+  window.location.href="https://wa.me/6283143490913";
+}
+function openIG(){
+  window.location.href="https://instagram.com/kenzodistaananta";
+}
+</script>
+
 </body>
 </html>
