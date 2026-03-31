@@ -1,137 +1,74 @@
-*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif;}
-
 body{
-  background:#0f172a;
-  color:#fff;
-  padding-bottom:90px;
-  overflow-x:hidden;
+margin:0;
+font-family:sans-serif;
+background:linear-gradient(270deg,#5f8bff,#7aa6ff,#5f8bff);
+background-size:600% 600%;
+animation:bgMove 10s ease infinite;
+padding-bottom:100px;
 }
 
-/* HEADER */
-.header{
-  background:linear-gradient(135deg,#2563eb,#3b82f6);
-  text-align:center;
-  padding:40px 20px 80px;
-  border-radius:0 0 40px 40px;
-  box-shadow:0 0 25px rgba(37,99,235,.6);
+@keyframes bgMove{
+0%{background-position:0%}
+50%{background-position:100%}
+100%{background-position:0%}
 }
 
-/* CARD */
+.page{display:none;}
+.page.active{display:block;animation:slide .4s;}
+
+@keyframes slide{
+from{transform:translateX(50px);opacity:0;}
+to{opacity:1;}
+}
+
+.header{text-align:center;color:#fff;padding:30px;}
+
 .card{
-  background:#111827;
-  margin:15px;
-  padding:15px;
-  border-radius:20px;
-  box-shadow:0 0 15px rgba(59,130,246,.3);
-  transition:.3s;
+background:rgba(255,255,255,.9);
+margin:15px;padding:15px;
+border-radius:20px;
+backdrop-filter:blur(10px);
 }
 
-/* HOVER GLOW */
-.card:active{
-  transform:scale(.97);
-  box-shadow:0 0 25px #3b82f6;
-}
+.center{text-align:center;}
 
-/* STATS */
-.stats{display:flex;text-align:center;}
-.stats div{flex:1;}
-.stats b{font-size:18px;color:#60a5fa;}
-
-/* PRODUCT */
 .product{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin:10px 0;
-  padding:12px;
-  border-radius:15px;
-  background:#020617;
-  box-shadow:0 0 10px rgba(59,130,246,.2);
-  position:relative;
-  overflow:hidden;
+display:flex;justify-content:space-between;
+margin:10px 0;padding:10px;
+background:#fff;border-radius:15px;
 }
 
-/* NEON LINE EFFECT */
-.product::before{
-  content:"";
-  position:absolute;
-  top:0;
-  left:-100%;
-  width:100%;
-  height:2px;
-  background:linear-gradient(90deg,transparent,#3b82f6,transparent);
-  animation:neonMove 2s linear infinite;
-}
-
-@keyframes neonMove{
-  100%{left:100%;}
-}
-
-/* BUTTON */
 .btn{
-  background:#2563eb;
-  color:#fff;
-  border:none;
-  padding:10px 15px;
-  border-radius:12px;
-  box-shadow:0 0 10px #3b82f6;
-  transition:.2s;
-}
-.btn:active{
-  transform:scale(.9);
-  box-shadow:0 0 20px #3b82f6;
+background:#5f8bff;color:#fff;
+border:none;padding:10px;border-radius:10px;
+margin-top:10px;width:100%;
 }
 
-/* NAVBAR */
 .navbar{
-  position:fixed;
-  bottom:0;width:100%;
-  display:flex;
-  justify-content:space-around;
-  background:#020617;
-  padding:10px;
-  border-top:1px solid #1e293b;
-  z-index:100;
+position:fixed;bottom:0;width:100%;
+display:flex;justify-content:space-around;
+background:#fff;padding:10px;
 }
 
-/* BADGE */
-#badge{
-  background:red;
-  color:#fff;
-  border-radius:50%;
-  padding:2px 6px;
-  font-size:10px;
+.nav-item.active{color:#5f8bff;font-weight:bold;}
+
+#loading{
+position:fixed;inset:0;
+background:#5f8bff;
+display:flex;align-items:center;justify-content:center;
+color:#fff;font-size:24px;
+z-index:9999;
 }
 
-/* CLICK FX */
-.click-fx{
-  position:fixed;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%) scale(0.5);
-  font-size:45px;
-  z-index:9999;
-  opacity:0;
-  animation:clickAnim .5s ease forwards;
-  text-shadow:0 0 20px #3b82f6,0 0 40px #3b82f6;
+.popup{
+position:fixed;top:50%;left:50%;
+transform:translate(-50%,-50%) scale(0);
+background:#fff;padding:20px;border-radius:20px;
 }
+.popup.active{transform:translate(-50%,-50%) scale(1);}
 
-@keyframes clickAnim{
-  0%{opacity:0;transform:translate(-50%,-50%) scale(0.5);}
-  50%{opacity:1;transform:translate(-50%,-50%) scale(1.4);}
-  100%{opacity:0;transform:translate(-50%,-50%) scale(1);}
-}
-
-/* PAGE TRANSITION */
-.page{
-  display:none;
-  animation:fadeSlide .4s ease;
-}
-.page.active{
-  display:block;
-}
-
-@keyframes fadeSlide{
-  from{opacity:0;transform:translateY(20px);}
-  to{opacity:1;transform:translateY(0);}
+.float-wa{
+position:fixed;bottom:90px;right:15px;
+background:#25D366;color:#fff;
+padding:15px;border-radius:50%;
 }
