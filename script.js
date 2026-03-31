@@ -3,21 +3,17 @@ let cart = [];
 /* ================= SOUND ================= */
 const klikSound = new Audio("https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3");
 
-/* ================= EFFECT GLOBAL ================= */
+/* ================= EFFECT ================= */
 function klikEfek(el){
-
-  // SOUND
   try{
     klikSound.currentTime = 0;
     klikSound.play();
   }catch(e){}
 
-  // GETAR
   if(navigator.vibrate){
     navigator.vibrate(40);
   }
 
-  // GLOW EFFECT
   if(el){
     el.classList.add("glow-click");
     setTimeout(()=>el.classList.remove("glow-click"),200);
@@ -45,34 +41,21 @@ function html(i){
   </div>`;
 }
 
-/* ================= TAB ================= */
-function switchTab(e,t){
-  klikEfek(e.target);
-
-  document.getElementById("panel-list").style.display=t=="panel"?"block":"none";
-  document.getElementById("followers-list").style.display=t=="followers"?"block":"none";
-
-  document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
-  e.target.classList.add("active");
-}
-
-/* ================= CLICK CARD ================= */
+/* ================= CLICK ================= */
 function clickEffect(el){
   klikEfek(el);
   el.style.transform="scale(.97)";
   setTimeout(()=>el.style.transform="",150);
 }
 
-/* ================= ADD CART ================= */
+/* ================= CART ================= */
 function add(el,n,h){
-  klikEfek(el); // 🔥 sekarang tombol order ada sound + glow + getar
-
+  klikEfek(el);
   cart.push({n,h});
   popup();
   updateCart();
 }
 
-/* ================= CART ================= */
 function updateCart(){
   let el=document.getElementById("cartList");
   let total=0;
@@ -82,7 +65,7 @@ function updateCart(){
   el.innerHTML="";
 
   cart.forEach(i=>{
-    el.innerHTML+=`<div>${i.n} - ${i.h/1000}K</div>`;
+    el.innerHTML+=`<div>${i.n} - Rp${i.h/1000}K</div>`;
     total+=i.h;
   });
 
@@ -90,7 +73,6 @@ function updateCart(){
   if(t) t.innerText="Total: Rp"+total/1000+"K";
 }
 
-/* ================= CLEAR ================= */
 function clearCart(){
   klikEfek();
   cart=[];
@@ -106,7 +88,7 @@ function popup(){
   setTimeout(()=>p.classList.remove("active"),1200);
 }
 
-/* ================= WA ================= */
+/* ================= START CS (WA PRO) ================= */
 function orderWA(){
   klikEfek();
 
@@ -115,12 +97,24 @@ function orderWA(){
     return;
   }
 
-  let kode="V1P-"+Math.floor(Math.random()*999999);
+  let kode = "V1P-" + Math.floor(Math.random()*999999);
 
-  let text="💎 *ORDER V1PEDIASTORE* 💎%0A";
-  text+="📦 Kode: "+kode+"%0A%0A";
+  let text = "💎 *V1PEDIASTORE OFFICIAL* 💎%0A";
+  text += "━━━━━━━━━━━━━━%0A";
+  text += "👋 Halo Admin,%0A";
+  text += "Saya ingin melakukan pemesanan:%0A%0A";
 
-  cart.forEach(i=>text+=i.n+" - Rp"+(i.h/1000)+"K%0A");
+  cart.forEach((i,index)=>{
+    text += `${index+1}. ${i.n}%0A   💰 Rp${i.h/1000}K%0A`;
+  });
+
+  let total = cart.reduce((a,b)=>a+b.h,0);
+
+  text += "%0A━━━━━━━━━━━━━━%0A";
+  text += `🧾 *Kode Order:* ${kode}%0A`;
+  text += `💰 *Total:* Rp${total/1000}K%0A`;
+  text += "━━━━━━━━━━━━━━%0A";
+  text += "⚡ Mohon diproses ya admin, terima kasih 🙏";
 
   window.location.href="https://wa.me/6283143490913?text="+text;
 }
