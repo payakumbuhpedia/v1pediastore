@@ -1,6 +1,6 @@
 let cart=[];
 
-/* ================= CLICK EFFECT GLOBAL ================= */
+/* CLICK FX */
 function clickFX(){
   if(navigator.vibrate){
     navigator.vibrate(30);
@@ -9,23 +9,24 @@ function clickFX(){
   let fx=document.createElement("div");
   fx.className="click-fx";
   fx.innerHTML="💎";
-
   document.body.appendChild(fx);
+
   setTimeout(()=>fx.remove(),500);
 }
 
+/* GLOBAL CLICK */
 document.addEventListener("click",(e)=>{
-  if(e.target.tagName !== "BODY"){
+  if(e.target.tagName!=="BODY"){
     clickFX();
   }
 });
 
-/* ================= RENDER ================= */
+/* RENDER */
 function render(){
   let p=document.getElementById("panel-list");
   let f=document.getElementById("followers-list");
 
-  if(!p || !f) return;
+  if(!p||!f)return;
 
   p.innerHTML="";
   f.innerHTML="";
@@ -42,7 +43,7 @@ function html(i){
   </div>`;
 }
 
-/* ================= CART ================= */
+/* CART */
 function add(n,h){
   cart.push({n,h});
   updateCart();
@@ -52,7 +53,7 @@ function updateCart(){
   let el=document.getElementById("cartList");
   let total=0;
 
-  if(!el) return;
+  if(!el)return;
 
   el.innerHTML="";
   cart.forEach(i=>{
@@ -69,7 +70,7 @@ function clearCart(){
   updateCart();
 }
 
-/* ================= WA ================= */
+/* WA */
 function orderWA(){
   if(cart.length===0){
     alert("Keranjang kosong!");
@@ -82,16 +83,11 @@ function orderWA(){
   window.location.href="https://wa.me/6283143490913?text="+text;
 }
 
-/* ================= DARK MODE ================= */
+/* DARK MODE */
 function toggleDark(){
   document.body.classList.toggle("dark");
-  localStorage.setItem("dark",document.body.classList.contains("dark"));
 }
 
-if(localStorage.getItem("dark")=="true"){
-  document.body.classList.add("dark");
-}
-
-/* ================= INIT ================= */
+/* INIT */
 render();
 updateCart();
