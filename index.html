@@ -10,191 +10,84 @@
 <body>
 
 <!-- LOADING -->
-<div id="loading" style="
-position:fixed;inset:0;background:#5f8bff;
-display:flex;align-items:center;justify-content:center;
-z-index:9999;color:#fff;font-size:22px;font-weight:bold;">
-💎 V1PEDIASTORE 💎
+<div id="loading">
+  <div class="logo">💎 V1PEDIASTORE 💎</div>
 </div>
 
-<!-- ================= HOME ================= -->
+<!-- HOME -->
 <div id="home" class="page active">
-
-  <div class="header">
-    <h1>💎 V1PEDIASTORE 💎</h1>
-    <p>v 1 p e d i a s t o r e </p>
-  </div>
-
-  <div class="card brand-card" style="text-align:center;">
-    <h2>💎 V1PEDIASTORE 💎</h2>
-    <p>Fast Response • Aman • Bergaransi</p>
-  </div>
-
-  <div class="card stats">
-    <div><b>18.9K</b><br>⭐ Terjual</div>
-    <div><b>27.5K</b><br>⭐ Pelanggan</div>
-    <div><b>99%</b><br>⭐ Kepuasan</div>
-  </div>
-
-  <!-- PANEL -->
-  <div class="card">
-    <h3>Panel Bot WhatsApp</h3>
-    <div id="panel-list"></div>
-  </div>
-
-  <!-- FOLLOWERS -->
-  <div class="card">
-    <h3>Followers Instagram</h3>
-    <div id="followers-list"></div>
-  </div>
-
+<div class="header">
+<h1>Layanan Digital Services</h1>
+<p>V 1 P E D I A S T O R E</p>
 </div>
 
-<!-- ================= KERANJANG ================= -->
+<div class="card center">
+<h2>💎 V1PEDIASTORE 💎</h2>
+<p>Fast Response • Aman • Bergaransi</p>
+</div>
+
+<div class="card stats">
+<div><b>18.9K</b><br>⭐ Terjual</div>
+<div><b>27.5K</b><br>⭐ Pelanggan</div>
+<div><b>99%</b><br>⭐ Kepuasan</div>
+</div>
+
+<div class="card">
+<h3>Panel Bot WhatsApp</h3>
+<div id="panel-list"></div>
+</div>
+
+<div class="card">
+<h3>Followers Instagram</h3>
+<div id="followers-list"></div>
+</div>
+</div>
+
+<!-- CART -->
 <div id="cartPage" class="page">
+<div class="card">
+<h2>🛒 Keranjang</h2>
+<div id="cartList"></div>
+<h3 id="total">Total: Rp0</h3>
 
-  <div class="card">
-    <h2>🛒 Keranjang</h2>
-
-    <div id="cartList"></div>
-
-    <h3 id="total">Total: Rp0</h3>
-
-    <button class="btn" onclick="orderWA()">Order ke WhatsApp</button>
-    <button class="btn" onclick="clearCart()">Hapus</button>
-
-    <p style="margin-top:10px;font-size:13px;opacity:.7;">
-      Pesanan diproses cepat & otomatis. Jika error, hubungi admin via WhatsApp.
-    </p>
-  </div>
-
+<button class="btn" onclick="orderWA()">Order ke WhatsApp</button>
+<button class="btn danger" onclick="clearCart()">Hapus</button>
+</div>
 </div>
 
-<!-- ================= PROFILE ================= -->
+<!-- PROFILE -->
 <div id="profilePage" class="page">
+<div class="card center">
+<h2>💎 V1PEDIASTORE 💎</h2>
+</div>
 
-  <div class="card" style="text-align:center;">
-    <h2>💎 V1PEDIASTORE 💎</h2>
-    <p>Official Digital Service</p>
-  </div>
+<div class="card">
+<p><b>WhatsApp:</b><br>083143490913</p>
+<p><b>Instagram:</b><br>@kenzodistaananta</p>
+<p><b>Email:</b><br>payakumbuhpediastoreid@gmail.com</p>
+<p><b>Alamat:</b><br>Jalan Agus Salim, Padang Tiakar, Kota Payakumbuh</p>
 
-  <div class="card">
+<button class="btn" onclick="toggleDark()">🌙 Dark Mode</button>
 
-    <h3>📱 Kontak</h3>
-
-    <div style="margin:10px 0;cursor:pointer;" onclick="openWA()">
-      📞 WhatsApp<br>
-      <b>083143490913</b>
-    </div>
-
-    <div style="margin:10px 0;cursor:pointer;" onclick="openIG()">
-      📸 Instagram<br>
-      <b>@kenzodistaananta</b>
-    </div>
-
-    <h3>📍 Alamat</h3>
-    <p>Jalan Agus Salim, Padang Tiakar, Kota Payakumbuh</p>
-
-    <h3>📧 Email</h3>
-    <p>payakumbuhpediastoreid@gmail.com</p>
-
-    <button class="btn" onclick="toggleDark()">🌙 Dark Mode</button>
-
-    <p style="margin-top:20px;font-size:12px;opacity:.6;">
-      © 2026 V1PEDIASTORE — All Rights Reserved
-    </p>
-
-  </div>
-
+<p class="copy">© 2026 V1PEDIASTORE</p>
+</div>
 </div>
 
 <!-- FLOAT WA -->
-<div onclick="openWA()" style="
-position:fixed;bottom:90px;right:15px;
-background:#25D366;color:#fff;
-padding:14px;border-radius:50%;
-font-size:18px;z-index:999;">
-💬
-</div>
+<div class="float-wa" onclick="openWA()">💬</div>
 
-<!-- ================= NAVBAR ================= -->
+<!-- NAV -->
 <div class="navbar">
-
-  <div onclick="showPage('home')" style="cursor:pointer;">
-    🏠<br>Home
-  </div>
-
-  <div onclick="showPage('cartPage')" style="cursor:pointer;">
-    🛒<br>Keranjang <span id="badge">0</span>
-  </div>
-
-  <div onclick="showPage('profilePage')" style="cursor:pointer;">
-    👤<br>Profile
-  </div>
-
+<div onclick="showPage('home')" class="nav-item active">🏠</div>
+<div onclick="showPage('cartPage')" class="nav-item">🛒 <span id="badge">0</span></div>
+<div onclick="showPage('profilePage')" class="nav-item">👤</div>
 </div>
+
+<div id="popup" class="popup">✔ Ditambahkan</div>
+<div id="liveOrder" class="live-order"></div>
 
 <script src="data.js"></script>
 <script src="script.js"></script>
-
-<script>
-/* LOADING */
-setTimeout(()=>{
-  document.getElementById("loading").style.display="none";
-},1200);
-
-/* NAVIGATION */
-function showPage(id){
-  document.querySelectorAll(".page").forEach(p=>{
-    p.style.display="none";
-  });
-  document.getElementById(id).style.display="block";
-}
-
-/* LINK */
-function openWA(){
-  window.location.href="https://wa.me/6283143490913";
-}
-
-function openIG(){
-  window.location.href="https://instagram.com/kenzodistaananta";
-}
-
-/* ================= WA PRO FORMAT ================= */
-function orderWA(){
-  if(cart.length===0){
-    alert("Keranjang kosong!");
-    return;
-  }
-
-  let code="V1PEDIA-"+Math.random().toString(36).substring(2,8).toUpperCase();
-
-  let text="💎 *V1PEDIASTORE OFFICIAL* 💎%0A";
-  text+="━━━━━━━━━━━━━━━━━━━%0A%0A";
-  text+="👋 Halo Admin V1PEDIASTORE,%0A";
-  text+="Saya ingin melakukan pemesanan:%0A%0A";
-
-  text+="📦 *Detail Order:*%0A";
-  cart.forEach(function(i,index){
-    text+=(index+1)+". "+i.n+" - Rp"+(i.h/1000)+"K%0A";
-  });
-
-  let total=0;
-  cart.forEach(function(i){
-    total+=i.h;
-  });
-
-  text+="%0A━━━━━━━━━━━━━━━━━━━%0A";
-  text+="💰 *Total Pembayaran:* Rp"+(total/1000)+"K%0A";
-  text+="🧾 *Kode Order:* "+code+"%0A";
-  text+="🏷️ *Store:* V1PEDIASTORE%0A";
-  text+="%0A━━━━━━━━━━━━━━━━━━━%0A";
-  text+="⚡ Mohon diproses secepatnya ya kak 🙏%0A";
-  text+="Terima kasih telah mempercayai *V1PEDIASTORE* 💎";
-
-  window.location.href="https://wa.me/6283143490913?text="+text;
-}
-</script>
 
 </body>
 </html>
