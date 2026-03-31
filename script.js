@@ -1,78 +1,163 @@
-let cart=[];
+let cart = [];
 
-/* LOADING */
-window.onload=()=>{
+/* ================= EFFECT GLOBAL ================= */
+function klikEfek(){
+  // getar HP
+  if(navigator.vibrate){
+    navigator.vibrate(40);
+  }
+
+  // efek kecil scale semua tombol
+  document.body.classList.add("click-effect");
   setTimeout(()=>{
-    document.getElementById("loading").style.display="none";
-  },1200);
+    document.body.classList.remove("click-effect");
+  },100);
 }
 
-/* NAV */
-function showPage(id){
-  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-  clickFX();
+/* ================= RENDER (TETAP) ================= */
+function render(){
+  let p=document.getElementById("panel-list");
+  let f=document.getElementById("followers-list");
+
+  if(p && p.innerHTML===""){
+    panel.forEach(i=>p.innerHTML+=html(i));
+  }
+
+  if(f && f.innerHTML===""){
+    followers.forEach(i=>f.innerHTML+=html(i));
+  }
 }
 
-/* EFFECT */
-function clickFX(){
-  navigator.vibrate(50);
+function html(i){
+  return `<div class="product" onclick="clickEffect(this)">
+    <div>${i.n}<br>Rp${i.p/1000}K</div>
+    <button class="btn" onclick="event.stopPropagation();add('${i.n}',${i.p})">Order</button>
+  </div>`;
 }
 
-/* MENU */
-function openPanel(){showPage("panelPage")}
-function openFollowers(){showPage("followersPage")}
+/* ================= TAB ================= */
+function switchTab(e,t){
+  klikEfek();
 
-/* CART */
-function addToCart(name,price){
-  cart.push({name,price});
+  document.getElementById("panel-list").style.display=t=="panel"?"block":"none";
+  document.getElementById("followers-list").style.display=t=="followers"?"block":"none";
+
+  document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+  e.target.classList.add("active");
+}
+
+/* ================= CLICK CARD ================= */
+function clickEffect(el){
+  klikEfek();
+  el.style.transform="scale(.97)";
+  setTimeout(()=>el.style.transform="",150);
+}
+
+/* ================= ADD CART (INI YANG FIX UTAMA) ================= */
+function add(n,h){
+  klikEfek(); // 🔥 ini bikin tombol ORDER ikut getar
+
+  cart.push({n,h});
+  popup();
   updateCart();
 }
 
+/* ================= CART ================= */
 function updateCart(){
-  let list=document.getElementById("cartList");
+  let el=document.getElementById("cartList");
   let total=0;
-  list.innerHTML="";
+
+  if(!el) return;
+
+  el.innerHTML="";
 
   cart.forEach(i=>{
-    total+=i.price;
-    list.innerHTML+=`<div>${i.name} - Rp${i.price}</div>`;
+    el.innerHTML+=`<div>${i.n} - ${i.h/1000}K</div>`;
+    total+=i.h;
   });
 
-  document.getElementById("total").innerText="Total: Rp"+total;
-  document.getElementById("badge").innerText=cart.length;
+  let t=document.getElementById("total");
+  if(t) t.innerText="Total: Rp"+total/1000+"K";
 }
 
-/* CLEAR */
+/* ================= CLEAR ================= */
 function clearCart(){
+  klikEfek();
   cart=[];
   updateCart();
 }
 
-/* ORDER WA PRO */
+/* ================= POPUP ================= */
+function popup(){
+  let p=document.getElementById("popup");
+  if(!p) return;
+
+  p.classList.add("active");
+  setTimeout(()=>p.classList.remove("active"),1200);
+}
+
+/* ================= WA ================= */
 function orderWA(){
-  if(cart.length==0)return alert("Keranjang kosong");
+  klikEfek();
 
-  let kode="V1P-"+Math.floor(Math.random()*9999);
+  if(cart.length===0){
+    alert("Keranjang kosong!");
+    return;
+  }
 
-  let text=`Halo Admin V1PEDIASTORE%0A`;
-  text+=`Saya ingin order:%0A`;
+  let kode="V1P-"+Math.floor(Math.random()*999999);
 
-  cart.forEach(i=>{
-    text+=`- ${i.name} Rp${i.price}%0A`;
-  });
+  let text="💎 *ORDER V1PEDIASTORE* 💎%0A";
+  text+="📦 Kode: "+kode+"%0A%0A";
 
-  text+=`Kode Order: ${kode}`;
+  cart.forEach(i=>text+=i.n+" - Rp"+(i.h/1000)+"K%0A");
 
-  window.location.href=`https://wa.me/6283143490913?text=${text}`;
+  window.location.href="https://wa.me/6283143490913?text="+text;
 }
 
-/* LINK */
-function openWA(){
-  window.location.href="https://wa.me/6283143490913";
+/* ================= NAV ================= */
+function navClick(el){
+  klikEfek();
+  el.style.transform="scale(.85)";
+  setTimeout(()=>el.style.transform="",150);
 }
 
-/* DARK */
-function toggleDark(){
-  document.body.classList.toggle("dark");
+/* ================= SCROLL ================= */
+function scrollToTop(){
+  klikEfek();
+  window.scrollTo({top:0,behavior:"smooth"});
 }
+
+function scrollToCart(){
+  klikEfek();
+  window.scrollTo({top:document.body.scrollHeight,behavior:"smooth"});
+}
+
+/* ================= LIVE ORDER ================= */
+setInterval(()=>{
+  let names=["Budi","Andi","Rizky","Dika"];
+  let all=[...panel,...followers];
+
+  if(all.length===0) return;
+
+  let item=all[Math.random()*all.length|0];
+
+  let box=document.getElementById("liveOrder");
+  if(!box) return;
+
+  box.style.display="block";
+  box.innerText=names[Math.random()*4|0]+" order "+item.n;
+
+  setTimeout(()=>box.style.display="none",3000);
+},5000);
+
+/* ================= COUNTER ================= */
+setInterval(()=>{
+  let s=document.getElementById("sold");
+  if(!s) return;
+
+  s.innerText=parseInt(s.innerText)+1;
+},4000);
+
+/* INIT */
+render();
