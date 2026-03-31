@@ -1,115 +1,97 @@
-*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif;}
+let cart=[];
 
-body{
-background:#f5f6fa;
-padding-bottom:90px;
+/* ================= CLICK EFFECT GLOBAL ================= */
+function clickFX(){
+  if(navigator.vibrate){
+    navigator.vibrate(30);
+  }
+
+  let fx=document.createElement("div");
+  fx.className="click-fx";
+  fx.innerHTML="💎";
+
+  document.body.appendChild(fx);
+  setTimeout(()=>fx.remove(),500);
 }
 
-/* LOADING */
-#loading{
-position:fixed;
-width:100%;
-height:100%;
-background:linear-gradient(135deg,#5f8bff,#7aa6ff);
-display:flex;
-align-items:center;
-justify-content:center;
-color:#fff;
-font-size:22px;
-z-index:999;
+document.addEventListener("click",(e)=>{
+  if(e.target.tagName !== "BODY"){
+    clickFX();
+  }
+});
+
+/* ================= RENDER ================= */
+function render(){
+  let p=document.getElementById("panel-list");
+  let f=document.getElementById("followers-list");
+
+  if(!p || !f) return;
+
+  p.innerHTML="";
+  f.innerHTML="";
+
+  panel.forEach(i=>p.innerHTML+=html(i));
+  followers.forEach(i=>f.innerHTML+=html(i));
 }
 
-/* PAGE */
-.page{display:none;}
-.page.active{display:block;animation:fade .4s;}
-
-/* HEADER */
-.header{
-background:linear-gradient(135deg,#5f8bff,#7aa6ff);
-color:#fff;text-align:center;
-padding:40px 20px 80px;
-border-radius:0 0 40px 40px;
+function html(i){
+  return `
+  <div class="product">
+    <div>${i.nama}<br><b>Rp${i.harga/1000}K</b></div>
+    <button class="btn" onclick="add('${i.nama}',${i.harga})">Order</button>
+  </div>`;
 }
 
-/* CARD */
-.card{
-background:#fff;
-margin:15px;
-padding:15px;
-border-radius:20px;
-box-shadow:0 5px 15px rgba(0,0,0,.08);
+/* ================= CART ================= */
+function add(n,h){
+  cart.push({n,h});
+  updateCart();
 }
 
-/* BRAND */
-.brand{text-align:center;margin-top:-60px;}
+function updateCart(){
+  let el=document.getElementById("cartList");
+  let total=0;
 
-/* STATS */
-.stats{display:flex;text-align:center;}
-.stats div{flex:1;font-size:14px;}
-.stats b{font-size:18px;}
+  if(!el) return;
 
-/* TABS */
-.tabs{
-display:flex;margin:15px;
-background:#fff;border-radius:15px;
-overflow:hidden;
-}
-.tab{
-flex:1;text-align:center;
-padding:12px;cursor:pointer;
-}
-.tab.active{background:#5f8bff;color:#fff;}
+  el.innerHTML="";
+  cart.forEach(i=>{
+    el.innerHTML+=`<div>${i.n} - Rp${i.h/1000}K</div>`;
+    total+=i.h;
+  });
 
-/* PRODUCT */
-.product{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin:10px 15px;
-padding:12px;
-background:#fff;
-border-radius:15px;
-box-shadow:0 3px 8px rgba(0,0,0,.05);
+  document.getElementById("total").innerText="Total: Rp"+(total/1000)+"K";
+  document.getElementById("badge").innerText=cart.length;
 }
 
-/* BUTTON */
-.btn{
-background:#5f8bff;
-color:#fff;
-border:none;
-padding:10px 15px;
-border-radius:12px;
-margin-top:5px;
-}
-.btn.danger{background:#ff4d4d;}
-
-/* NAVBAR */
-.navbar{
-position:fixed;
-bottom:0;width:100%;
-display:flex;
-justify-content:space-around;
-background:#fff;
-padding:10px;
-border-top:1px solid #ddd;
-z-index:100;
+function clearCart(){
+  cart=[];
+  updateCart();
 }
 
-/* BADGE */
-#badge{
-background:red;
-color:#fff;
-border-radius:50%;
-padding:2px 6px;
-font-size:10px;
+/* ================= WA ================= */
+function orderWA(){
+  if(cart.length===0){
+    alert("Keranjang kosong!");
+    return;
+  }
+
+  let text="🛒 ORDER V1PEDIASTORE%0A";
+  cart.forEach(i=>text+=i.n+"%0A");
+
+  window.location.href="https://wa.me/6283143490913?text="+text;
 }
 
-/* TEXT */
-.desc{font-size:12px;color:#555;margin:10px 0;}
-.copy{text-align:center;font-size:12px;color:#999;}
-
-/* ANIM */
-@keyframes fade{
-from{opacity:0;transform:translateY(10px);}
-to{opacity:1;}
+/* ================= DARK MODE ================= */
+function toggleDark(){
+  document.body.classList.toggle("dark");
+  localStorage.setItem("dark",document.body.classList.contains("dark"));
 }
+
+if(localStorage.getItem("dark")=="true"){
+  document.body.classList.add("dark");
+}
+
+/* ================= INIT ================= */
+render();
+updateCart();
