@@ -1,20 +1,30 @@
 let cart = [];
 
+/* ================= SOUND ================= */
+const klikSound = new Audio("https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3");
+
 /* ================= EFFECT GLOBAL ================= */
-function klikEfek(){
-  // getar HP
+function klikEfek(el){
+
+  // SOUND
+  try{
+    klikSound.currentTime = 0;
+    klikSound.play();
+  }catch(e){}
+
+  // GETAR
   if(navigator.vibrate){
     navigator.vibrate(40);
   }
 
-  // efek kecil scale semua tombol
-  document.body.classList.add("click-effect");
-  setTimeout(()=>{
-    document.body.classList.remove("click-effect");
-  },100);
+  // GLOW EFFECT
+  if(el){
+    el.classList.add("glow-click");
+    setTimeout(()=>el.classList.remove("glow-click"),200);
+  }
 }
 
-/* ================= RENDER (TETAP) ================= */
+/* ================= RENDER ================= */
 function render(){
   let p=document.getElementById("panel-list");
   let f=document.getElementById("followers-list");
@@ -31,13 +41,13 @@ function render(){
 function html(i){
   return `<div class="product" onclick="clickEffect(this)">
     <div>${i.n}<br>Rp${i.p/1000}K</div>
-    <button class="btn" onclick="event.stopPropagation();add('${i.n}',${i.p})">Order</button>
+    <button class="btn" onclick="event.stopPropagation();add(this,'${i.n}',${i.p})">Order</button>
   </div>`;
 }
 
 /* ================= TAB ================= */
 function switchTab(e,t){
-  klikEfek();
+  klikEfek(e.target);
 
   document.getElementById("panel-list").style.display=t=="panel"?"block":"none";
   document.getElementById("followers-list").style.display=t=="followers"?"block":"none";
@@ -48,14 +58,14 @@ function switchTab(e,t){
 
 /* ================= CLICK CARD ================= */
 function clickEffect(el){
-  klikEfek();
+  klikEfek(el);
   el.style.transform="scale(.97)";
   setTimeout(()=>el.style.transform="",150);
 }
 
-/* ================= ADD CART (INI YANG FIX UTAMA) ================= */
-function add(n,h){
-  klikEfek(); // 🔥 ini bikin tombol ORDER ikut getar
+/* ================= ADD CART ================= */
+function add(el,n,h){
+  klikEfek(el); // 🔥 sekarang tombol order ada sound + glow + getar
 
   cart.push({n,h});
   popup();
@@ -117,7 +127,7 @@ function orderWA(){
 
 /* ================= NAV ================= */
 function navClick(el){
-  klikEfek();
+  klikEfek(el);
   el.style.transform="scale(.85)";
   setTimeout(()=>el.style.transform="",150);
 }
