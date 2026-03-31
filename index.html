@@ -1,84 +1,113 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>V1PEDIA STORE</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>V1PEDIASTORE</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div id="app">
-
-<!-- HOME -->
-<div class="page active" id="homePage">
-
-<div class="header">
-<h1>V1PEDIASTORE</h1>
-<p>Trusted Digital Services</p>
+<!-- LOADING SCREEN -->
+<div id="loading">
+  <div>
+    <h1>💎 V1PEDIASTORE 💎</h1>
+    <p>Loading...</p>
+  </div>
 </div>
 
-<div class="card brand-card">
-<h2>💎V1PEDIASTORE💎</h2>
-<p>Fast Response • Aman • Bergaransi</p>
-</div>
+<!-- ================= HOME ================= -->
+<div id="home" class="page active">
 
-<div class="card stats">
-<div><b id="sold">29.6K</b> ⭐<br>Terjual</div>
-<div><b>16.9K</b> ⭐<br>Pelanggan</div>
-<div><b>98%</b> ⭐<br>Kepuasan</div>
-</div>
+  <div class="header">
+    <h1>V1PEDIASTORE</h1>
+    <p>Trusted Digital Services</p>
+  </div>
 
-<div class="tabs">
-<div class="tab active" onclick="switchTab(event,'panel')">Panel Bot WA</div>
-<div class="tab" onclick="switchTab(event,'followers')">Followers IG</div>
-</div>
+  <div class="card">
+    <h2>💎 V1PEDIASTORE 💎</h2>
+    <p>Fast Response • Aman • Bergaransi</p>
+  </div>
 
-<div id="panel-list" class="list"></div>
-<div id="followers-list" class="list" style="display:none;"></div>
+  <!-- STATS -->
+  <div class="card stats">
+    <div>
+      <b id="sold">18.9K</b>
+      Terjual<br>⭐
+    </div>
+    <div>
+      <b>27.5K</b>
+      Pelanggan<br>⭐
+    </div>
+    <div>
+      <b>99%</b>
+      Kepuasan<br>⭐
+    </div>
+  </div>
 
-</div>
-
-<!-- CART -->
-<div class="page" id="cartPage">
-<div class="card">
-<h2>Keranjang 🛒</h2>
-<div id="cartList"></div>
-<h3 id="total">Total: Rp0</h3>
-
-<button class="btn" onclick="orderWA()">Order ke WhatsApp</button>
-<button class="btn danger" onclick="clearCart()">Hapus</button>
-</div>
-</div>
-
-<!-- PROFILE -->
-<div class="page" id="profilePage">
-<div class="card">
-<h2>Profile 👤</h2>
-
-<p>📸 IG Pribadi: kenzodistaananta</p>
-<p>🏪 IG Bisnis: V1PediaStore</p>
-<p>📧 Email: payakumbuPediaStoreID@gmail.com</p>
-<p>📍 Alamat: Jalan Agus Salim, Padang Tiakar, Payakumbuh</p>
-<p>📱 WA: 083143490913</p>
-
-<hr>
-<p style="font-size:12px;opacity:.6;">© 2026 All Rights Reserved</p>
-</div>
-</div>
+  <!-- LIST PRODUK -->
+  <div id="home-list"></div>
 
 </div>
 
-<!-- NAV -->
+<!-- ================= KERANJANG ================= -->
+<div id="cart" class="page">
+
+  <div class="card">
+    <h2>Keranjang 🛒</h2>
+
+    <div id="cartList"></div>
+
+    <h3 id="total">Total: Rp0</h3>
+
+    <button class="btn" onclick="orderWA()">Order ke WhatsApp</button>
+    <br><br>
+    <button class="btn" onclick="clearCart()">Hapus Semua</button>
+  </div>
+
+</div>
+
+<!-- ================= PROFILE ================= -->
+<div id="profile" class="page">
+
+  <div class="card profile">
+    <h2>Profile 👤</h2>
+
+    <p><b>Instagram Pribadi:</b><br>kenzo.dista.ananta</p>
+    <p><b>Instagram Bisnis:</b><br>V1PediaStore</p>
+    <p><b>Email:</b><br>payakumbuPediaStoreID@gmail.com</p>
+    <p><b>Alamat:</b><br>Jalan Agus Salim, Padang Tiakar, Kota Payakumbuh</p>
+
+    <br>
+    <p style="font-size:12px;opacity:.6;">
+      © 2026 V1PEDIASTORE - All Rights Reserved
+    </p>
+  </div>
+
+</div>
+
+<!-- ================= NAVBAR ================= -->
 <div class="navbar">
-<div onclick="showPage('homePage')">🏠<br>Home</div>
-<div onclick="showPage('cartPage')">🛒<br>Keranjang</div>
-<div onclick="showPage('profilePage')">👤<br>Profile</div>
+
+  <div class="active-nav" onclick="showPage('home')">
+    🏠<br>Home
+  </div>
+
+  <div style="position:relative;" onclick="showPage('cart')">
+    🛒<br>Keranjang
+    <span id="badge" class="badge">0</span>
+  </div>
+
+  <div onclick="showPage('profile')">
+    👤<br>Profile
+  </div>
+
 </div>
 
-<div id="popup" class="popup">💎Ditambahkan</div>
-<div id="liveOrder" class="live-order"></div>
+<!-- POPUP -->
+<div id="popup" class="popup">✔ Ditambahkan</div>
 
+<!-- SCRIPT -->
 <script src="data.js"></script>
 <script src="script.js"></script>
 
