@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V1PEDIASTORE</title>
+
+<style>
+body{
+font-family:sans-serif;
+margin:0;
+background:#f5f6fa;
+}
+
+/* HEADER */
+.header{
+background:linear-gradient(135deg,#4e73df,#6c8cff);
+color:white;
+text-align:center;
+padding:40px 20px;
+}
+
+.header h1{margin:0;}
+.header p{opacity:0.9;}
+
+/* GRID */
+.container{padding:20px;}
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
+}
+
+.card{
+background:white;
+border-radius:15px;
+padding:20px;
+text-align:center;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+cursor:pointer;
+}
+
+/* MODAL */
+.modal{
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:rgba(0,0,0,0.5);
+display:none;
+justify-content:center;
+align-items:center;
+}
+
+.modal-content{
+background:white;
+padding:20px;
+border-radius:15px;
+width:90%;
+max-width:400px;
+}
+
+/* VARIAN */
+.varian{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+}
+
+.varian div{
+background:#eee;
+padding:15px;
+border-radius:10px;
+text-align:center;
+cursor:pointer;
+}
+
+.varian div:hover{
+background:#4e73df;
+color:white;
+}
+
+/* BUTTON */
+.btn{
+background:#4e73df;
+color:white;
+padding:12px;
+border:none;
+border-radius:10px;
+width:100%;
+margin-top:10px;
+cursor:pointer;
+}
+
+/* CONTACT */
+.contact{
+padding:20px;
+}
+
+.contact-box{
+background:white;
+padding:15px;
+border-radius:10px;
+margin-bottom:10px;
+}
+
+/* FOOTER */
+.footer{
+text-align:center;
+padding:20px;
+color:#777;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+<h1>V1PEDIASTORE</h1>
+<p>Panel Bot WA • Followers • Script • OSINT</p>
+</div>
+
+<div class="container">
+<div class="grid">
+
+<div class="card" onclick="openPanel()">Panel Bot WhatsApp</div>
+<div class="card" onclick="openFollowers()">Followers Indonesia</div>
+<div class="card">Script Bot Custom</div>
+<div class="card">Layanan OSINT</div>
+
+</div>
+</div>
+
+<!-- MODAL PANEL -->
+<div class="modal" id="panelModal">
+<div class="modal-content">
+<h3>Panel Bot WhatsApp</h3>
+
+<div class="varian">
+<div onclick="bayar('1GB RAM','Rp 2.000')">1GB<br>Rp 2.000</div>
+<div onclick="bayar('2GB RAM','Rp 3.000')">2GB<br>Rp 3.000</div>
+<div onclick="bayar('3GB RAM','Rp 4.000')">3GB<br>Rp 4.000</div>
+<div onclick="bayar('4GB RAM','Rp 5.000')">4GB<br>Rp 5.000</div>
+</div>
+
+<button class="btn" onclick="closeModal()">Tutup</button>
+</div>
+</div>
+
+<!-- MODAL FOLLOWERS -->
+<div class="modal" id="followersModal">
+<div class="modal-content">
+<h3>Followers Indonesia</h3>
+
+<div class="varian">
+<div onclick="bayar('1K Followers','Rp 40.000')">1K<br>Rp 40K</div>
+<div onclick="bayar('2K Followers','Rp 80.000')">2K<br>Rp 80K</div>
+<div onclick="bayar('3K Followers','Rp 120.000')">3K<br>Rp 120K</div>
+<div onclick="bayar('5K Followers','Rp 200.000')">5K<br>Rp 200K</div>
+</div>
+
+<button class="btn" onclick="closeModal()">Tutup</button>
+</div>
+</div>
+
+<!-- MODAL BAYAR -->
+<div class="modal" id="bayarModal">
+<div class="modal-content">
+<h3>Pembayaran</h3>
+
+<p id="produk"></p>
+<p id="harga"></p>
+
+<p><b>DANA:</b> 083143490913</p>
+<p>Atas Nama: M.Kharihal Kezo</p>
+
+<button class="btn" onclick="wa()">Saya Sudah Bayar</button>
+<button class="btn" onclick="closeModal()">Batal</button>
+</div>
+</div>
+
+<!-- CONTACT -->
+<div class="contact">
+<h2>Kontak Saya</h2>
+
+<div class="contact-box">WhatsApp: 083143490913</div>
+<div class="contact-box">Email: payakumbuhpediastoreid@gmail.com</div>
+<div class="contact-box">Instagram: @v1pediastore</div>
+<div class="contact-box">Instagram Pribadi: @kenzodistaananta</div>
+
+</div>
+
+<div class="footer">
+© 2026 V1PEDIASTORE
+</div>
+
+<script>
+let produkDipilih = "";
+let hargaDipilih = "";
+
+function openPanel(){
+document.getElementById("panelModal").style.display="flex";
+}
+
+function openFollowers(){
+document.getElementById("followersModal").style.display="flex";
+}
+
+function closeModal(){
+document.querySelectorAll(".modal").forEach(m=>m.style.display="none");
+}
+
+function bayar(produk,harga){
+produkDipilih=produk;
+hargaDipilih=harga;
+
+document.getElementById("produk").innerText=produk;
+document.getElementById("harga").innerText=harga;
+
+closeModal();
+document.getElementById("bayarModal").style.display="flex";
+}
+
+function wa(){
+let kode = "V1P-" + Math.floor(Math.random()*10000);
+
+let pesan = `Halo admin V1PEDIASTORE
+
+Saya sudah bayar
+
+Kode: ${kode}
+Produk: ${produkDipilih}
+Harga: ${hargaDipilih}
+
+Mohon diproses`;
+
+window.open(`https://wa.me/6283143490913?text=${encodeURIComponent(pesan)}`);
+}
+</script>
+
+</body>
+</html>
