@@ -1,0 +1,87 @@
+body {
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:#f2f2f2;
+}
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg,#5f7cff,#6fa3ff);
+  color:white;
+  text-align:center;
+  padding:40px 20px;
+  border-bottom-left-radius:30px;
+  border-bottom-right-radius:30px;
+}
+
+/* CARD */
+.card {
+  background:white;
+  margin:20px;
+  padding:20px;
+  border-radius:20px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+  text-align:center;
+}
+
+/* STATS */
+.stats {
+  display:flex;
+  justify-content:space-around;
+  margin-top:10px;
+}
+
+/* MENU */
+.menu {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.menu button {
+  padding:15px;
+  border:none;
+  border-radius:15px;
+  background:#eee;
+  cursor:pointer;
+}
+
+.menu button:hover {
+  background:#ddd;
+}
+
+/* LIST */
+.list {
+  display:none;
+  margin:20px;
+}
+
+.item {
+  background:white;
+  padding:15px;
+  margin-bottom:10px;
+  border-radius:15px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.order {
+  background:#5f7cff;
+  color:white;
+  border:none;
+  padding:8px 15px;
+  border-radius:10px;
+}
+
+/* WA */
+.wa {
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  color:white;
+  padding:15px;
+  border-radius:50%;
+  cursor:pointer;
+}
