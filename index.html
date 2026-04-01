@@ -1,74 +1,57 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>V1PEDIASTORE</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>V1Pedia Store</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
-
 <body>
 
 <!-- LOADING -->
-<div id="loading">💎 V1PEDIASTORE</div>
+<div id="loading">⚡ V1Pedia Store</div>
+
+<!-- HEADER -->
+<div class="header">
+  <h1>💎 V1Pedia Store 💎</h1>
+  <p>Trusted Digital Service</p>
+  <div class="stats">
+    <div>⭐ 27K</div>
+    <div>⭐ 16.9K</div>
+    <div>⭐ 98%</div>
+  </div>
+</div>
 
 <!-- HOME -->
 <div id="home" class="page active">
-
-  <div class="header">
-    <h1>💎 V1PEDIASTORE 💎</h1>
-    <p>Trusted Digital Services ⚡</p>
-
-    <div class="stats">
-      <div>⭐ 60K<br>Terjual</div>
-      <div>⭐ 69.9K<br>Pelanggan</div>
-      <div>⭐ 98%<br>Kepuasan</div>
-    </div>
-  </div>
-
   <div class="menu">
-    <div class="card" onclick="openPanel(this)">📦 Panel Bot</div>
-    <div class="card" onclick="openFollowers(this)">📈 Followers IG</div>
+    <div class="card" onclick="openPanel()">📦 Panel Bot</div>
+    <div class="card" onclick="openFollowers()">📈 Followers IG</div>
   </div>
 
   <div id="panel-list" class="list"></div>
   <div id="followers-list" class="list"></div>
-
 </div>
 
 <!-- CART -->
 <div id="cart" class="page">
+  <h3>🛒 Keranjang</h3>
+  <div id="cartList"></div>
+  <h3 id="total">Total: Rp0</h3>
 
-  <div class="card" style="margin:15px;">
-    <h2>🛒 Keranjang</h2>
-
-    <div id="cartList"></div>
-    <h3 id="total">Total: Rp0</h3>
-
-    <div style="display:flex; gap:10px; margin-top:10px;">
-      <button onclick="orderWA()">Order WhatsApp</button>
-      <button onclick="clearCart()">Hapus</button>
-    </div>
-  </div>
-
+  <button onclick="orderWA()">🚀 Order Sekarang</button>
+  <button onclick="clearCart()">❌ Hapus</button>
 </div>
 
 <!-- PROFILE -->
 <div id="profile" class="page">
-
-  <div class="card" style="margin:15px;">
-    <h2>👤 Profile</h2>
-
-    <p>📞 WA: 083143490913</p>
-    <p>📸 IG Pribadi: kenzodistaananta</p>
-    <p>📸 IG Bisnis: V1PediaStore</p>
-    <p>📧 payakumbupediastoreid@gmail.com</p>
-    <p>📍 Jalan Agus Salim, Padang Tiakar, Payakumbuh</p>
-
-    <hr>
-    <p>© 2026 V1PediaStore</p>
-  </div>
-
+  <h3>👤 Profile</h3>
+  <p>WhatsApp: 083143490913</p>
+  <p>IG Pribadi: @kenzodistaananta</p>
+  <p>IG Bisnis: @V1Pedia Store</p>
+  <p>Email: payakumbuhpediastoreid@gmail.com</p>
+  <p>Alamat: Jalan Agus Salim, Payakumbuh</p>
+  <p>© 2026 Hak Cipta Dilindungi</p>
 </div>
 
 <!-- NAV -->
@@ -80,6 +63,5 @@
 
 <script src="data.js"></script>
 <script src="script.js"></script>
-
 </body>
 </html>
