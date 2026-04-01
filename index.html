@@ -10,24 +10,22 @@
 <body>
 
 <!-- LOADING -->
-<div id="loading">
-  💎 V1PEDIASTORE 💎
-</div>
-
-<!-- HEADER -->
-<div class="header">
-  <h1>💎 V1PEDIASTORE 💎</h1>
-  <p>Trusted Digital Services ⚡</p>
-
-  <div class="stats">
-    <div>⭐ 60K<br><small>Terjual</small></div>
-    <div>⭐ 69.9K<br><small>Pelanggan</small></div>
-    <div>⭐ 98%<br><small>Kepuasan</small></div>
-  </div>
-</div>
+<div id="loading">💎 V1PEDIASTORE</div>
 
 <!-- HOME -->
 <div id="home" class="page active">
+
+  <div class="header">
+    <h1>💎 V1PEDIASTORE 💎</h1>
+    <p>Trusted Digital Services ⚡</p>
+
+    <div class="stats">
+      <div>⭐ 60K<br>Terjual</div>
+      <div>⭐ 69.9K<br>Pelanggan</div>
+      <div>⭐ 98%<br>Kepuasan</div>
+    </div>
+  </div>
+
   <div class="menu">
     <div class="card" onclick="openPanel(this)">📦 Panel Bot</div>
     <div class="card" onclick="openFollowers(this)">📈 Followers IG</div>
@@ -35,27 +33,42 @@
 
   <div id="panel-list" class="list"></div>
   <div id="followers-list" class="list"></div>
+
 </div>
 
 <!-- CART -->
 <div id="cart" class="page">
-  <h2>Keranjang</h2>
-  <div id="cartList"></div>
-  <h3 id="total">Total: Rp0</h3>
 
-  <button onclick="orderWA()">Order WhatsApp</button>
-  <button onclick="clearCart()">Hapus</button>
+  <div class="card" style="margin:15px;">
+    <h2>🛒 Keranjang</h2>
+
+    <div id="cartList"></div>
+    <h3 id="total">Total: Rp0</h3>
+
+    <div style="display:flex; gap:10px; margin-top:10px;">
+      <button onclick="orderWA()">Order WhatsApp</button>
+      <button onclick="clearCart()">Hapus</button>
+    </div>
+  </div>
+
 </div>
 
 <!-- PROFILE -->
 <div id="profile" class="page">
-  <h2>Profile</h2>
-  <p>📞 WA: 083143490913</p>
-  <p>📷 IG Pribadi: kenzodistaaananta</p>
-  <p>📷 IG Bisnis: V1PediaStore</p>
-  <p>📧 payakumbuhpediastoreid@gmail.com</p>
-  <p>📍 Jalan Agus Salim, Padang Tiakar, Payakumbuh</p>
-  <p>© 2026 Hak Cipta Dilindungi</p>
+
+  <div class="card" style="margin:15px;">
+    <h2>👤 Profile</h2>
+
+    <p>📞 WA: 083143490913</p>
+    <p>📸 IG Pribadi: kenzodistaananta</p>
+    <p>📸 IG Bisnis: V1PediaStore</p>
+    <p>📧 payakumbuhpediastoreid@gmail.com</p>
+    <p>📍 Jalan Agus Salim, Padang Tiakar, Payakumbuh</p>
+
+    <hr>
+    <p>© 2026 V1PediaStore</p>
+  </div>
+
 </div>
 
 <!-- NAV -->
@@ -67,5 +80,6 @@
 
 <script src="data.js"></script>
 <script src="script.js"></script>
+
 </body>
 </html>
