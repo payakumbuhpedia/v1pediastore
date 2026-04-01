@@ -3,72 +3,79 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>V1PediaStore</title>
+<title>V1PEDIASTORE</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <!-- LOADING -->
-<div id="loading">💎 V1PediaStore</div>
-
-<!-- HEADER -->
-<div class="header">
-  <h1 class="logo">
-    💎 V1PEDIASTORE 💎
-  </h1>
-  <p class="tagline">Trusted Digital Services ⚡</p>
-
-  <div class="stats">
-    <div>⭐ 60K<br>Terjual</div>
-    <div>⭐ 69.9K<br>Pelanggan</div>
-    <div>⭐ 98%<br>Kepuasan</div>
-  </div>
-</div>
+<div id="loading">💎 V1PEDIASTORE</div>
 
 <!-- HOME -->
 <div id="home" class="page active">
 
-  <div class="menu">
-    <div class="card" onclick="togglePanel()">📦 Panel Bot</div>
-    <div class="card" onclick="toggleFollowers()">📈 Followers IG</div>
+  <div class="header">
+    <h1>💎 V1PEDIASTORE 💎</h1>
+    <p>Trusted Digital Services ⚡</p>
+
+    <div class="stats">
+      <div>⭐ 60K<br>Terjual</div>
+      <div>⭐ 69.9K<br>Pelanggan</div>
+      <div>⭐ 98%<br>Kepuasan</div>
+    </div>
   </div>
 
-  <div id="panel-list" class="list hidden"></div>
-  <div id="followers-list" class="list hidden"></div>
+  <div class="menu">
+    <div class="card" onclick="openPanel(this)">📦 Panel Bot</div>
+    <div class="card" onclick="openFollowers(this)">📈 Followers IG</div>
+  </div>
+
+  <div id="panel-list" class="list"></div>
+  <div id="followers-list" class="list"></div>
 
 </div>
 
 <!-- CART -->
 <div id="cart" class="page">
-  <h2>🛒 Keranjang</h2>
 
-  <div id="cartList"></div>
-  <h3 id="total">Total: Rp0</h3>
+  <div class="card" style="margin:15px;">
+    <h2>🛒 Keranjang</h2>
 
-  <button class="btn" onclick="orderWA()">Order WhatsApp</button>
-  <button class="btn danger" onclick="clearCart()">Hapus</button>
+    <div id="cartList"></div>
+    <h3 id="total">Total: Rp0</h3>
+
+    <div style="display:flex; gap:10px; margin-top:10px;">
+      <button onclick="orderWA()">Order WhatsApp</button>
+      <button onclick="clearCart()">Hapus</button>
+    </div>
+  </div>
+
 </div>
 
 <!-- PROFILE -->
 <div id="profile" class="page">
-  <h2>👤 Profile</h2>
 
-  <p>📞 WA: 083143490913</p>
-  <p>📷 IG Pribadi: kenzodistaananta</p>
-  <p>📷 IG Bisnis: V1PediaStore</p>
-  <p>📧 payakumbuhpediastoreid@gmail.com</p>
-  <p>📍 Jalan Agus Salim, Padang Tiakar, Payakumbuh</p>
+  <div class="card" style="margin:15px;">
+    <h2>👤 Profile</h2>
 
-  <hr>
-  <p>© 2026 V1PediaStore</p>
+    <p>📞 WA: 083143490913</p>
+    <p>📸 IG Pribadi: kenzodistaananta</p>
+    <p>📸 IG Bisnis: V1PediaStore</p>
+    <p>📧 payakumbupediastoreid@gmail.com</p>
+    <p>📍 Jalan Agus Salim, Padang Tiakar, Payakumbuh</p>
+
+    <hr>
+    <p>© 2026 V1PediaStore</p>
+  </div>
+
 </div>
 
 <!-- NAV -->
 <div class="nav">
-  <div onclick="showPage('home')">🏠</div>
-  <div onclick="showPage('cart')">🛒</div>
-  <div onclick="showPage('profile')">👤</div>
+  <div onclick="nav('home')">🏠</div>
+  <div onclick="nav('cart')">🛒</div>
+  <div onclick="nav('profile')">👤</div>
 </div>
 
 <script src="data.js"></script>
