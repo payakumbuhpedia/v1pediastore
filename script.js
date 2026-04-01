@@ -1,10 +1,12 @@
 let cart = [];
 
+/* NAVIGATION */
 function showPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 }
 
+/* TOGGLE MENU */
 function togglePanel(){
   document.getElementById("panel-list").classList.toggle("hidden");
   document.getElementById("followers-list").classList.add("hidden");
@@ -21,6 +23,7 @@ window.onload = ()=>{
   loadFollowers();
 };
 
+/* PANEL */
 function loadPanel(){
   let el = document.getElementById("panel-list");
   el.innerHTML = "";
@@ -33,6 +36,7 @@ function loadPanel(){
   });
 }
 
+/* FOLLOWERS */
 function loadFollowers(){
   let el = document.getElementById("followers-list");
   el.innerHTML = "";
@@ -45,6 +49,7 @@ function loadFollowers(){
   });
 }
 
+/* CART */
 function addCart(nama,harga){
   cart.push({nama,harga});
   updateCart();
@@ -69,11 +74,15 @@ function clearCart(){
   updateCart();
 }
 
+/* ORDER WA */
 function orderWA(){
-  if(cart.length==0) return alert("Keranjang kosong");
+  if(cart.length==0){
+    alert("Keranjang kosong");
+    return;
+  }
 
-  let kode = "V1-"+Math.floor(Math.random()*999999);
-  let text = "ORDER "+kode+"\n\n";
+  let kode = "V1-"+Math.floor(1000 + Math.random()*9000);
+  let text = "*ORDER "+kode+"*\n\n";
 
   cart.forEach(item=>{
     text += "- "+item.nama+"\n";
