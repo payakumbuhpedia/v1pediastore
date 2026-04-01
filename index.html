@@ -11,80 +11,63 @@
 <!-- LOADING -->
 <div id="loading">
   <div class="loader"></div>
-  <p>Loading V1Pedia Store...</p>
+  <p>V1PEDIASTORE</p>
 </div>
 
-<audio id="clickSound" src="https://www.myinstants.com/media/sounds/click.mp3"></audio>
+<audio id="sfx" src="https://www.myinstants.com/media/sounds/click.mp3"></audio>
 
 <!-- HOME -->
 <div id="home" class="page active">
-
 <div class="header">
-  <h1>💎 V1PEDIASTORE 💎</h1>
+  <h1>💎 V1PEDIASTORE</h1>
   <p>Trusted Digital Service ⚡</p>
 
   <div class="stats">
-    <div><b>⭐ 27K</b><span>Terjual</span></div>
-    <div><b>⭐ 16.9K</b><span>Pelanggan</span></div>
-    <div><b>⭐ 98%</b><span>Kepuasan</span></div>
+    <div><b>27K</b><span>Terjual</span></div>
+    <div><b>16.9K</b><span>Pelanggan</span></div>
+    <div><b>98%</b><span>Kepuasan</span></div>
   </div>
 </div>
 
 <div class="menu">
-  <div class="card" onclick="openPanel(this)">📦 Panel Bot</div>
-  <div class="card" onclick="openFollowers(this)">📈 Followers IG</div>
+  <div class="card" onclick="openCategory('Panel Pterodactyl')">Panel Bot</div>
+  <div class="card" onclick="openCategory('Followers Instagram')">Followers IG</div>
+  <div class="card" onclick="openCategory('Followers TikTok')">Followers TikTok</div>
 </div>
 
-<div id="panel-list" class="list"></div>
-<div id="followers-list" class="list"></div>
-
-<div class="info">
-  <h3>Tentang Kami</h3>
-  <p>Layanan digital premium cepat, aman & terpercaya.</p>
-
-  <h3>FAQ</h3>
-  <p>✔️ Aman<br>⚡ Cepat<br>✔️ Refund tersedia</p>
-</div>
-
+<div id="productList"></div>
 </div>
 
 <!-- CART -->
 <div id="cart" class="page">
-  <h2>🛒 Keranjang</h2>
-  <h3 id="total">Total: Rp0</h3>
-
-  <button onclick="orderWA()">Order WhatsApp</button>
-  <button onclick="clearCart()">Hapus</button>
-
-  <div id="cartList"></div>
+<h2>Keranjang</h2>
+<h3 id="total">Total: Rp0</h3>
+<button onclick="orderWA()">Order</button>
+<button onclick="clearCart()">Hapus</button>
+<div id="cartList"></div>
 </div>
 
 <!-- PROFILE -->
 <div id="profile" class="page">
-  <div class="profile-box">
-    <h2>👤 Profile Owner</h2>
-    <p>📱 083143490913</p>
-    <p>📸 @kenzodistaananta</p>
-    <p>📸 @v1pediastore</p>
-    <p>📧 payakumbuhpediastoreid@gmail.com</p>
-    <p>📍 Jalan Agus Salim, Payakumbuh</p>
-
-    <hr>
-
-    <h3>Tentang Kami</h3>
-    <p>V1Pedia Store adalah layanan digital premium terpercaya dengan kualitas terbaik.</p>
-
-    <hr>
-    <p>© 2026 V1Pedia Store</p>
-  </div>
+<div class="profile">
+<h2>V1Pedia Store</h2>
+<p>@v1pediastore</p>
+<p>@kenzodistaananta</p>
+<p>payakumbuhpediastoreid@gmail.com</p>
+<p>Jalan Agus Salim, Payakumbuh</p>
+<p>©2026 V1Pedia Store</p>
+</div>
 </div>
 
 <!-- NAV -->
 <div class="nav">
-  <div onclick="nav('home')">🏠</div>
-  <div onclick="nav('cart')">🛒</div>
-  <div onclick="nav('profile')">👤</div>
+<div onclick="nav('home')">🏠</div>
+<div onclick="nav('cart')">🛒</div>
+<div onclick="nav('profile')">👤</div>
 </div>
+
+<!-- FLOAT WA -->
+<a href="https://wa.me/6283143490913" class="wa">💬</a>
 
 <script src="data.js"></script>
 <script src="script.js"></script>
