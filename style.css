@@ -3,6 +3,7 @@ body{
   font-family:sans-serif;
   background:linear-gradient(180deg,#07142a,#0a1f3f);
   color:white;
+  padding-bottom:80px; /* FIX NAV KETUTUP */
 }
 
 /* LOADING */
@@ -26,16 +27,33 @@ body{
 /* HEADER */
 .header{
   text-align:center;
-  padding:20px;
-  background:linear-gradient(135deg,#0ff,#09f);
+  padding:25px 15px;
+  background:linear-gradient(135deg,#00eaff,#0099ff);
   color:black;
   border-radius:0 0 30px 30px;
 }
 
+/* 🔥 RAPIIKAN DIAMOND */
+.header h1{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+  font-size:22px;
+}
+
+/* SUBTEXT */
+.header p{
+  margin-top:5px;
+  font-size:14px;
+}
+
+/* STATS */
 .stats{
   display:flex;
   justify-content:space-around;
-  margin-top:10px;
+  margin-top:15px;
+  font-size:14px;
 }
 
 /* MENU */
@@ -45,13 +63,20 @@ body{
   padding:15px;
 }
 
+/* CARD */
 .card{
   flex:1;
-  padding:20px;
+  padding:18px;
   background:#0a1f3f;
   border-radius:15px;
   text-align:center;
-  box-shadow:0 0 15px cyan;
+  box-shadow:0 0 12px rgba(0,255,255,0.5);
+  transition:.2s;
+}
+
+/* TAP EFFECT */
+.card:active{
+  transform:scale(0.95);
 }
 
 /* LIST */
@@ -59,13 +84,16 @@ body{
   padding:10px;
 }
 
+/* PRODUCT */
 .product{
   background:#102a52;
   margin:10px;
-  padding:10px;
-  border-radius:10px;
+  padding:12px;
+  border-radius:12px;
   display:flex;
   justify-content:space-between;
+  align-items:center;
+  box-shadow:0 0 8px rgba(0,255,255,0.3);
 }
 
 /* NAV */
@@ -75,10 +103,22 @@ body{
   width:100%;
   display:flex;
   justify-content:space-around;
-  background:black;
+  background:#07142a; /* SAMA WARNA BG BIAR GAK BELANG */
   padding:10px;
+  z-index:1000;
+}
+
+/* NAV ITEM */
+.nav div{
+  text-align:center;
+  font-size:18px;
 }
 
 /* PAGE */
 .page{display:none}
 .page.active{display:block}
+
+/* 🔥 FIX AREA KOSONG BAWAH */
+#home, #cart, #profile{
+  min-height:80vh;
+}
