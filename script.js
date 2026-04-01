@@ -1,115 +1,82 @@
 let cart = [];
 
-/* 🔥 NAVIGATION */
-function showPage(page){
+/* SOUND */
+const sClick = new Audio("https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3");
+const sOrder = new Audio("https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3");
+
+/* NAV FIX */
+function nav(page){
+  sClick.play();
   document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
   document.getElementById(page).classList.add("active");
 }
 
-/* 🔥 RENDER PANEL */
+/* PANEL */
 function openPanel(){
-  const list = document.getElementById("panel-list");
-  list.innerHTML = "";
-
-  panel.forEach((item,i)=>{
-    list.innerHTML += `
-      <div class="product">
-        <div>
-          ${item.n}<br>
-          Rp${item.h}
-        </div>
-        <button onclick="addCart('${item.n}',${item.h})">Order</button>
-      </div>
-    `;
+  sClick.play();
+  let list=document.getElementById("panel-list");
+  list.innerHTML="";
+  panel.forEach(i=>{
+    list.innerHTML+=`
+    <div class="product">
+      <div>${i.n}<br>Rp${i.h}</div>
+      <button onclick="add('${i.n}',${i.h})">Order</button>
+    </div>`;
   });
-
-  document.getElementById("followers-list").innerHTML = "";
 }
 
-/* 🔥 RENDER FOLLOWERS */
+/* FOLLOWERS */
 function openFollowers(){
-  const list = document.getElementById("followers-list");
-  list.innerHTML = "";
-
-  followers.forEach((item,i)=>{
-    list.innerHTML += `
-      <div class="product">
-        <div>
-          ${item.n}<br>
-          Rp${item.h}
-        </div>
-        <button onclick="addCart('${item.n}',${item.h})">Order</button>
-      </div>
-    `;
+  sClick.play();
+  let list=document.getElementById("followers-list");
+  list.innerHTML="";
+  followers.forEach(i=>{
+    list.innerHTML+=`
+    <div class="product">
+      <div>${i.n}<br>Rp${i.h}</div>
+      <button onclick="add('${i.n}',${i.h})">Order</button>
+    </div>`;
   });
-
-  document.getElementById("panel-list").innerHTML = "";
 }
 
-/* 🔥 TAMBAH KE KERANJANG */
-function addCart(nama,harga){
-  cart.push({nama,harga});
-  updateCart();
-
-  /* AUTO PINDAH KE KERANJANG */
-  showPage("cart");
+/* CART */
+function add(n,h){
+  sOrder.play();
+  cart.push({n,h});
+  renderCart();
+  nav('cart');
 }
 
-/* 🔥 UPDATE CART */
-function updateCart(){
-  const list = document.getElementById("cartList");
-  const total = document.getElementById("total");
-
-  list.innerHTML = "";
-  let t = 0;
-
-  cart.forEach((item,i)=>{
-    t += item.harga;
-
-    list.innerHTML += `
-      <div class="product">
-        <div>${item.nama}</div>
-        <button onclick="removeCart(${i})">❌</button>
-      </div>
-    `;
+function renderCart(){
+  let el=document.getElementById("cartList");
+  let total=0;
+  el.innerHTML="";
+  cart.forEach(i=>{
+    el.innerHTML+=`<div>${i.n} - Rp${i.h}</div>`;
+    total+=i.h;
   });
-
-  total.innerText = "Total: Rp" + t;
+  document.getElementById("total").innerText="Total: Rp"+total;
 }
 
-/* 🔥 HAPUS ITEM */
-function removeCart(i){
-  cart.splice(i,1);
-  updateCart();
-}
-
-/* 🔥 CLEAR */
 function clearCart(){
-  cart = [];
-  updateCart();
+  sClick.play();
+  cart=[];
+  renderCart();
 }
 
-/* 🔥 ORDER WA AUTO */
+/* WA ORDER */
 function orderWA(){
-  if(cart.length === 0){
-    alert("Keranjang kosong!");
-    return;
-  }
+  if(cart.length==0){alert("Keranjang kosong!");return;}
 
-  let kode = "V1-" + Math.floor(1000 + Math.random()*9000);
+  let kode="V1-"+Math.floor(Math.random()*999999);
 
-  let text = `🛒 *ORDER V1PEDIASTORE*\n`;
-  text += `📌 Kode: ${kode}\n\n`;
-
-  cart.forEach((item,i)=>{
-    text += `${i+1}. ${item.nama} - Rp${item.harga}\n`;
+  let text="ORDER V1PEDIASTORE\nKode:"+kode+"\n\n";
+  cart.forEach((i,x)=>{
+    text+=`${x+1}. ${i.n} - Rp${i.h}\n`;
   });
 
-  let total = cart.reduce((a,b)=>a+b.harga,0);
+  let total=cart.reduce((a,b)=>a+b.h,0);
+  text+="\nTotal: Rp"+total;
 
-  text += `\n💰 Total: Rp${total}\n`;
-  text += `⚡ Mohon diproses ya admin`;
-
-  let url = "https://wa.me/6283143490913?text=" + encodeURIComponent(text);
-  window.open(url,"_blank");
+  window.open("https://wa.me/6283143490913?text="+encodeURIComponent(text));
 }
