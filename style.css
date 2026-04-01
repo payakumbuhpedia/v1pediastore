@@ -25,51 +25,87 @@ body{
 /* HEADER */
 .header{
   text-align:center;
-  padding:20px;
+  padding:25px;
   background:linear-gradient(135deg,#00eaff,#0099ff);
   color:black;
   border-radius:0 0 30px 30px;
 }
 
+.logo{
+  margin:0;
+}
+
+.tagline{
+  margin-top:5px;
+}
+
 .stats{
   display:flex;
   justify-content:space-around;
-  margin-top:10px;
+  margin-top:15px;
+  font-weight:bold;
 }
 
 /* MENU */
 .menu{
   display:flex;
-  gap:10px;
+  gap:12px;
   padding:15px;
 }
 
 .card{
   flex:1;
-  padding:20px;
+  padding:18px;
   background:#0a1f3f;
   border-radius:15px;
   text-align:center;
   box-shadow:0 0 15px cyan;
   cursor:pointer;
+  transition:0.2s;
+}
+
+.card:active{
+  transform:scale(0.95);
 }
 
 /* LIST */
 .list{
   padding:10px;
+  animation:fadeIn 0.3s ease;
 }
 
 .hidden{
   display:none;
 }
 
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
 .product{
   background:#102a52;
   margin:10px;
-  padding:10px;
+  padding:12px;
   border-radius:10px;
   display:flex;
   justify-content:space-between;
+  align-items:center;
+}
+
+/* BUTTON */
+.btn{
+  padding:10px 15px;
+  border:none;
+  border-radius:8px;
+  background:cyan;
+  color:black;
+  margin:5px;
+}
+
+.danger{
+  background:red;
+  color:white;
 }
 
 /* NAV */
