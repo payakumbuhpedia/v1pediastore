@@ -1,25 +1,25 @@
 const panel = [
-  {n:"Panel Pterodactyl 1GB",h:2000, best:true},
-  {n:"Panel Pterodactyl 2GB",h:4000},
-  {n:"Panel Pterodactyl 3GB",h:6000},
-  {n:"Panel Pterodactyl 4GB",h:8000},
-  {n:"Panel Pterodactyl 5GB",h:10000, best:true},
-  {n:"Panel Pterodactyl 6GB",h:12000},
-  {n:"Panel Pterodactyl 7GB",h:14000},
-  {n:"Panel Pterodactyl 8GB",h:16000},
-  {n:"Panel Pterodactyl 9GB",h:18000},
-  {n:"Panel Pterodactyl 10GB",h:20000, best:true}
+  {n:"Panel Pterodactyl 1GB",h:40000},
+  {n:"Panel Pterodactyl 2GB",h:80000},
+  {n:"Panel Pterodactyl 3GB",h:90000},
+  {n:"Panel Pterodactyl 4GB",h:100000},
+  {n:"Panel Pterodactyl 5GB",h:150000},
+  {n:"Panel Pterodactyl 6GB",h:200000},
+  {n:"Panel Pterodactyl 7GB",h:250000},
+  {n:"Panel Pterodactyl 8GB",h:300000},
+  {n:"Panel Pterodactyl 9GB",h:350000},
+  {n:"Panel Pterodactyl 10GB",h:400000}
 ];
 
 const followers = [
-  {n:"Followers Instagram Indonesia 1000",h:45000, best:true},
-  {n:"Followers Instagram Indonesia 2000",h:85000},
-  {n:"Followers Instagram Indonesia 3000",h:130000},
-  {n:"Followers Instagram Indonesia 4000",h:170000},
-  {n:"Followers Instagram Indonesia 5000",h:210000, best:true},
-  {n:"Followers Instagram Indonesia 6000",h:250000},
-  {n:"Followers Instagram Indonesia 7000",h:290000},
-  {n:"Followers Instagram Indonesia 8000",h:330000},
-  {n:"Followers Instagram Indonesia 9000",h:370000},
-  {n:"Followers Instagram Indonesia 10000",h:400000, best:true}
+  {n:"Followers Instagram 1000",h:40000},
+  {n:"Followers Instagram 2000",h:80000},
+  {n:"Followers Instagram 3000",h:90000},
+  {n:"Followers Instagram 4000",h:100000},
+  {n:"Followers Instagram 5000",h:150000},
+  {n:"Followers Instagram 6000",h:200000},
+  {n:"Followers Instagram 7000",h:250000},
+  {n:"Followers Instagram 8000",h:300000},
+  {n:"Followers Instagram 9000",h:350000},
+  {n:"Followers Instagram 10000",h:400000}
 ];
