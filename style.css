@@ -1,51 +1,123 @@
 body{
   margin:0;
   font-family:sans-serif;
-  background:#0b1220;
+  background:#020617;
   color:#fff;
+  overflow-x:hidden;
 }
 
-.page{display:none;padding:20px;}
-.active{display:block;}
+/* BG */
+#bg{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+}
 
+/* LOADING */
+#loading{
+  position:fixed;
+  inset:0;
+  background:#000;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+}
+
+.logo{
+  font-size:50px;
+  animation:spin 1s linear infinite;
+}
+
+.bar{
+  width:200px;
+  height:5px;
+  background:#222;
+  margin-top:10px;
+}
+
+#barFill{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#00f,#0ff);
+}
+
+/* HEADER */
 .header{
   text-align:center;
-  margin-bottom:20px;
+  padding:20px;
+}
+
+.neon{
+  text-shadow:0 0 10px #0ff,0 0 20px #00f;
+}
+
+/* MENU */
+.menu{
+  display:flex;
+  gap:10px;
+  padding:10px;
 }
 
 .card{
-  background:#111a2f;
-  padding:15px;
-  margin:10px 0;
-  border-radius:12px;
-  box-shadow:0 0 15px rgba(0,200,255,.3);
+  flex:1;
+  background:#0f172a;
+  padding:20px;
+  border-radius:15px;
+  text-align:center;
+  box-shadow:0 0 15px #0ff;
+  transition:.2s;
 }
 
-button{
+.card:active{
+  transform:scale(.95);
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
   padding:10px;
-  margin:5px;
-  border:none;
-  border-radius:8px;
-  background:#2d6cff;
-  color:#fff;
 }
 
+.product{
+  background:#0f172a;
+  padding:15px;
+  border-radius:10px;
+  box-shadow:0 0 10px #0ff;
+}
+
+/* NAV */
 .nav{
   position:fixed;
   bottom:0;
   width:100%;
   display:flex;
   justify-content:space-around;
-  background:#111;
+  background:#000;
   padding:10px;
 }
 
-#loading{
+/* FX */
+#fx{
   position:fixed;
-  inset:0;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:#0b1220;
-  z-index:9999;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%) scale(0);
+}
+
+.show{
+  animation:boom .4s;
+}
+
+@keyframes boom{
+  0%{transform:translate(-50%,-50%) scale(0)}
+  50%{transform:translate(-50%,-50%) scale(2)}
+  100%{transform:translate(-50%,-50%) scale(0)}
+}
+
+@keyframes spin{
+  100%{transform:rotate(360deg);}
 }
