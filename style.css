@@ -1,26 +1,9 @@
 body{
   margin:0;
   font-family:sans-serif;
-  background:linear-gradient(180deg,#eaf6ff,#ffffff);
-  color:#0a1f3f;
+  background:linear-gradient(180deg,#0a1f3f,#0d2b5c);
+  color:white;
   padding-bottom:80px;
-}
-
-/* LOADING */
-#loading{
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:white;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:24px;
-  z-index:999;
-  animation:fade 2s forwards;
-}
-@keyframes fade{
-  to{opacity:0;visibility:hidden}
 }
 
 /* HEADER */
@@ -28,25 +11,19 @@ body{
   text-align:center;
   padding:25px;
   background:linear-gradient(135deg,#00cfff,#007bff);
-  color:white;
   border-radius:0 0 30px 30px;
-  animation:slideDown .6s ease;
 }
 
-/* ANIMASI MASUK */
-@keyframes slideDown{
-  from{transform:translateY(-40px);opacity:0}
-  to{transform:translateY(0);opacity:1}
+/* 🔥 STATS RAPI KE SAMPING */
+.stats{
+  display:flex;
+  justify-content:space-between;
+  margin-top:15px;
+  text-align:center;
 }
 
-/* STATS GERAK */
 .stats div{
-  animation:pulse 2s infinite;
-}
-@keyframes pulse{
-  0%{transform:scale(1)}
-  50%{transform:scale(1.1)}
-  100%{transform:scale(1)}
+  flex:1;
 }
 
 /* MENU */
@@ -56,102 +33,60 @@ body{
   padding:15px;
 }
 
-/* CARD HIDUP */
+/* CARD */
 .card{
   flex:1;
-  padding:20px;
-  background:white;
+  padding:18px;
+  background:#102a52;
   border-radius:15px;
   text-align:center;
-  box-shadow:0 0 10px rgba(0,123,255,0.3);
-  transition:.3s;
-  animation:fadeIn .6s ease;
-}
-
-.card:hover{
-  transform:translateY(-5px) scale(1.03);
-  box-shadow:0 10px 25px rgba(0,123,255,0.4);
+  box-shadow:0 0 10px rgba(0,255,255,0.4);
+  transition:.2s;
 }
 
 .card:active{
   transform:scale(.95);
 }
 
-/* PRODUCT */
-.product{
-  background:white;
-  margin:10px;
+/* LIST FULL */
+.list{
   padding:15px;
-  border-radius:10px;
+}
+
+/* 🔥 PRODUCT FULL LEBAR */
+.product{
+  background:#102a52;
+  margin:10px 0;
+  padding:15px;
+  border-radius:12px;
   display:flex;
   justify-content:space-between;
-  box-shadow:0 0 8px rgba(0,123,255,0.2);
-  animation:fadeUp .5s ease;
+  align-items:center;
+  box-shadow:0 0 8px rgba(0,255,255,0.3);
 }
 
-/* ANIMASI LIST */
-@keyframes fadeUp{
-  from{transform:translateY(20px);opacity:0}
-  to{transform:translateY(0);opacity:1}
-}
-
-/* BUTTON HIDUP */
+/* BUTTON */
 button{
   background:linear-gradient(135deg,#00cfff,#007bff);
   border:none;
-  padding:8px 12px;
+  padding:10px 15px;
   color:white;
-  border-radius:8px;
-  cursor:pointer;
-  transition:.2s;
+  border-radius:10px;
 }
 
-button:hover{
-  transform:scale(1.05);
-}
-
-button:active{
-  transform:scale(.9);
-}
-
-/* NAV */
+/* 🔥 NAV */
 .nav{
   position:fixed;
   bottom:0;
   width:100%;
   display:flex;
   justify-content:space-around;
-  background:white;
+  background:#0a1f3f;
   padding:12px;
-  box-shadow:0 -5px 20px rgba(0,0,0,0.1);
 }
 
-/* NAV ACTIVE GLOW */
-.nav div{
-  transition:.3s;
-}
-
-.nav div:hover{
-  color:#007bff;
-  transform:scale(1.2);
-}
-
-/* PAGE SLIDE */
-.page{
-  display:none;
-  animation:slidePage .3s ease;
-}
-.page.active{
-  display:block;
-}
-
-@keyframes slidePage{
-  from{transform:translateX(40px);opacity:0}
-  to{transform:translateX(0);opacity:1}
-}
-
-/* GLOBAL FADE */
-@keyframes fadeIn{
-  from{opacity:0}
-  to{opacity:1}
+/* 🔥 FULL PAGE (BIAR KAYAK PROFILE) */
+#cart, #profile{
+  padding:15px;
+  min-height:80vh;
 }
