@@ -1,123 +1,134 @@
 let cart = [];
 
-/* SOUND */
-const s1 = new Audio("https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3");
+/* 🔊 SOUND SYSTEM (ULTRA FIX HP) */
+let soundReady = false;
+let clickSound;
 
-/* EFFECT */
-function fx(el){
-  try{ s1.currentTime=0; s1.play(); }catch{}
-  if(navigator.vibrate) navigator.vibrate(30);
+/* UNLOCK SOUND */
+document.body.addEventListener("click", function init(){
+  clickSound = new Audio("https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3");
+  soundReady = true;
+  document.body.removeEventListener("click", init);
+});
 
-  if(el){
-    el.style.transform="scale(.95)";
-    setTimeout(()=>el.style.transform="",150);
+/* PLAY SOUND */
+function sfx(){
+  if(soundReady){
+    clickSound.currentTime = 0;
+    clickSound.play();
   }
 }
 
-/* NAV */
-function nav(page){
-  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-  document.getElementById(page).classList.add("active");
+/* GETAR */
+function vibrate(){
+  if(navigator.vibrate){
+    navigator.vibrate(30);
+  }
+}
+
+/* EFFECT KLIK PREMIUM */
+function fx(el){
+  sfx();
+  vibrate();
+
+  if(el){
+    el.classList.add("tap");
+    setTimeout(()=>el.classList.remove("tap"),150);
+  }
+}
+
+/* 🔥 NAV FIX */
+function nav(id){
   fx();
-}
 
-/* OPEN MENU */
-function openPanel(el){
-  fx(el);
-  document.getElementById("panel-list").style.display="block";
-  document.getElementById("followers-list").style.display="none";
-}
-
-function openFollowers(el){
-  fx(el);
-  document.getElementById("followers-list").style.display="block";
-  document.getElementById("panel-list").style.display="none";
-}
-
-/* RENDER */
-function render(){
-  let p = document.getElementById("panel-list");
-  let f = document.getElementById("followers-list");
-
-  p.innerHTML = "";
-  f.innerHTML = "";
-
-  panel.forEach(i=>{
-    p.innerHTML += html(i);
+  document.querySelectorAll(".page").forEach(p=>{
+    p.classList.remove("active");
   });
 
-  followers.forEach(i=>{
-    f.innerHTML += html(i);
-  });
-}
-
-/* HTML ITEM */
-function html(i){
-  return `
-  <div class="product" onclick="fx(this)">
-    <div>${i.n}<br>Rp${format(i.p)}</div>
-    <button onclick="event.stopPropagation();add('${i.n}',${i.p},this)">Order</button>
-  </div>`;
+  document.getElementById(id).classList.add("active");
 }
 
 /* FORMAT HARGA */
 function format(h){
-  return (h >= 1000) ? (h/1000)+"K" : h;
+  return (h>=1000) ? "Rp"+(h/1000)+"K" : "Rp"+h;
 }
 
-/* CART */
+/* PANEL */
+function openPanel(el){
+  fx(el);
+
+  let list = document.getElementById("panel-list");
+  list.innerHTML="";
+  document.getElementById("followers-list").innerHTML="";
+
+  panel.forEach(p=>{
+    list.innerHTML += `
+    <div class="product">
+      <div>${p.n}<br>${format(p.h)}</div>
+      <button onclick="add('${p.n}',${p.h},this)">Order</button>
+    </div>`;
+  });
+}
+
+/* FOLLOWERS */
+function openFollowers(el){
+  fx(el);
+
+  let list = document.getElementById("followers-list");
+  list.innerHTML="";
+  document.getElementById("panel-list").innerHTML="";
+
+  followers.forEach(f=>{
+    list.innerHTML += `
+    <div class="product">
+      <div>${f.n}<br>${format(f.h)}</div>
+      <button onclick="add('${f.n}',${f.h},this)">Order</button>
+    </div>`;
+  });
+}
+
+/* ADD CART */
 function add(n,h,el){
   fx(el);
+
   cart.push({n,h});
-  updateCart();
+  renderCart();
 }
 
-/* UPDATE CART */
-function updateCart(){
+/* RENDER CART */
+function renderCart(){
   let el = document.getElementById("cartList");
   let total = 0;
+  el.innerHTML="";
 
-  el.innerHTML = "";
-
-  cart.forEach(item=>{
-    total += item.h;
+  cart.forEach(c=>{
+    total += c.h;
 
     el.innerHTML += `
     <div class="product">
-      ${item.n} - Rp${format(item.h)}
+      ${c.n} - ${format(c.h)}
     </div>`;
   });
 
-  document.getElementById("total").innerText = "Total: Rp"+format(total);
+  document.getElementById("total").innerText = "Total: "+format(total);
 }
 
 /* CLEAR */
 function clearCart(){
-  cart = [];
-  updateCart();
+  fx();
+  cart=[];
+  renderCart();
 }
 
-/* ORDER WA */
+/* WA */
 function orderWA(){
-  if(cart.length == 0){
-    alert("Keranjang kosong!");
-    return;
-  }
+  fx();
 
-  let text = "Order:%0A";
-  let total = 0;
+  let text="Halo admin, saya ingin order:%0A";
 
-  cart.forEach(i=>{
-    text += "- "+i.n+" (Rp"+format(i.h)+")%0A";
-    total += i.h;
+  cart.forEach(c=>{
+    text += `- ${c.n} (${format(c.h)})%0A`;
   });
-
-  text += "%0ATotal: Rp"+format(total);
 
   window.open("https://wa.me/6283143490913?text="+text);
 }
-
-/* INIT */
-window.onload = function(){
-  render();
-};
