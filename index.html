@@ -9,72 +9,63 @@
 
 <body>
 
+<!-- LOADING -->
+<div id="loading">
+  💎 V1PEDIASTORE 💎
+</div>
+
 <!-- HEADER -->
 <div class="header">
-  <div class="diamond">💎</div>
-  <div class="title">V1PEDIASTORE</div>
-  <div class="diamond">💎</div>
+  <h1>💎 V1PEDIASTORE 💎</h1>
+  <p>Trusted Digital Services ⚡</p>
 
-  <div class="subtitle">
-    Layanan Digital Super Cepat & Premium ⚡
+  <div class="stats">
+    <div>⭐ 60K<br><small>Terjual</small></div>
+    <div>⭐ 69.9K<br><small>Pelanggan</small></div>
+    <div>⭐ 98%<br><small>Kepuasan</small></div>
   </div>
 </div>
 
-<!-- ================= HOME ================= -->
+<!-- HOME -->
 <div id="home" class="page active">
-
-  <div class="menu-grid">
-
-    <div class="menu-card" onclick="nav('panelPage',this)">
-      📦
-      <h3>Panel Bot</h3>
-    </div>
-
-    <div class="menu-card" onclick="nav('followersPage',this)">
-      📈
-      <h3>Followers IG</h3>
-    </div>
-
+  <div class="menu">
+    <div class="card" onclick="openPanel(this)">📦 Panel Bot</div>
+    <div class="card" onclick="openFollowers(this)">📈 Followers IG</div>
   </div>
 
+  <div id="panel-list" class="list"></div>
+  <div id="followers-list" class="list"></div>
 </div>
 
-<!-- ================= PANEL ================= -->
-<div id="panelPage" class="page">
-  <h2>Panel Bot WhatsApp</h2>
-  <div id="panel-list"></div>
-</div>
-
-<!-- ================= FOLLOWERS ================= -->
-<div id="followersPage" class="page">
-  <h2>Followers Instagram</h2>
-  <div id="followers-list"></div>
-</div>
-
-<!-- ================= CART ================= -->
-<div id="cartPage" class="page">
-
+<!-- CART -->
+<div id="cart" class="page">
   <h2>Keranjang</h2>
   <div id="cartList"></div>
-
   <h3 id="total">Total: Rp0</h3>
 
-  <button onclick="orderWA()" class="btn">Order WhatsApp</button>
-  <button onclick="clearCart()" class="btn">Hapus</button>
-
+  <button onclick="orderWA()">Order WhatsApp</button>
+  <button onclick="clearCart()">Hapus</button>
 </div>
 
-<!-- FLOAT WA -->
-<div class="wa-float" onclick="orderWA()">💬</div>
+<!-- PROFILE -->
+<div id="profile" class="page">
+  <h2>Profile</h2>
+  <p>📞 WA: 083143490913</p>
+  <p>📷 IG Pribadi: kenzodistaaananta</p>
+  <p>📷 IG Bisnis: V1PediaStore</p>
+  <p>📧 payakumbuhpediastoreid@gmail.com</p>
+  <p>📍 Jalan Agus Salim, Padang Tiakar, Payakumbuh</p>
+  <p>© 2026 Hak Cipta Dilindungi</p>
+</div>
 
-<!-- NAVBAR -->
-<div class="navbar">
-  <div onclick="nav('home',this)">🏠</div>
-  <div onclick="nav('cartPage',this)">🛒 <span id="badge">0</span></div>
+<!-- NAV -->
+<div class="nav">
+  <div onclick="nav('home')">🏠</div>
+  <div onclick="nav('cart')">🛒</div>
+  <div onclick="nav('profile')">👤</div>
 </div>
 
 <script src="data.js"></script>
 <script src="script.js"></script>
-
 </body>
 </html>
