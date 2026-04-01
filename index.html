@@ -8,45 +8,73 @@
 
 <body>
 
-<div id="loading"> V 1 P E D I A S T O R E...</div>
-
 <!-- HOME -->
 <div id="home" class="page active">
 
-  <div class="header">
-    <h1>💎V1PEDIASTORE💎</h1>
-    <p>Trusted Digital Service </p>
+<div class="header">
+  <h1>💎 V1PEDIASTORE 💎</h1>
+  <p>Trusted Digital Service ⚡</p>
 
-    <div class="stats">
-      <div>⭐ 27K<br><small>Terjual</small></div>
-      <div>⭐ 16.9K<br><small>Pelanggan</small></div>
-      <div>⭐ 98%<br><small>Kepuasan</small></div>
+  <div class="stats">
+    <div>⭐ 27K<br>Terjual</div>
+    <div>⭐ 16.9K<br>Pelanggan</div>
+    <div>⭐ 98%<br>Kepuasan</div>
+  </div>
+</div>
+
+<div class="menu">
+  <div class="card" onclick="openPanel()">📦 Panel Bot</div>
+  <div class="card" onclick="openFollowers()">📈 Followers IG</div>
+</div>
+
+<div id="panel-list" class="list"></div>
+<div id="followers-list" class="list"></div>
+
+<!-- 🔥 DESKRIPSI + FAQ -->
+<div class="list">
+  <div class="product">
+    <div>
+      <b>Tentang V1Pedia Store</b><br>
+      Kami menyediakan layanan digital premium seperti panel bot dan followers Instagram dengan kualitas terbaik, cepat, dan aman.
     </div>
   </div>
 
-  <div class="menu">
-    <div class="card" onclick="openPanel()">📦 Panel Bot</div>
-    <div class="card" onclick="openFollowers()">📈 Followers IG</div>
-  </div>
+  <div class="product">
+    <div>
+      <b>FAQ</b><br><br>
 
-  <div id="panel-list" class="list"></div>
-  <div id="followers-list" class="list"></div>
+      ❓ Apakah aman?<br>
+      ✔️ 100% aman & terpercaya<br><br>
+
+      ❓ Berapa lama proses?<br>
+      ⚡ Instan / cepat<br><br>
+
+      ❓ Bisa refund?<br>
+      ✔️ Bisa jika layanan gagal<br><br>
+
+      ❓ Cara order?<br>
+      ✔️ Pilih produk → klik order → otomatis ke WhatsApp
+    </div>
+  </div>
+</div>
 
 </div>
 
-<!-- CART -->
+<!-- CART (FULL) -->
 <div id="cart" class="page">
   <h2>🛒 Keranjang</h2>
-  <div id="cartList"></div>
   <h3 id="total">Total: Rp0</h3>
 
   <button onclick="orderWA()">Order WhatsApp</button>
   <button onclick="clearCart()">Hapus</button>
+
+  <div id="cartList"></div>
 </div>
 
-<!-- PROFILE -->
+<!-- PROFILE (FULL) -->
 <div id="profile" class="page">
-  <div class="card" style="margin:15px;">
+  <div class="product" style="flex-direction:column;align-items:flex-start;">
+    
     <h2>👤 Profile Owner</h2>
 
     <p>📱 083143490913</p>
@@ -55,13 +83,15 @@
     <p>📧 payakumbuhpediastoreid@gmail.com</p>
     <p>📍 Jalan Agus Salim, Payakumbuh</p>
 
-    <hr>
+    <hr style="width:100%;">
 
-    <h3>Tentang Kami</h3>
-    <p>V1Pedia Store adalah layanan digital premium terpercaya.</p>
+    <b>Tentang Kami</b>
+    <p>V1Pedia Store adalah layanan digital premium terpercaya dengan kualitas terbaik dan pelayanan cepat.</p>
 
-    <hr>
-    <p style="text-align:center;">© 2026 V1Pedia Store</p>
+    <hr style="width:100%;">
+
+    <p>© 2026 V1Pedia Store</p>
+
   </div>
 </div>
 
