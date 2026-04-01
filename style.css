@@ -3,7 +3,7 @@ body{
   font-family:sans-serif;
   background:linear-gradient(180deg,#ffffff,#eaf4ff);
   color:#0a1f3f;
-  padding-bottom:80px; /* FIX NAV KETUTUP */
+  padding-bottom:80px;
 }
 
 /* LOADING */
@@ -27,36 +27,10 @@ body{
 /* HEADER */
 .header{
   text-align:center;
-  padding:25px 15px;
+  padding:25px;
   background:linear-gradient(135deg,#00c6ff,#0072ff);
   color:white;
   border-radius:0 0 30px 30px;
-  box-shadow:0 10px 25px rgba(0,114,255,0.2);
-}
-
-/* 🔥 RAPIIKAN DIAMOND */
-.header h1{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:10px;
-  font-size:22px;
-}
-
-/* SUBTEXT */
-.header p{
-  margin-top:5px;
-  font-size:14px;
-  opacity:0.9;
-}
-
-/* STATS */
-.stats{
-  display:flex;
-  justify-content:space-around;
-  margin-top:15px;
-  font-size:14px;
-  color:white;
 }
 
 /* MENU */
@@ -66,50 +40,26 @@ body{
   padding:15px;
 }
 
-/* CARD */
 .card{
   flex:1;
-  padding:18px;
-  background:#ffffff;
+  padding:20px;
+  background:white;
   border-radius:15px;
   text-align:center;
-  box-shadow:0 8px 20px rgba(0,0,0,0.08);
-  transition:.25s;
+  box-shadow:0 10px 25px rgba(0,114,255,0.2);
+  transition:.2s;
 }
-
-/* TAP EFFECT */
-.card:active{
-  transform:scale(0.95);
-}
-
-/* HOVER EFFECT (BIAR HIDUP) */
-.card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 12px 25px rgba(0,114,255,0.25);
-}
-
-/* LIST */
-.list{
-  padding:10px;
-}
+.card:active{transform:scale(.95)}
 
 /* PRODUCT */
 .product{
-  background:#ffffff;
+  background:white;
   margin:10px;
   padding:12px;
   border-radius:12px;
   display:flex;
   justify-content:space-between;
-  align-items:center;
-  box-shadow:0 6px 15px rgba(0,0,0,0.05);
-  transition:.2s;
-}
-
-/* PRODUCT HOVER */
-.product:hover{
-  transform:scale(1.02);
-  box-shadow:0 10px 20px rgba(0,114,255,0.2);
+  box-shadow:0 8px 20px rgba(0,0,0,0.05);
 }
 
 /* NAV */
@@ -119,23 +69,11 @@ body{
   width:100%;
   display:flex;
   justify-content:space-around;
-  background:#ffffff; /* FIX biar nyatu */
+  background:white;
   padding:12px;
-  z-index:1000;
   box-shadow:0 -5px 20px rgba(0,0,0,0.1);
-}
-
-/* NAV ITEM */
-.nav div{
-  text-align:center;
-  font-size:18px;
 }
 
 /* PAGE */
 .page{display:none}
 .page.active{display:block}
-
-/* 🔥 FIX AREA KOSONG BAWAH */
-#home, #cart, #profile{
-  min-height:80vh;
-}
