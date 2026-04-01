@@ -19,20 +19,50 @@ function fx(el){
 function nav(page){
   document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
   document.getElementById(page).classList.add("active");
+
+  document.querySelectorAll(".nav div").forEach(n=>n.classList.remove("active"));
+  event.target.classList.add("active");
+
+  /* RESET PANEL */
+  hideAll();
+
   fx();
 }
 
-/* OPEN MENU */
-function openPanel(el){
-  fx(el);
-  document.getElementById("panel-list").style.display="block";
-  document.getElementById("followers-list").style.display="none";
+/* HIDE PANEL */
+function hideAll(){
+  document.getElementById("panel-list").classList.remove("show");
+  document.getElementById("followers-list").classList.remove("show");
 }
 
+/* OPEN PANEL */
+function openPanel(el){
+  fx(el);
+
+  let p = document.getElementById("panel-list");
+  let f = document.getElementById("followers-list");
+
+  if(p.classList.contains("show")){
+    p.classList.remove("show");
+  }else{
+    p.classList.add("show");
+    f.classList.remove("show");
+  }
+}
+
+/* OPEN FOLLOWERS */
 function openFollowers(el){
   fx(el);
-  document.getElementById("followers-list").style.display="block";
-  document.getElementById("panel-list").style.display="none";
+
+  let p = document.getElementById("panel-list");
+  let f = document.getElementById("followers-list");
+
+  if(f.classList.contains("show")){
+    f.classList.remove("show");
+  }else{
+    f.classList.add("show");
+    p.classList.remove("show");
+  }
 }
 
 /* RENDER */
@@ -40,13 +70,13 @@ function render(){
   let p = document.getElementById("panel-list");
   let f = document.getElementById("followers-list");
 
-  panel.forEach(i=>{
-    p.innerHTML += html(i);
-  });
+  if(p.innerHTML===""){
+    panel.forEach(i=> p.innerHTML += html(i));
+  }
 
-  followers.forEach(i=>{
-    f.innerHTML += html(i);
-  });
+  if(f.innerHTML===""){
+    followers.forEach(i=> f.innerHTML += html(i));
+  }
 }
 
 function html(i){
