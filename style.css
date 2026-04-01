@@ -25,20 +25,32 @@ body{
 /* HEADER */
 .header{
   text-align:center;
-  padding:25px;
+  padding:30px 20px;
   background:linear-gradient(135deg,#00eaff,#0099ff);
   color:black;
-  border-radius:0 0 30px 30px;
+  border-radius:0 0 40px 40px;
 }
 
+/* LOGO FIX */
 .logo{
-  margin:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  font-size:26px;
+  font-weight:bold;
+}
+
+.logo span{
+  display:inline-block;
 }
 
 .tagline{
-  margin-top:5px;
+  margin-top:10px;
+  font-size:16px;
 }
 
+/* STATS */
 .stats{
   display:flex;
   justify-content:space-around;
@@ -59,7 +71,7 @@ body{
   background:#0a1f3f;
   border-radius:15px;
   text-align:center;
-  box-shadow:0 0 15px cyan;
+  box-shadow:0 0 20px rgba(0,255,255,0.5);
   cursor:pointer;
   transition:0.2s;
 }
@@ -108,17 +120,23 @@ body{
   color:white;
 }
 
-/* NAV */
+/* NAV FIX (INI YANG BENERIN WARNA BAWAH LU) */
 .nav{
   position:fixed;
   bottom:0;
   width:100%;
   display:flex;
   justify-content:space-around;
-  background:black;
-  padding:10px;
+  background:#07142a; /* SAMA KAYAK BACKGROUND */
+  padding:12px;
+  border-top:1px solid rgba(255,255,255,0.1);
 }
 
 /* PAGE */
-.page{display:none}
-.page.active{display:block}
+.page{
+  display:none;
+  padding-bottom:80px; /* BIAR GA KETUTUP NAV */
+}
+.page.active{
+  display:block;
+}
