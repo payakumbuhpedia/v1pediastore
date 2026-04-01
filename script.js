@@ -1,21 +1,18 @@
 let cart = [];
 
-/* 🔊 SOUND */
 let clickSound = new Audio("https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3");
 
-/* 📳 GETAR */
 function vibrate(){
   if(navigator.vibrate){
     navigator.vibrate(30);
   }
 }
 
-/* FORMAT HARGA */
 function formatHarga(h){
   return "Rp" + (h/1000) + "K";
 }
 
-/* NAV */
+/* 🔥 NAV FIX (HIDE HEADER) */
 function nav(id){
   clickSound.currentTime=0;
   clickSound.play();
@@ -31,7 +28,7 @@ function openPanel(){
   vibrate();
 
   let list = document.getElementById('panel-list');
-  list.innerHTML = "";
+  list.innerHTML="";
   document.getElementById('followers-list').innerHTML="";
 
   panel.forEach(p=>{
@@ -49,7 +46,7 @@ function openFollowers(){
   vibrate();
 
   let list = document.getElementById('followers-list');
-  list.innerHTML = "";
+  list.innerHTML="";
   document.getElementById('panel-list').innerHTML="";
 
   followers.forEach(f=>{
@@ -71,7 +68,7 @@ function add(n,h){
   nav('cart');
 }
 
-/* CART FULL */
+/* CART */
 function renderCart(){
   let el = document.getElementById('cartList');
   let total = 0;
@@ -100,6 +97,7 @@ function orderWA(){
   vibrate();
 
   let text="Halo Admin, saya ingin order:%0A";
+
   cart.forEach(c=>{
     text += `- ${c.n} (${formatHarga(c.h)})%0A`;
   });
