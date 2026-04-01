@@ -1,119 +1,115 @@
 let cart = [];
 
-/* SOUND */
-const s1 = new Audio("https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3");
-const s2 = new Audio("https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3");
-
-/* EFFECT */
-function fx(el){
-  try{ s1.currentTime=0; s1.play(); }catch{}
-  if(navigator.vibrate) navigator.vibrate(30);
-
-  if(el){
-    el.style.transform="scale(.95)";
-    setTimeout(()=>el.style.transform="",150);
-  }
-}
-
-/* NAV */
-function nav(page){
+/* 🔥 NAVIGATION */
+function showPage(page){
   document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
   document.getElementById(page).classList.add("active");
-  fx();
 }
 
-/* OPEN MENU */
-function openPanel(el){
-  fx(el);
-  document.getElementById("panel-list").style.display="block";
-  document.getElementById("followers-list").style.display="none";
-}
+/* 🔥 RENDER PANEL */
+function openPanel(){
+  const list = document.getElementById("panel-list");
+  list.innerHTML = "";
 
-function openFollowers(el){
-  fx(el);
-  document.getElementById("followers-list").style.display="block";
-  document.getElementById("panel-list").style.display="none";
-}
-
-/* RENDER */
-function render(){
-  let p = document.getElementById("panel-list");
-  let f = document.getElementById("followers-list");
-
-  panel.forEach(i=>{
-    p.innerHTML += html(i);
+  panel.forEach((item,i)=>{
+    list.innerHTML += `
+      <div class="product">
+        <div>
+          ${item.n}<br>
+          Rp${item.h}
+        </div>
+        <button onclick="addCart('${item.n}',${item.h})">Order</button>
+      </div>
+    `;
   });
 
-  followers.forEach(i=>{
-    f.innerHTML += html(i);
+  document.getElementById("followers-list").innerHTML = "";
+}
+
+/* 🔥 RENDER FOLLOWERS */
+function openFollowers(){
+  const list = document.getElementById("followers-list");
+  list.innerHTML = "";
+
+  followers.forEach((item,i)=>{
+    list.innerHTML += `
+      <div class="product">
+        <div>
+          ${item.n}<br>
+          Rp${item.h}
+        </div>
+        <button onclick="addCart('${item.n}',${item.h})">Order</button>
+      </div>
+    `;
   });
+
+  document.getElementById("panel-list").innerHTML = "";
 }
 
-function html(i){
-  return `
-  <div class="product" onclick="fx(this)">
-    <div>${i.n}<br>Rp${i.p/1000}K</div>
-    <button onclick="event.stopPropagation();add('${i.n}',${i.p},this)">Order</button>
-  </div>`;
-}
-
-/* CART */
-function add(n,h,el){
-  fx(el);
-  cart.push({n,h});
+/* 🔥 TAMBAH KE KERANJANG */
+function addCart(nama,harga){
+  cart.push({nama,harga});
   updateCart();
-  nav("cart");
+
+  /* AUTO PINDAH KE KERANJANG */
+  showPage("cart");
 }
 
+/* 🔥 UPDATE CART */
 function updateCart(){
-  let el = document.getElementById("cartList");
-  let total = 0;
+  const list = document.getElementById("cartList");
+  const total = document.getElementById("total");
 
-  el.innerHTML="";
+  list.innerHTML = "";
+  let t = 0;
 
-  cart.forEach(i=>{
-    el.innerHTML += `<div>${i.n} - Rp${i.h/1000}K</div>`;
-    total += i.h;
+  cart.forEach((item,i)=>{
+    t += item.harga;
+
+    list.innerHTML += `
+      <div class="product">
+        <div>${item.nama}</div>
+        <button onclick="removeCart(${i})">❌</button>
+      </div>
+    `;
   });
 
-  document.getElementById("total").innerText = "Total: Rp"+total/1000+"K";
+  total.innerText = "Total: Rp" + t;
 }
 
-function clearCart(){
-  cart=[];
+/* 🔥 HAPUS ITEM */
+function removeCart(i){
+  cart.splice(i,1);
   updateCart();
-  fx();
 }
 
-/* ORDER WA ULTRA */
+/* 🔥 CLEAR */
+function clearCart(){
+  cart = [];
+  updateCart();
+}
+
+/* 🔥 ORDER WA AUTO */
 function orderWA(){
-  if(cart.length===0){
+  if(cart.length === 0){
     alert("Keranjang kosong!");
     return;
   }
 
-  let kode = "V1-"+Math.floor(100000000 + Math.random()*900000000);
+  let kode = "V1-" + Math.floor(1000 + Math.random()*9000);
 
-  let text = "💎 *V1PEDIASTORE* 💎%0A";
-  text += "━━━━━━━━━━━━━━%0A";
-  text += "📦 ORDER:%0A%0A";
+  let text = `🛒 *ORDER V1PEDIASTORE*\n`;
+  text += `📌 Kode: ${kode}\n\n`;
 
-  cart.forEach((i,x)=>{
-    text += `${x+1}. ${i.n}%0A💰 Rp${i.h/1000}K%0A`;
+  cart.forEach((item,i)=>{
+    text += `${i+1}. ${item.nama} - Rp${item.harga}\n`;
   });
 
-  let total = cart.reduce((a,b)=>a+b.h,0);
+  let total = cart.reduce((a,b)=>a+b.harga,0);
 
-  text += "%0A━━━━━━━━━━━━━━%0A";
-  text += `🧾 Kode: ${kode}%0A`;
-  text += `💰 Total: Rp${total/1000}K%0A`;
-  text += "━━━━━━━━━━━━━━%0A";
-  text += "⚡ Mohon diproses admin 🙏";
+  text += `\n💰 Total: Rp${total}\n`;
+  text += `⚡ Mohon diproses ya admin`;
 
-  window.location.href="https://wa.me/6283143490913?text="+text;
+  let url = "https://wa.me/6283143490913?text=" + encodeURIComponent(text);
+  window.open(url,"_blank");
 }
-
-/* INIT FIX */
-document.addEventListener("DOMContentLoaded", ()=>{
-  render();
-});
