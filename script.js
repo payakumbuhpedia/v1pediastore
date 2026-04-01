@@ -1,92 +1,117 @@
 let cart = [];
 
-/* NAVIGATION */
-function showPage(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+/* SOUND */
+const s1 = new Audio("https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3");
+const s2 = new Audio("https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3");
+
+/* EFFECT */
+function fx(el){
+  try{ s1.currentTime=0; s1.play(); }catch{}
+  if(navigator.vibrate) navigator.vibrate(30);
+
+  if(el){
+    el.style.transform="scale(.95)";
+    setTimeout(()=>el.style.transform="",150);
+  }
 }
 
-/* TOGGLE MENU */
-function togglePanel(){
-  document.getElementById("panel-list").classList.toggle("hidden");
-  document.getElementById("followers-list").classList.add("hidden");
+/* NAV */
+function nav(page){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.getElementById(page).classList.add("active");
+  fx();
 }
 
-function toggleFollowers(){
-  document.getElementById("followers-list").classList.toggle("hidden");
-  document.getElementById("panel-list").classList.add("hidden");
+/* OPEN MENU */
+function openPanel(el){
+  fx(el);
+  document.getElementById("panel-list").style.display="block";
+  document.getElementById("followers-list").style.display="none";
 }
 
-/* LOAD DATA */
-window.onload = ()=>{
-  loadPanel();
-  loadFollowers();
-};
+function openFollowers(el){
+  fx(el);
+  document.getElementById("followers-list").style.display="block";
+  document.getElementById("panel-list").style.display="none";
+}
 
-/* PANEL */
-function loadPanel(){
-  let el = document.getElementById("panel-list");
-  el.innerHTML = "";
-  panelData.forEach(p=>{
-    el.innerHTML += `
-    <div class="product">
-      ${p.nama} - Rp${p.harga}
-      <button onclick="addCart('${p.nama}',${p.harga})">Order</button>
-    </div>`;
+/* RENDER */
+function render(){
+  let p = document.getElementById("panel-list");
+  let f = document.getElementById("followers-list");
+
+  panel.forEach(i=>{
+    p.innerHTML += html(i);
+  });
+
+  followers.forEach(i=>{
+    f.innerHTML += html(i);
   });
 }
 
-/* FOLLOWERS */
-function loadFollowers(){
-  let el = document.getElementById("followers-list");
-  el.innerHTML = "";
-  followersData.forEach(f=>{
-    el.innerHTML += `
-    <div class="product">
-      ${f.nama} - Rp${f.harga}
-      <button onclick="addCart('${f.nama}',${f.harga})">Order</button>
-    </div>`;
-  });
+function html(i){
+  return `
+  <div class="product" onclick="fx(this)">
+    <div>${i.n}<br>Rp${i.p/1000}K</div>
+    <button onclick="event.stopPropagation();add('${i.n}',${i.p},this)">Order</button>
+  </div>`;
 }
 
 /* CART */
-function addCart(nama,harga){
-  cart.push({nama,harga});
+function add(n,h,el){
+  fx(el);
+  cart.push({n,h});
   updateCart();
-  showPage('cart');
+  nav("cart");
 }
 
 function updateCart(){
   let el = document.getElementById("cartList");
   let total = 0;
-  el.innerHTML = "";
 
-  cart.forEach(item=>{
-    total += item.harga;
-    el.innerHTML += `<div>${item.nama} - Rp${item.harga}</div>`;
+  el.innerHTML="";
+
+  cart.forEach(i=>{
+    el.innerHTML += `<div>${i.n} - Rp${i.h/1000}K</div>`;
+    total += i.h;
   });
 
-  document.getElementById("total").innerText = "Total: Rp"+total;
+  document.getElementById("total").innerText = "Total: Rp"+total/1000+"K";
 }
 
 function clearCart(){
-  cart = [];
+  cart=[];
   updateCart();
+  fx();
 }
 
-/* ORDER WA */
+/* ORDER WA ULTRA */
 function orderWA(){
-  if(cart.length==0){
-    alert("Keranjang kosong");
+  if(cart.length===0){
+    alert("Keranjang kosong!");
     return;
   }
 
-  let kode = "V1-"+Math.floor(1000 + Math.random()*9000);
-  let text = "*ORDER "+kode+"*\n\n";
+  let kode = "V1-"+Math.floor(100000000 + Math.random()*900000000);
 
-  cart.forEach(item=>{
-    text += "- "+item.nama+"\n";
+  let text = "💎 *V1PEDIASTORE* 💎%0A";
+  text += "━━━━━━━━━━━━━━%0A";
+  text += "📦 ORDER:%0A%0A";
+
+  cart.forEach((i,x)=>{
+    text += `${x+1}. ${i.n}%0A💰 Rp${i.h/1000}K%0A`;
   });
 
-  window.open("https://wa.me/6283143490913?text="+encodeURIComponent(text));
+  let total = cart.reduce((a,b)=>a+b.h,0);
+
+  text += "%0A━━━━━━━━━━━━━━%0A";
+  text += `🧾 Kode: ${kode}%0A`;
+  text += `💰 Total: Rp${total/1000}K%0A`;
+  text += "━━━━━━━━━━━━━━%0A";
+  text += "⚡ Mohon diproses admin 🙏";
+
+  window.location.href="https://wa.me/6283143490913?text="+text;
 }
+
+/* INIT */
+render();
