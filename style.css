@@ -3,6 +3,7 @@ body{
   font-family:sans-serif;
   background:linear-gradient(180deg,#07142a,#0a1f3f);
   color:white;
+  padding-bottom:80px; /* FIX NAV KETUTUP */
 }
 
 /* LOADING */
@@ -19,35 +20,32 @@ body{
   animation:fade 2s forwards;
 }
 @keyframes fade{
-  to{opacity:0;visibility:hidden}
+  0%{opacity:1}
+  100%{opacity:0;visibility:hidden}
 }
 
 /* HEADER */
 .header{
   text-align:center;
-  padding:30px 20px;
+  padding:25px 15px;
   background:linear-gradient(135deg,#00eaff,#0099ff);
   color:black;
-  border-radius:0 0 40px 40px;
+  border-radius:0 0 30px 30px;
 }
 
-/* LOGO FIX */
-.logo{
+/* 🔥 RAPIIKAN DIAMOND */
+.header h1{
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
   gap:10px;
-  font-size:26px;
-  font-weight:bold;
+  font-size:22px;
 }
 
-.logo span{
-  display:inline-block;
-}
-
-.tagline{
-  margin-top:10px;
-  font-size:16px;
+/* SUBTEXT */
+.header p{
+  margin-top:5px;
+  font-size:14px;
 }
 
 /* STATS */
@@ -55,27 +53,28 @@ body{
   display:flex;
   justify-content:space-around;
   margin-top:15px;
-  font-weight:bold;
+  font-size:14px;
 }
 
 /* MENU */
 .menu{
   display:flex;
-  gap:12px;
+  gap:10px;
   padding:15px;
 }
 
+/* CARD */
 .card{
   flex:1;
   padding:18px;
   background:#0a1f3f;
   border-radius:15px;
   text-align:center;
-  box-shadow:0 0 20px rgba(0,255,255,0.5);
-  cursor:pointer;
-  transition:0.2s;
+  box-shadow:0 0 12px rgba(0,255,255,0.5);
+  transition:.2s;
 }
 
+/* TAP EFFECT */
 .card:active{
   transform:scale(0.95);
 }
@@ -83,60 +82,43 @@ body{
 /* LIST */
 .list{
   padding:10px;
-  animation:fadeIn 0.3s ease;
 }
 
-.hidden{
-  display:none;
-}
-
-@keyframes fadeIn{
-  from{opacity:0;transform:translateY(10px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
+/* PRODUCT */
 .product{
   background:#102a52;
   margin:10px;
   padding:12px;
-  border-radius:10px;
+  border-radius:12px;
   display:flex;
   justify-content:space-between;
   align-items:center;
+  box-shadow:0 0 8px rgba(0,255,255,0.3);
 }
 
-/* BUTTON */
-.btn{
-  padding:10px 15px;
-  border:none;
-  border-radius:8px;
-  background:cyan;
-  color:black;
-  margin:5px;
-}
-
-.danger{
-  background:red;
-  color:white;
-}
-
-/* NAV FIX (INI YANG BENERIN WARNA BAWAH LU) */
+/* NAV */
 .nav{
   position:fixed;
   bottom:0;
   width:100%;
   display:flex;
   justify-content:space-around;
-  background:#07142a; /* SAMA KAYAK BACKGROUND */
-  padding:12px;
-  border-top:1px solid rgba(255,255,255,0.1);
+  background:#07142a; /* SAMA WARNA BG BIAR GAK BELANG */
+  padding:10px;
+  z-index:1000;
+}
+
+/* NAV ITEM */
+.nav div{
+  text-align:center;
+  font-size:18px;
 }
 
 /* PAGE */
-.page{
-  display:none;
-  padding-bottom:80px; /* BIAR GA KETUTUP NAV */
-}
-.page.active{
-  display:block;
+.page{display:none}
+.page.active{display:block}
+
+/* 🔥 FIX AREA KOSONG BAWAH */
+#home, #cart, #profile{
+  min-height:80vh;
 }
