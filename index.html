@@ -9,66 +9,68 @@
 
 <body>
 
-<!-- PARTICLE BG -->
-<canvas id="bg"></canvas>
-
-<!-- LOADING -->
-<div id="loading">
-  <div class="logo">💎</div>
-  <h2>V1PEDIASTORE</h2>
-  <div class="bar"><div id="barFill"></div></div>
-</div>
-
-<!-- CLICK FX -->
-<div id="fx">💎</div>
-
 <!-- HEADER -->
 <div class="header">
-  <h1 class="neon">💎 V1PEDIASTORE 💎</h1>
-  <p class="typing">Layanan Digital Super Cepat & Premium ⚡</p>
+  <div class="diamond">💎</div>
+  <div class="title">V1PEDIASTORE</div>
+  <div class="diamond">💎</div>
+
+  <div class="subtitle">
+    Layanan Digital Super Cepat & Premium ⚡
+  </div>
 </div>
 
-<!-- MENU -->
-<div class="menu">
+<!-- ================= HOME ================= -->
+<div id="home" class="page active">
 
-  <div class="card" onclick="nav('panelPage',this)">
-    📦
-    <h3>Panel Bot</h3>
-  </div>
+  <div class="menu-grid">
 
-  <div class="card" onclick="nav('followersPage',this)">
-    📈
-    <h3>Followers IG</h3>
+    <div class="menu-card" onclick="nav('panelPage',this)">
+      📦
+      <h3>Panel Bot</h3>
+    </div>
+
+    <div class="menu-card" onclick="nav('followersPage',this)">
+      📈
+      <h3>Followers IG</h3>
+    </div>
+
   </div>
 
 </div>
 
-<!-- PANEL -->
+<!-- ================= PANEL ================= -->
 <div id="panelPage" class="page">
-  <h2>Panel Pterodactyl</h2>
-  <div id="panel-list" class="grid"></div>
+  <h2>Panel Bot WhatsApp</h2>
+  <div id="panel-list"></div>
 </div>
 
-<!-- FOLLOWERS -->
+<!-- ================= FOLLOWERS ================= -->
 <div id="followersPage" class="page">
-  <h2>Followers Indonesia</h2>
-  <div id="followers-list" class="grid"></div>
+  <h2>Followers Instagram</h2>
+  <div id="followers-list"></div>
 </div>
 
-<!-- CART -->
+<!-- ================= CART ================= -->
 <div id="cartPage" class="page">
+
   <h2>Keranjang</h2>
   <div id="cartList"></div>
+
   <h3 id="total">Total: Rp0</h3>
 
-  <button onclick="orderWA()">Order</button>
-  <button onclick="clearCart()">Hapus</button>
+  <button onclick="orderWA()" class="btn">Order WhatsApp</button>
+  <button onclick="clearCart()" class="btn">Hapus</button>
+
 </div>
 
-<!-- NAV -->
-<div class="nav">
+<!-- FLOAT WA -->
+<div class="wa-float" onclick="orderWA()">💬</div>
+
+<!-- NAVBAR -->
+<div class="navbar">
   <div onclick="nav('home',this)">🏠</div>
-  <div onclick="nav('cartPage',this)">🛒</div>
+  <div onclick="nav('cartPage',this)">🛒 <span id="badge">0</span></div>
 </div>
 
 <script src="data.js"></script>
