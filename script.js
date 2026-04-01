@@ -1,31 +1,29 @@
 let cart = [];
 
-/* SOUND */
-const s1 = new Audio("https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3");
-const s2 = new Audio("https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3");
-
 /* EFFECT */
 function fx(el){
-  try{ s1.currentTime=0; s1.play(); }catch{}
   if(navigator.vibrate) navigator.vibrate(30);
-
   if(el){
     el.style.transform="scale(.95)";
     setTimeout(()=>el.style.transform="",150);
   }
 }
 
-/* NAV */
-function nav(page){
+/* LOADING FIX */
+window.onload = ()=>{
+  let l = document.getElementById("loading");
+  if(l) l.style.display="none";
+}
+
+/* NAV FIX */
+function nav(page, el){
   document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
   document.getElementById(page).classList.add("active");
 
   document.querySelectorAll(".nav div").forEach(n=>n.classList.remove("active"));
-  event.target.classList.add("active");
+  if(el) el.classList.add("active");
 
-  /* RESET PANEL */
   hideAll();
-
   fx();
 }
 
@@ -35,10 +33,9 @@ function hideAll(){
   document.getElementById("followers-list").classList.remove("show");
 }
 
-/* OPEN PANEL */
+/* PANEL */
 function openPanel(el){
   fx(el);
-
   let p = document.getElementById("panel-list");
   let f = document.getElementById("followers-list");
 
@@ -50,10 +47,9 @@ function openPanel(el){
   }
 }
 
-/* OPEN FOLLOWERS */
+/* FOLLOWERS */
 function openFollowers(el){
   fx(el);
-
   let p = document.getElementById("panel-list");
   let f = document.getElementById("followers-list");
 
@@ -71,11 +67,11 @@ function render(){
   let f = document.getElementById("followers-list");
 
   if(p.innerHTML===""){
-    panel.forEach(i=> p.innerHTML += html(i));
+    panel.forEach(i=>p.innerHTML += html(i));
   }
 
   if(f.innerHTML===""){
-    followers.forEach(i=> f.innerHTML += html(i));
+    followers.forEach(i=>f.innerHTML += html(i));
   }
 }
 
@@ -112,10 +108,9 @@ function updateCart(){
 function clearCart(){
   cart=[];
   updateCart();
-  fx();
 }
 
-/* ORDER WA ULTRA */
+/* ORDER WA */
 function orderWA(){
   if(cart.length===0){
     alert("Keranjang kosong!");
@@ -126,7 +121,6 @@ function orderWA(){
 
   let text = "💎 *V1PEDIASTORE* 💎%0A";
   text += "━━━━━━━━━━━━━━%0A";
-  text += "📦 ORDER:%0A%0A";
 
   cart.forEach((i,x)=>{
     text += `${x+1}. ${i.n}%0A💰 Rp${i.h/1000}K%0A`;
@@ -137,8 +131,6 @@ function orderWA(){
   text += "%0A━━━━━━━━━━━━━━%0A";
   text += `🧾 Kode: ${kode}%0A`;
   text += `💰 Total: Rp${total/1000}K%0A`;
-  text += "━━━━━━━━━━━━━━%0A";
-  text += "⚡ Mohon diproses admin 🙏";
 
   window.location.href="https://wa.me/6283143490913?text="+text;
 }
