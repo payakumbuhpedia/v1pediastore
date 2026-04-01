@@ -1,96 +1,95 @@
 body{
   margin:0;
   font-family:sans-serif;
-  background:#020617;
-  color:#fff;
-  overflow-x:hidden;
+  background:linear-gradient(180deg,#0a0f2c,#111a3a);
+  color:white;
 }
 
-/* BG */
-#bg{
-  position:fixed;
-  inset:0;
-  z-index:-1;
-}
-
-/* LOADING */
-#loading{
-  position:fixed;
-  inset:0;
-  background:#000;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  z-index:999;
-}
-
-.logo{
-  font-size:50px;
-  animation:spin 1s linear infinite;
-}
-
-.bar{
-  width:200px;
-  height:5px;
-  background:#222;
-  margin-top:10px;
-}
-
-#barFill{
-  height:100%;
-  width:0%;
-  background:linear-gradient(90deg,#00f,#0ff);
-}
-
-/* HEADER */
+/* HEADER PREMIUM */
 .header{
   text-align:center;
+  padding:30px 15px;
+  background:rgba(255,255,255,0.03);
+  backdrop-filter:blur(10px);
+}
+
+.title{
+  font-size:28px;
+  font-weight:bold;
+  display:inline-block;
+  margin:0 10px;
+  text-shadow:0 0 10px #00eaff;
+}
+
+.diamond{
+  display:inline-block;
+  font-size:24px;
+  text-shadow:0 0 10px #00eaff;
+}
+
+.subtitle{
+  margin-top:10px;
+  font-size:14px;
+  opacity:.9;
+  animation:fade 2s infinite alternate;
+}
+
+@keyframes fade{
+  from{opacity:.5}
+  to{opacity:1}
+}
+
+/* PAGE */
+.page{
+  display:none;
   padding:20px;
 }
 
-.neon{
-  text-shadow:0 0 10px #0ff,0 0 20px #00f;
+.page.active{
+  display:block;
 }
 
 /* MENU */
-.menu{
+.menu-grid{
   display:flex;
-  gap:10px;
-  padding:10px;
+  gap:15px;
+  margin-top:20px;
 }
 
-.card{
+.menu-card{
   flex:1;
-  background:#0f172a;
+  background:#111c44;
   padding:20px;
   border-radius:15px;
   text-align:center;
-  box-shadow:0 0 15px #0ff;
+  box-shadow:0 0 20px #00eaff55;
   transition:.2s;
 }
 
-.card:active{
+.menu-card:active{
   transform:scale(.95);
 }
 
-/* GRID */
-.grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  padding:10px;
-}
-
+/* PRODUCT */
 .product{
-  background:#0f172a;
+  display:flex;
+  justify-content:space-between;
+  background:#0f1a3a;
   padding:15px;
+  margin:10px 0;
   border-radius:10px;
-  box-shadow:0 0 10px #0ff;
+  box-shadow:0 0 10px #00eaff33;
 }
 
-/* NAV */
-.nav{
+.btn{
+  background:#00eaff;
+  border:none;
+  padding:8px 12px;
+  border-radius:8px;
+}
+
+/* NAVBAR */
+.navbar{
   position:fixed;
   bottom:0;
   width:100%;
@@ -100,24 +99,12 @@ body{
   padding:10px;
 }
 
-/* FX */
-#fx{
+/* FLOAT WA */
+.wa-float{
   position:fixed;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%) scale(0);
-}
-
-.show{
-  animation:boom .4s;
-}
-
-@keyframes boom{
-  0%{transform:translate(-50%,-50%) scale(0)}
-  50%{transform:translate(-50%,-50%) scale(2)}
-  100%{transform:translate(-50%,-50%) scale(0)}
-}
-
-@keyframes spin{
-  100%{transform:rotate(360deg);}
+  bottom:70px;
+  right:15px;
+  background:#25D366;
+  padding:15px;
+  border-radius:50%;
 }
