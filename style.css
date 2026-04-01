@@ -1,55 +1,115 @@
 body{
   margin:0;
   font-family:sans-serif;
-  background:linear-gradient(180deg,#0a1f3f,#0d2b5c);
+  background:#0f172a;
   color:white;
-  padding-bottom:80px;
 }
 
-/* 🔥 PAGE SYSTEM FIX */
-.page{
-  display:none;
-  min-height:100vh;
-  padding:15px;
+/* LOADING */
+#loading{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:#0f172a;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+.loader{
+  border:4px solid #1e293b;
+  border-top:4px solid #38bdf8;
+  border-radius:50%;
+  width:40px;
+  height:40px;
+  animation:spin 1s linear infinite;
+}
+@keyframes spin{
+  100%{transform:rotate(360deg);}
 }
 
-.page.active{
-  display:block;
+.page{display:none;padding:20px;}
+.page.active{display:block;animation:fade .4s;}
+
+@keyframes fade{
+  from{opacity:0;transform:translateY(10px);}
+  to{opacity:1;}
 }
 
-/* HEADER */
 .header{
+  background:linear-gradient(45deg,#0ea5e9,#2563eb);
+  padding:20px;
+  border-radius:20px;
   text-align:center;
-  padding:25px;
-  background:linear-gradient(135deg,#00cfff,#007bff);
-  border-radius:0 0 30px 30px;
+  box-shadow:0 0 20px rgba(255,255,255,0.1);
 }
 
-/* MENU */
+/* STATS FIX (horizontal tengah) */
+.stats{
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  margin-top:15px;
+}
+.stats div{
+  text-align:center;
+}
+.stats span{
+  font-size:12px;
+  opacity:.8;
+}
+
 .menu{
   display:flex;
   gap:10px;
-  padding:15px;
+  margin-top:20px;
 }
 
 .card{
   flex:1;
-  padding:18px;
-  background:#102a52;
+  background:#1e293b;
+  padding:15px;
   border-radius:15px;
   text-align:center;
   transition:.2s;
+  box-shadow:0 0 10px rgba(255,255,255,0.05);
+}
+.card:active{
+  transform:scale(.95);
 }
 
-/* PRODUCT */
+.list{margin-top:15px;}
+
 .product{
-  background:#102a52;
-  margin:10px 0;
+  background:#1e293b;
   padding:15px;
-  border-radius:12px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+  border-radius:15px;
+  margin-top:10px;
+  animation:fade .3s;
+}
+
+/* BUTTON */
+button{
+  background:#0ea5e9;
+  border:none;
+  padding:10px;
+  border-radius:10px;
+  color:white;
+  margin-top:5px;
+  transition:.2s;
+}
+button:active{
+  transform:scale(.9);
+  opacity:.7;
+}
+
+/* PROFILE */
+.profile-box{
+  background:#1e293b;
+  padding:20px;
+  border-radius:20px;
+  box-shadow:0 0 20px rgba(255,255,255,0.08);
 }
 
 /* NAV */
@@ -59,11 +119,14 @@ body{
   width:100%;
   display:flex;
   justify-content:space-around;
-  background:#07142a;
-  padding:12px;
+  background:#020617;
+  padding:10px;
 }
 
-/* 🔥 EFFECT KLIK */
-.tap{
-  transform:scale(.95);
+/* INFO */
+.info{
+  margin-top:20px;
+  background:#1e293b;
+  padding:15px;
+  border-radius:15px;
 }
