@@ -6,24 +6,23 @@ body{
   padding-bottom:80px;
 }
 
+/* 🔥 PAGE SYSTEM FIX */
+.page{
+  display:none;
+  min-height:100vh;
+  padding:15px;
+}
+
+.page.active{
+  display:block;
+}
+
 /* HEADER */
 .header{
   text-align:center;
   padding:25px;
   background:linear-gradient(135deg,#00cfff,#007bff);
   border-radius:0 0 30px 30px;
-}
-
-/* 🔥 STATS RAPI KE SAMPING */
-.stats{
-  display:flex;
-  justify-content:space-between;
-  margin-top:15px;
-  text-align:center;
-}
-
-.stats div{
-  flex:1;
 }
 
 /* MENU */
@@ -33,27 +32,16 @@ body{
   padding:15px;
 }
 
-/* CARD */
 .card{
   flex:1;
   padding:18px;
   background:#102a52;
   border-radius:15px;
   text-align:center;
-  box-shadow:0 0 10px rgba(0,255,255,0.4);
   transition:.2s;
 }
 
-.card:active{
-  transform:scale(.95);
-}
-
-/* LIST FULL */
-.list{
-  padding:15px;
-}
-
-/* 🔥 PRODUCT FULL LEBAR */
+/* PRODUCT */
 .product{
   background:#102a52;
   margin:10px 0;
@@ -62,31 +50,20 @@ body{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  box-shadow:0 0 8px rgba(0,255,255,0.3);
 }
 
-/* BUTTON */
-button{
-  background:linear-gradient(135deg,#00cfff,#007bff);
-  border:none;
-  padding:10px 15px;
-  color:white;
-  border-radius:10px;
-}
-
-/* 🔥 NAV */
+/* NAV */
 .nav{
   position:fixed;
   bottom:0;
   width:100%;
   display:flex;
   justify-content:space-around;
-  background:#0a1f3f;
+  background:#07142a;
   padding:12px;
 }
 
-/* 🔥 FULL PAGE (BIAR KAYAK PROFILE) */
-#cart, #profile{
-  padding:15px;
-  min-height:80vh;
+/* 🔥 EFFECT KLIK */
+.tap{
+  transform:scale(.95);
 }
