@@ -105,3 +105,13 @@ function orderWA(){
 
   window.open("https://wa.me/6283143490913?text="+text);
 }
+/* LIVE TEXT GERAK */
+setInterval(()=>{
+  const header = document.querySelector(".header p");
+  if(header){
+    header.innerText = 
+      Math.random() > 0.5 
+      ? "Trusted Digital Service ⚡"
+      : "Fast • Secure • Premium 🚀";
+  }
+},3000);
