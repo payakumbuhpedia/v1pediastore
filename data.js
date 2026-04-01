@@ -1,5 +1,5 @@
 const panel = [
-  {n:"Panel Pterodactyl 1GB",h:40000},
+  {n:"Panel Pterodactyl 1GB",h:40K},
   {n:"Panel Pterodactyl 2GB",h:80000},
   {n:"Panel Pterodactyl 3GB",h:90000},
   {n:"Panel Pterodactyl 4GB",h:100000},
