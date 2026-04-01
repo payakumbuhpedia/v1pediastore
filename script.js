@@ -1,110 +1,147 @@
-let cart=[];
+let cart = [];
 
-/* SOUND */
-const s=new Audio("https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3");
+/* ================= SOUND ================= */
+const klikSound = new Audio("https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3");
 
-/* FX */
-function fx(){
-  try{s.currentTime=0;s.play();}catch(e){}
-  if(navigator.vibrate) navigator.vibrate(40);
+/* ================= EFFECT ================= */
+function klikEfek(el){
+  try{
+    klikSound.currentTime = 0;
+    klikSound.play();
+  }catch(e){}
 
-  let f=document.getElementById("fx");
-  f.classList.add("show");
-  setTimeout(()=>f.classList.remove("show"),300);
+  if(navigator.vibrate){
+    navigator.vibrate(40);
+  }
+
+  if(el){
+    el.style.transform="scale(0.95)";
+    setTimeout(()=>el.style.transform="",150);
+  }
 }
 
-/* NAV */
-function nav(id,el){
-  fx();
-  document.querySelectorAll(".page").forEach(p=>p.style.display="none");
-  let pg=document.getElementById(id);
-  if(pg) pg.style.display="block";
+/* ================= NAVIGATION ================= */
+function nav(id, el){
+  klikEfek(el);
+
+  document.querySelectorAll(".page").forEach(p=>{
+    p.classList.remove("active");
+  });
+
+  let page = document.getElementById(id);
+  if(page){
+    page.classList.add("active");
+  }
 }
 
-/* RENDER */
+/* ================= RENDER ================= */
 function render(){
-  let p=document.getElementById("panel-list");
-  let f=document.getElementById("followers-list");
+  let p = document.getElementById("panel-list");
+  let f = document.getElementById("followers-list");
 
   if(p){
     p.innerHTML="";
-    panel.forEach(i=>p.innerHTML+=item(i));
+    panel.forEach(i=>{
+      p.innerHTML += itemHTML(i);
+    });
   }
 
   if(f){
     f.innerHTML="";
-    followers.forEach(i=>f.innerHTML+=item(i));
+    followers.forEach(i=>{
+      f.innerHTML += itemHTML(i);
+    });
   }
 }
 
-function item(i){
+function itemHTML(i){
   return `
-  <div class="product" onclick="fx()">
-    ${i.n}<br>
-    Rp${i.p/1000}K<br>
-    <button onclick="event.stopPropagation();add('${i.n}',${i.p})">Order</button>
-  </div>`;
+  <div class="product">
+    <div>
+      <b>${i.n}</b><br>
+      Rp${i.p/1000}K
+    </div>
+    <button class="btn" onclick="addToCart(this,'${i.n}',${i.p})">
+      Order
+    </button>
+  </div>
+  `;
 }
 
-/* CART */
-function add(n,p){
-  fx();
-  cart.push({n,p});
+/* ================= CART ================= */
+function addToCart(el,n,h){
+  klikEfek(el);
+
+  cart.push({n,h});
+  updateCart();
+
+  // AUTO PINDAH KE KERANJANG (INI YANG LU MAU)
+  nav('cartPage');
+}
+
+function updateCart(){
+  let list = document.getElementById("cartList");
+  let totalEl = document.getElementById("total");
+  let badge = document.getElementById("badge");
+
+  if(!list) return;
+
+  list.innerHTML="";
+  let total = 0;
+
+  cart.forEach(i=>{
+    list.innerHTML += `<div>${i.n} - Rp${i.h/1000}K</div>`;
+    total += i.h;
+  });
+
+  if(totalEl){
+    totalEl.innerText = "Total: Rp" + total/1000 + "K";
+  }
+
+  if(badge){
+    badge.innerText = cart.length;
+  }
 }
 
 function clearCart(){
-  cart=[];
+  klikEfek();
+  cart = [];
+  updateCart();
 }
 
-/* WA */
+/* ================= ORDER WA PRO ================= */
 function orderWA(){
-  fx();
-  if(cart.length==0)return alert("Kosong");
+  klikEfek();
 
-  let kode="V1P-"+Math.floor(Math.random()*999999);
-
-  let txt="ORDER V1PEDIASTORE%0A";
-  cart.forEach((i,x)=>txt+=`${x+1}. ${i.n}%0A`);
-
-  txt+="Kode:"+kode;
-
-  location.href="https://wa.me/6283143490913?text="+txt;
-}
-
-/* LOADING BAR */
-let w=0;
-let int=setInterval(()=>{
-  w+=5;
-  document.getElementById("barFill").style.width=w+"%";
-  if(w>=100){
-    clearInterval(int);
-    document.getElementById("loading").style.display="none";
+  if(cart.length===0){
+    alert("Keranjang kosong!");
+    return;
   }
-},50);
 
-/* PARTICLE BG */
-let c=document.getElementById("bg");
-let ctx=c.getContext("2d");
+  let kode = "V1P-" + Math.floor(Math.random()*999999);
 
-c.width=innerWidth;
-c.height=innerHeight;
+  let text = "💎 *V1PEDIASTORE* 💎%0A";
+  text += "━━━━━━━━━━━━━━%0A";
+  text += "📦 *ORDER MASUK*%0A%0A";
 
-let dots=[];
-for(let i=0;i<50;i++){
-  dots.push({x:Math.random()*c.width,y:Math.random()*c.height});
-}
-
-function draw(){
-  ctx.clearRect(0,0,c.width,c.height);
-  dots.forEach(d=>{
-    d.y+=0.5;
-    if(d.y>c.height)d.y=0;
-    ctx.fillStyle="#0ff";
-    ctx.fillRect(d.x,d.y,2,2);
+  cart.forEach((i,index)=>{
+    text += `${index+1}. ${i.n}%0A`;
+    text += `💰 Rp${i.h/1000}K%0A%0A`;
   });
-  requestAnimationFrame(draw);
-}
-draw();
 
-/* INIT */
-render();
+  let total = cart.reduce((a,b)=>a+b.h,0);
+
+  text += "━━━━━━━━━━━━━━%0A";
+  text += `🧾 Kode: ${kode}%0A`;
+  text += `💵 Total: Rp${total/1000}K%0A`;
+  text += "━━━━━━━━━━━━━━%0A";
+  text += "⚡ Mohon diproses ya admin 🙏";
+
+  window.location.href =
+  "https://wa.me/6283143490913?text="+text;
+}
+
+/* ================= INIT ================= */
+document.addEventListener("DOMContentLoaded",()=>{
+  render();
+});
