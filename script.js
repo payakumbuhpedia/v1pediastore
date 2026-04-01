@@ -1,13 +1,26 @@
 let cart = [];
 
-/* 🔊 SOUND SYSTEM */
-const sClick = new Audio("https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3");
-const sOpen = new Audio("https://assets.mixkit.co/sfx/preview/mixkit-ui-click-1119.mp3");
-const sAdd = new Audio("https://assets.mixkit.co/sfx/preview/mixkit-positive-interface-beep-221.mp3");
+/* 🔊 INIT AUDIO */
+let sClick, sOpen, sAdd;
+
+/* 🔓 UNLOCK AUDIO (WAJIB UNTUK HP) */
+document.body.addEventListener('click', function initSound(){
+  
+  sClick = new Audio("https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3");
+  sOpen = new Audio("https://assets.mixkit.co/sfx/preview/mixkit-ui-click-1119.mp3");
+  sAdd  = new Audio("https://assets.mixkit.co/sfx/preview/mixkit-positive-interface-beep-221.mp3");
+
+  // preload
+  sClick.volume = 1;
+  sOpen.volume = 1;
+  sAdd.volume = 1;
+
+  document.body.removeEventListener('click', initSound);
+});
 
 /* NAV */
 function nav(id){
-  sClick.play();
+  if(sClick) sClick.currentTime=0, sClick.play();
 
   document.querySelectorAll('.page').forEach(p=>{
     p.classList.remove('active');
@@ -17,7 +30,7 @@ function nav(id){
 
 /* PANEL */
 function openPanel(){
-  sOpen.play();
+  if(sOpen) sOpen.currentTime=0, sOpen.play();
 
   let list = document.getElementById('panel-list');
   list.innerHTML = "";
@@ -35,7 +48,7 @@ function openPanel(){
 
 /* FOLLOWERS */
 function openFollowers(){
-  sOpen.play();
+  if(sOpen) sOpen.currentTime=0, sOpen.play();
 
   let list = document.getElementById('followers-list');
   list.innerHTML = "";
@@ -53,14 +66,14 @@ function openFollowers(){
 
 /* ADD CART */
 function add(n,h){
-  sAdd.play();
+  if(sAdd) sAdd.currentTime=0, sAdd.play();
 
   cart.push({n,h});
   renderCart();
   nav('cart');
 }
 
-/* RENDER CART */
+/* CART */
 function renderCart(){
   let el = document.getElementById('cartList');
   let total = 0;
@@ -74,17 +87,16 @@ function renderCart(){
   document.getElementById('total').innerText = "Total: Rp"+total;
 }
 
-/* CLEAR CART */
 function clearCart(){
-  sClick.play();
+  if(sClick) sClick.currentTime=0, sClick.play();
 
   cart=[];
   renderCart();
 }
 
-/* ORDER WA */
+/* WA */
 function orderWA(){
-  sOpen.play();
+  if(sOpen) sOpen.currentTime=0, sOpen.play();
 
   let text="Halo Admin, saya ingin order:%0A";
   cart.forEach(c=>{
