@@ -1,94 +1,94 @@
 let cart = [];
 
-/* 🔊 INIT AUDIO */
-let sClick, sOpen, sAdd;
+/* 🔊 SOUND */
+let clickSound = new Audio("https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3");
 
-/* 🔓 UNLOCK AUDIO (WAJIB UNTUK HP) */
-document.body.addEventListener('click', function initSound(){
-  
-  sClick = new Audio("https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3");
-  sOpen = new Audio("https://assets.mixkit.co/sfx/preview/mixkit-ui-click-1119.mp3");
-  sAdd  = new Audio("https://assets.mixkit.co/sfx/preview/mixkit-positive-interface-beep-221.mp3");
+/* 📳 GETAR */
+function vibrate(){
+  if(navigator.vibrate){
+    navigator.vibrate(30);
+  }
+}
 
-  // preload
-  sClick.volume = 1;
-  sOpen.volume = 1;
-  sAdd.volume = 1;
-
-  document.body.removeEventListener('click', initSound);
-});
+/* FORMAT HARGA */
+function formatHarga(h){
+  return "Rp" + (h/1000) + "K";
+}
 
 /* NAV */
 function nav(id){
-  if(sClick) sClick.currentTime=0, sClick.play();
+  clickSound.currentTime=0;
+  clickSound.play();
+  vibrate();
 
-  document.querySelectorAll('.page').forEach(p=>{
-    p.classList.remove('active');
-  });
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 }
 
 /* PANEL */
 function openPanel(){
-  if(sOpen) sOpen.currentTime=0, sOpen.play();
+  clickSound.play();
+  vibrate();
 
   let list = document.getElementById('panel-list');
   list.innerHTML = "";
-  document.getElementById('followers-list').innerHTML = "";
+  document.getElementById('followers-list').innerHTML="";
 
   panel.forEach(p=>{
     list.innerHTML += `
-      <div class="product">
-        <div>${p.n}<br>Rp${p.h}</div>
-        <button onclick="add('${p.n}',${p.h})">Order</button>
-      </div>
-    `;
+    <div class="product">
+      <div>${p.n}<br>${formatHarga(p.h)}</div>
+      <button onclick="add('${p.n}',${p.h})">Order</button>
+    </div>`;
   });
 }
 
 /* FOLLOWERS */
 function openFollowers(){
-  if(sOpen) sOpen.currentTime=0, sOpen.play();
+  clickSound.play();
+  vibrate();
 
   let list = document.getElementById('followers-list');
   list.innerHTML = "";
-  document.getElementById('panel-list').innerHTML = "";
+  document.getElementById('panel-list').innerHTML="";
 
   followers.forEach(f=>{
     list.innerHTML += `
-      <div class="product">
-        <div>${f.n}<br>Rp${f.h}</div>
-        <button onclick="add('${f.n}',${f.h})">Order</button>
-      </div>
-    `;
+    <div class="product">
+      <div>${f.n}<br>${formatHarga(f.h)}</div>
+      <button onclick="add('${f.n}',${f.h})">Order</button>
+    </div>`;
   });
 }
 
-/* ADD CART */
+/* ADD */
 function add(n,h){
-  if(sAdd) sAdd.currentTime=0, sAdd.play();
+  clickSound.play();
+  vibrate();
 
   cart.push({n,h});
   renderCart();
   nav('cart');
 }
 
-/* CART */
+/* CART FULL */
 function renderCart(){
   let el = document.getElementById('cartList');
   let total = 0;
-  el.innerHTML = "";
+  el.innerHTML="";
 
   cart.forEach(c=>{
     total += c.h;
-    el.innerHTML += `<div>${c.n} - Rp${c.h}</div>`;
+    el.innerHTML += `<div class="product">${c.n} - ${formatHarga(c.h)}</div>`;
   });
 
-  document.getElementById('total').innerText = "Total: Rp"+total;
+  document.getElementById('total').innerText = "Total: " + formatHarga(total);
 }
 
+/* CLEAR */
 function clearCart(){
-  if(sClick) sClick.currentTime=0, sClick.play();
+  clickSound.play();
+  vibrate();
 
   cart=[];
   renderCart();
@@ -96,22 +96,13 @@ function clearCart(){
 
 /* WA */
 function orderWA(){
-  if(sOpen) sOpen.currentTime=0, sOpen.play();
+  clickSound.play();
+  vibrate();
 
   let text="Halo Admin, saya ingin order:%0A";
   cart.forEach(c=>{
-    text += `- ${c.n} (Rp${c.h})%0A`;
+    text += `- ${c.n} (${formatHarga(c.h)})%0A`;
   });
 
   window.open("https://wa.me/6283143490913?text="+text);
 }
-/* LIVE TEXT GERAK */
-setInterval(()=>{
-  const header = document.querySelector(".header p");
-  if(header){
-    header.innerText = 
-      Math.random() > 0.5 
-      ? "Trusted Digital Service ⚡"
-      : "Fast • Secure • Premium 🚀";
-  }
-},3000);
