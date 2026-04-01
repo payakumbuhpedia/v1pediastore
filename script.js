@@ -113,5 +113,7 @@ function orderWA(){
   window.location.href="https://wa.me/6283143490913?text="+text;
 }
 
-/* INIT */
-render();
+/* INIT FIX */
+document.addEventListener("DOMContentLoaded", ()=>{
+  render();
+});
