@@ -1,83 +1,78 @@
-let cart=[];
+let currentPage = "home";
 
-/* LOADING */
-window.onload=()=>setTimeout(()=>loading.style.display="none",1000);
-
-/* SOUND */
-function sfx(){
-let s=document.getElementById("sfx");
-s.currentTime=0;
-s.play();
-if(navigator.vibrate) navigator.vibrate(50);
-}
-
-/* NAV */
+/* NAV FIX + SLIDE */
 function nav(id){
-sfx();
-document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-document.getElementById(id).classList.add("active");
+  let oldPage = document.getElementById(currentPage);
+  let newPage = document.getElementById(id);
+
+  oldPage.style.left = "-100%";
+  newPage.style.left = "0";
+
+  currentPage = id;
+
+  sfx();
 }
 
-/* FORMAT */
-function format(h){
-return h>=1000?(h/1000)+"K":h;
+/* SOUND + GETAR */
+function sfx(){
+  let s=document.getElementById("sfx");
+  if(s){
+    s.currentTime=0;
+    s.play().catch(()=>{});
+  }
+  if(navigator.vibrate) navigator.vibrate(20);
 }
 
-/* CATEGORY */
+/* FIX CATEGORY (BIAR GAK NUMPUK) */
 function openCategory(cat){
-sfx();
-let list=document.getElementById("productList");
-list.innerHTML="";
+  sfx();
+  let list=document.getElementById("productList");
+  list.innerHTML="";
 
-products.filter(p=>p.kategori===cat).forEach(p=>{
-list.innerHTML+=`
-<div class="product">
-${p.nama}<br>Rp${format(p.harga)}
-<button onclick="addCart('${p.nama}',${p.harga})">Order</button>
-</div>`;
-});
+  products.filter(p=>p.kategori===cat).forEach(p=>{
+    list.innerHTML+=`
+    <div class="product">
+      ${p.nama}<br>Rp${p.harga}
+      <button onclick="addCart('${p.nama}',${p.harga})">Order</button>
+    </div>`;
+  });
 }
 
 /* CART */
+let cart=[];
+
 function addCart(n,h){
-sfx();
-cart.push({n,h});
-renderCart();
+  cart.push({n,h});
+  renderCart();
+  sfx();
 }
 
 function renderCart(){
-let list=document.getElementById("cartList");
-let total=0;
-list.innerHTML="";
+  let list=document.getElementById("cartList");
+  let total=0;
+  list.innerHTML="";
 
-cart.forEach(i=>{
-total+=i.h;
-list.innerHTML+=`<div class="product">${i.n} - Rp${format(i.h)}</div>`;
-});
+  cart.forEach(i=>{
+    total+=i.h;
+    list.innerHTML+=`
+    <div class="product">${i.n} - Rp${i.h}</div>`;
+  });
 
-total.innerText="Total: Rp"+format(total);
+  document.getElementById("total").innerText="Total: Rp"+total;
 }
 
-/* CLEAR */
 function clearCart(){
-sfx();
-cart=[];
-renderCart();
+  cart=[];
+  renderCart();
+  sfx();
 }
 
 /* WA */
 function orderWA(){
-sfx();
-let kode=Math.floor(Math.random()*999999);
+  if(cart.length==0) return;
 
-let text=`Halo V1PEDIASTORE 👋
+  let text="Order:\n";
+  cart.forEach(i=>text+=i.n+"\n");
 
-Order:
-`;
-
-cart.forEach(i=>text+=`- ${i.n}\n`);
-
-text+=`\nKode: V1-${kode}`;
-
-window.open("https://wa.me/6283143490913?text="+encodeURIComponent(text));
+  window.open("https://wa.me/6283143490913?text="+encodeURIComponent(text));
 }
