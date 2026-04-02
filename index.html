@@ -1,74 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-  <title>V1PEDIASTORE</title>
-  <link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V1Pedia Store</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="title">
-    <span class="diamond">💎</span>
-    V1PEDIASTORE
-    <span class="diamond">💎</span>
+<!-- LOADING -->
+<div id="loading">
+  <div class="loader"></div>
+  <p>V1PEDIASTORE</p>
+</div>
+
+<audio id="sfx" src="https://www.myinstants.com/media/sounds/click.mp3"></audio>
+
+<!-- HOME -->
+<div id="home" class="page active">
+
+<div class="header">
+
+  <!-- DIAMOND ATAS -->
+  <div class="diamond top"></div>
+
+  <!-- TITLE + DIAMOND KIRI KANAN -->
+  <div class="title-wrap">
+    <span class="diamond left">💎</span>
+    <h1 class="title">V1PEDIASTORE</h1>
+    <span class="diamond right">💎</span>
   </div>
 
-  <p>Trusted Digital Service</p>
+  <p class="subtitle">Trusted Digital Service</p>
 
   <div class="stats">
-    <div class="stat">
-      <span>⭐ 37.9K</span>
-      Terjual
-    </div>
-    <div class="stat">
-      <span>⭐ 29.9K</span>
-      Pelanggan
-    </div>
-    <div class="stat">
-      <span>⭐ 98%</span>
-      Kepuasan
-    </div>
+    <div class="stat"><b>37.9K</b><span>Terjual</span></div>
+    <div class="stat"><b>29.9K</b><span>Pelanggan</span></div>
+    <div class="stat"><b>98%</b><span>Kepuasan</span></div>
   </div>
 </div>
 
-<!-- PRODUK -->
-<div class="products">
-  <div class="card">
-    <h3>1K Followers TikTok Indo</h3>
-    <p>50K</p>
-    <button class="btn">Tambah</button>
-  </div>
-
-  <div class="card">
-    <h3>2K Followers TikTok Indo</h3>
-    <p>100K</p>
-    <button class="btn">Tambah</button>
-  </div>
+<div class="menu">
+  <div class="card" onclick="openCategory('TikTok')">Followers TikTok</div>
+  <div class="card" onclick="openCategory('Instagram')">Followers IG</div>
+  <div class="card" onclick="openCategory('Panel')">Panel Bot</div>
 </div>
 
-<!-- KERANJANG -->
+<div id="productList"></div>
+</div>
+
+<!-- CART -->
+<div id="cart" class="page">
 <div class="cart-box">
-  <div class="cart-header">🛒 Keranjang Premium</div>
+<h2>Keranjang</h2>
+<h3 id="total">Total: Rp0</h3>
 
-  <div class="cart-total">
-    Total: Rp0
-  </div>
-
-  <div class="cart-buttons">
-    <button class="btn">Order Sekarang</button>
-    <button class="btn">Hapus Semua</button>
-  </div>
+<div class="cart-action">
+<button onclick="orderWA()">Order</button>
+<button onclick="clearCart()">Hapus</button>
 </div>
 
-<!-- WA -->
-<div class="wa">💬</div>
+<div id="cartList"></div>
+</div>
+</div>
 
 <!-- NAV -->
-<div class="navbar">
-  <div>🏠</div>
-  <div>🛒</div>
+<div class="nav">
+<div onclick="nav('home')">🏠</div>
+<div onclick="nav('cart')">🛒</div>
 </div>
+
+<a href="https://wa.me/6283143490913" class="wa">💬</a>
+
+<script src="data.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>
