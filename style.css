@@ -3,18 +3,14 @@ margin:0;
 padding:0;
 box-sizing:border-box;
 font-family:sans-serif;
+-webkit-tap-highlight-color:transparent;
 }
 
+/* BACKGROUND FIX */
 html,body{
 background:linear-gradient(180deg,#020617,#0f172a);
 color:white;
-scroll-behavior:smooth;
 overflow-x:hidden;
-}
-
-body{
-transform:translateZ(0);
-will-change:transform;
 }
 
 /* LOADING */
@@ -59,24 +55,54 @@ to{opacity:1;}
 /* HEADER */
 .header{
 background:linear-gradient(90deg,#3B82F6,#22D3EE);
-padding:20px;
+padding:25px;
 border-radius:20px;
 text-align:center;
-box-shadow:0 0 20px rgba(59,130,246,0.4);
+box-shadow:0 0 25px rgba(59,130,246,0.5);
+position:relative;
 }
 
-/* STATS */
+/* DIAMOND ANIMASI */
+.diamond{
+font-size:30px;
+animation:glow 2s infinite alternate, float 3s infinite;
+}
+
+.diamond.small{
+font-size:20px;
+position:absolute;
+right:20px;
+top:20px;
+}
+
+@keyframes glow{
+from{filter:drop-shadow(0 0 5px #22D3EE);}
+to{filter:drop-shadow(0 0 20px #22D3EE);}
+}
+
+@keyframes float{
+0%{transform:translateY(0);}
+50%{transform:translateY(-5px);}
+100%{transform:translateY(0);}
+}
+
+/* STATS FIX CENTER */
 .stats{
 display:flex;
+justify-content:space-between;
 gap:10px;
-margin-top:10px;
+margin-top:15px;
 }
-.stats div{
+
+.stat{
 flex:1;
-background:rgba(255,255,255,0.1);
-padding:10px;
-border-radius:10px;
-text-align:center;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+background:rgba(255,255,255,0.15);
+padding:12px;
+border-radius:12px;
 }
 
 /* MENU */
@@ -85,6 +111,7 @@ display:flex;
 gap:10px;
 margin-top:15px;
 }
+
 .card{
 flex:1;
 padding:12px;
@@ -93,9 +120,10 @@ background:rgba(255,255,255,0.05);
 text-align:center;
 transition:0.3s;
 }
+
 .card:hover{
 transform:scale(1.05);
-box-shadow:0 0 15px #22D3EE;
+box-shadow:0 0 20px #22D3EE;
 }
 
 /* PRODUK */
@@ -106,6 +134,7 @@ border-radius:12px;
 margin-top:10px;
 transition:0.3s;
 }
+
 .product:hover{
 transform:translateY(-5px);
 box-shadow:0 0 20px #22D3EE;
@@ -121,7 +150,7 @@ margin-top:5px;
 color:white;
 }
 
-/* NAV */
+/* NAV FIX */
 .nav{
 position:fixed;
 bottom:0;
@@ -129,14 +158,8 @@ width:100%;
 display:flex;
 justify-content:space-around;
 background:#020617;
-padding:10px;
-}
-
-/* PROFILE */
-.profile{
-background:rgba(255,255,255,0.05);
-padding:20px;
-border-radius:20px;
+padding:12px;
+font-size:22px;
 }
 
 /* WA */
