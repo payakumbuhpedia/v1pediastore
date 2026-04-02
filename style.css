@@ -6,7 +6,7 @@ font-family:sans-serif;
 -webkit-tap-highlight-color:transparent;
 }
 
-/* BACKGROUND FIX */
+/* BACKGROUND */
 html,body{
 background:linear-gradient(180deg,#020617,#0f172a);
 color:white;
@@ -34,15 +34,13 @@ border-top:4px solid #3B82F6;
 border-radius:50%;
 animation:spin 1s linear infinite;
 }
-
-@keyframes spin{
-100%{transform:rotate(360deg);}
-}
+@keyframes spin{100%{transform:rotate(360deg);}}
 
 /* PAGE */
 .page{
 display:none;
 padding:20px;
+padding-bottom:100px; /* FIX NAV NUTUP */
 animation:fade 0.4s ease;
 }
 .page.active{display:block;}
@@ -60,20 +58,29 @@ border-radius:20px;
 text-align:center;
 box-shadow:0 0 25px rgba(59,130,246,0.5);
 position:relative;
+overflow:hidden;
 }
 
-/* DIAMOND ANIMASI */
+/* TITLE */
+.title{
+font-size:22px;
+animation:titleGlow 2s infinite alternate;
+}
+
+@keyframes titleGlow{
+from{text-shadow:0 0 5px #fff;}
+to{text-shadow:0 0 20px #22D3EE;}
+}
+
+/* DIAMOND */
 .diamond{
-font-size:30px;
-animation:glow 2s infinite alternate, float 3s infinite;
+position:absolute;
+animation:float 3s infinite ease-in-out, glow 2s infinite alternate;
 }
 
-.diamond.small{
-font-size:20px;
-position:absolute;
-right:20px;
-top:20px;
-}
+.diamond.left{left:10px;top:40px;}
+.diamond.right{right:10px;top:40px;}
+.diamond.top{top:5px;left:50%;transform:translateX(-50%);}
 
 @keyframes glow{
 from{filter:drop-shadow(0 0 5px #22D3EE);}
@@ -82,26 +89,39 @@ to{filter:drop-shadow(0 0 20px #22D3EE);}
 
 @keyframes float{
 0%{transform:translateY(0);}
-50%{transform:translateY(-5px);}
+50%{transform:translateY(-6px);}
 100%{transform:translateY(0);}
 }
 
-/* STATS FIX CENTER */
+/* TITLE WRAP */
+.title-wrap{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:10px;
+}
+
+/* SUB */
+.subtitle{
+margin-top:5px;
+}
+
+/* STATS CENTER FIX */
 .stats{
 display:flex;
-justify-content:space-between;
+justify-content:center;
 gap:10px;
 margin-top:15px;
 }
 
 .stat{
 flex:1;
+max-width:100px;
 display:flex;
 flex-direction:column;
 align-items:center;
-justify-content:center;
 background:rgba(255,255,255,0.15);
-padding:12px;
+padding:10px;
 border-radius:12px;
 }
 
@@ -150,7 +170,20 @@ margin-top:5px;
 color:white;
 }
 
-/* NAV FIX */
+/* CART FIX */
+.cart-box{
+background:rgba(255,255,255,0.05);
+padding:20px;
+border-radius:15px;
+}
+
+.cart-action{
+display:flex;
+gap:10px;
+margin:10px 0;
+}
+
+/* NAV */
 .nav{
 position:fixed;
 bottom:0;
@@ -160,6 +193,7 @@ justify-content:space-around;
 background:#020617;
 padding:12px;
 font-size:22px;
+border-top:1px solid rgba(255,255,255,0.1);
 }
 
 /* WA */
