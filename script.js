@@ -1,22 +1,23 @@
-setTimeout(()=>document.getElementById("loading").style.display="none",1500);
+// LOADING SMOOTH
+window.onload = () => {
+setTimeout(()=>{
+document.getElementById("loading").style.opacity="0";
+setTimeout(()=>{
+document.getElementById("loading").style.display="none";
+},500);
+},1200);
+};
 
-const container=document.getElementById("produk");
+// SOUND CLICK
+function clickSound(){
+let audio = new Audio("https://www.soundjay.com/buttons/sounds/button-16.mp3");
+audio.play();
+}
 
-produk.forEach(p=>{
-let el=document.createElement("div");
-el.className="card";
-
-el.innerHTML=`
-<h3>${p.nama}</h3>
-<p>${p.harga}</p>
-<pre>${deskripsi[p.kategori]}</pre>
-<button onclick="order('${p.nama}','${p.harga}','${p.kategori}')">Order</button>
-`;
-
-container.appendChild(el);
-});
-
+// ORDER
 function order(nama,harga,kategori){
+clickSound();
+
 let kode="INV-2026-"+Math.floor(100+Math.random()*900);
 
 let text=`Halo Admin V1Pedia Store 👋
@@ -47,19 +48,14 @@ Kode: ${kode}`;
 window.open("https://wa.me/628314390913?text="+encodeURIComponent(text));
 }
 
-// FAQ
-const faqBox=document.getElementById("faq");
-faq.forEach(f=>{
-let div=document.createElement("div");
-div.className="card";
-div.innerHTML=`<h4 onclick="this.nextElementSibling.classList.toggle('show')">${f.q}</h4><p class="hide">${f.a}</p>`;
-faqBox.appendChild(div);
-});
-
-// NOTIF
+// FAKE NOTIF SMOOTH
 setInterval(()=>{
 let notif=document.getElementById("notif");
 notif.innerText=notifText[Math.floor(Math.random()*notifText.length)];
 notif.style.display="block";
-setTimeout(()=>notif.style.display="none",3000);
-},5000);
+
+setTimeout(()=>{
+notif.style.display="none";
+},3000);
+
+},6000);
