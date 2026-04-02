@@ -20,11 +20,18 @@
 <div id="home" class="page active">
 
 <div class="header">
-  <div class="diamond">💎</div>
-  <h1>V1PEDIASTORE</h1>
-  <div class="diamond small">💎</div>
 
-  <p>Trusted Digital Service</p>
+  <!-- DIAMOND ATAS -->
+  <div class="diamond top">💎</div>
+
+  <!-- TITLE + DIAMOND KIRI KANAN -->
+  <div class="title-wrap">
+    <span class="diamond left">💎</span>
+    <h1 class="title">V1PEDIASTORE</h1>
+    <span class="diamond right">💎</span>
+  </div>
+
+  <p class="subtitle">Trusted Digital Service</p>
 
   <div class="stats">
     <div class="stat"><b>37.9K</b><span>Terjual</span></div>
@@ -44,14 +51,20 @@
 
 <!-- CART -->
 <div id="cart" class="page">
+<div class="cart-box">
 <h2>Keranjang</h2>
 <h3 id="total">Total: Rp0</h3>
+
+<div class="cart-action">
 <button onclick="orderWA()">Order</button>
 <button onclick="clearCart()">Hapus</button>
-<div id="cartList"></div>
 </div>
 
-<!-- NAV (FIX: HAPUS PROFILE) -->
+<div id="cartList"></div>
+</div>
+</div>
+
+<!-- NAV -->
 <div class="nav">
 <div onclick="nav('home')">🏠</div>
 <div onclick="nav('cart')">🛒</div>
