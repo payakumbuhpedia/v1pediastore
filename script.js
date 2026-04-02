@@ -1,26 +1,31 @@
-// LOADING SMOOTH
-window.addEventListener("load",()=>{
-requestAnimationFrame(()=>{
-const load = document.getElementById("loading");
-if(load){
-load.style.transition="opacity 0.5s";
-load.style.opacity="0";
-setTimeout(()=>load.remove(),500);
-}
-});
-});
+// LOADING
+window.onload=()=>{
+setTimeout(()=>{
+let l=document.getElementById("loading");
+l.style.opacity="0";
+setTimeout(()=>l.remove(),500);
+},1200);
+};
 
-// SOUND CLICK (RINGAN)
-function clickSound(){
-const audio = new Audio("https://www.soundjay.com/buttons/sounds/button-09.mp3");
-audio.volume=0.2;
-audio.play();
-}
+// RENDER PRODUK
+const container=document.getElementById("produk");
+
+produk.forEach(p=>{
+let el=document.createElement("div");
+el.className="card";
+
+el.innerHTML=`
+<h3>${p.nama}</h3>
+<p>${p.harga}</p>
+<pre>${deskripsi[p.kategori]}</pre>
+<button onclick="order('${p.nama}','${p.harga}','${p.kategori}')">Order</button>
+`;
+
+container.appendChild(el);
+});
 
 // ORDER
 function order(nama,harga,kategori){
-clickSound();
-
 let kode="INV-2026-"+Math.floor(100+Math.random()*900);
 
 let text=`Halo Admin V1Pedia Store 👋
@@ -51,24 +56,19 @@ Kode: ${kode}`;
 window.open("https://wa.me/628314390913?text="+encodeURIComponent(text));
 }
 
-// NOTIF HALUS
-let notifQueue = [...notifText];
+// FAQ
+const faqBox=document.getElementById("faq");
+faq.forEach(f=>{
+let div=document.createElement("div");
+div.className="card";
+div.innerHTML=`<h4 onclick="this.nextElementSibling.classList.toggle('show')">${f.q}</h4><p class="hide">${f.a}</p>`;
+faqBox.appendChild(div);
+});
 
-function showNotif(){
-const notif = document.getElementById("notif");
-if(!notif) return;
-
-const text = notifQueue.shift();
-notifQueue.push(text);
-
-notif.innerText=text;
-notif.style.display="block";
-
-setTimeout(()=>{
-notif.style.display="none";
-},3000);
-}
-
+// NOTIF
 setInterval(()=>{
-requestAnimationFrame(showNotif);
-},6000);
+let notif=document.getElementById("notif");
+notif.innerText=notifText[Math.floor(Math.random()*notifText.length)];
+notif.style.display="block";
+setTimeout(()=>notif.style.display="none",3000);
+},5000);
