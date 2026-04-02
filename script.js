@@ -1,74 +1,67 @@
-// LOADING
 window.onload=()=>{
 setTimeout(()=>{
-let l=document.getElementById("loading");
-l.style.opacity="0";
-setTimeout(()=>l.remove(),500);
-},1200);
+document.getElementById("loading").style.display="none";
+},800);
 };
 
-// RENDER PRODUK
-const container=document.getElementById("produk");
-
-produk.forEach(p=>{
-let el=document.createElement("div");
-el.className="card";
-
-el.innerHTML=`
-<h3>${p.nama}</h3>
-<p>${p.harga}</p>
-<pre>${deskripsi[p.kategori]}</pre>
-<button onclick="order('${p.nama}','${p.harga}','${p.kategori}')">Order</button>
-`;
-
-container.appendChild(el);
-});
-
-// ORDER
-function order(nama,harga,kategori){
-let kode="INV-2026-"+Math.floor(100+Math.random()*900);
-
-let text=`Halo Admin V1Pedia Store 👋
-
-Saya ingin melakukan pemesanan dengan detail berikut:
-
-📦 Detail Pesanan
-• Nama Produk : ${nama}
-• Kategori     : ${kategori}
-• Harga        : ${harga}
-
-📝 Data Pemesan
-• Nama         :
-• Nomor WA     :
-
-📌 Detail Tambahan
-
-💳 Metode Pembayaran
-(Mohon info metode pembayaran yang tersedia)
-
----
-
-Mohon diproses ya admin 🙏
-Terima kasih.
-
-Kode: ${kode}`;
-
-window.open("https://wa.me/628314390913?text="+encodeURIComponent(text));
+// NAV
+function nav(id){
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+document.getElementById(id).classList.add("active");
 }
 
-// FAQ
-const faqBox=document.getElementById("faq");
-faq.forEach(f=>{
-let div=document.createElement("div");
-div.className="card";
-div.innerHTML=`<h4 onclick="this.nextElementSibling.classList.toggle('show')">${f.q}</h4><p class="hide">${f.a}</p>`;
-faqBox.appendChild(div);
-});
+// FILTER
+function openCategory(type){
+renderProduk(type);
+}
 
-// NOTIF
-setInterval(()=>{
-let notif=document.getElementById("notif");
-notif.innerText=notifText[Math.floor(Math.random()*notifText.length)];
-notif.style.display="block";
-setTimeout(()=>notif.style.display="none",3000);
-},5000);
+// RENDER
+function renderProduk(filter=""){
+let html="";
+produk.forEach(p=>{
+if(filter && !p.nama.includes(filter)) return;
+
+html+=`
+<div class="product">
+<h3>${p.nama}</h3>
+<p>${p.harga}</p>
+<button onclick="addCart('${p.nama}',${p.harga.replace('K','000')})">Tambah</button>
+</div>`;
+});
+document.getElementById("productList").innerHTML=html;
+}
+renderProduk();
+
+// CART
+let cart=[];
+
+function addCart(nama,harga){
+cart.push({nama,harga});
+renderCart();
+document.getElementById("sfx").play();
+}
+
+function renderCart(){
+let total=0;
+let html="";
+cart.forEach(c=>{
+total+=c.harga;
+html+=`<p>${c.nama} - Rp${c.harga}</p>`;
+});
+document.getElementById("cartList").innerHTML=html;
+document.getElementById("total").innerText="Total: Rp"+total;
+}
+
+function clearCart(){
+cart=[];
+renderCart();
+}
+
+// WA
+function orderWA(){
+let text="Halo Admin V1Pedia Store 👋%0A%0ASaya ingin order:%0A";
+cart.forEach(c=>{
+text+=`- ${c.nama} (${c.harga})%0A`;
+});
+window.open("https://wa.me/628314390913?text="+text);
+}
