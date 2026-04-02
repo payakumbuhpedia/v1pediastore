@@ -29,63 +29,19 @@ const produk = [
 ];
 
 const deskripsi = {
-"Sosial Media":`✔ Real user Indonesia
-✔ Aman & tanpa password
-✔ Proses cepat & stabil
-✔ Cocok untuk branding / bisnis / personal
-✔ Garansi refill jika drop
-
-🔥 Keunggulan V1Pedia Store:
-✔ Fast respon admin
-✔ Proses cepat & terpercaya
-✔ Banyak testimoni
-✔ Harga ramah pelajar
-✔ Support via WhatsApp`,
-
-"Hosting":`✔ Server stabil & anti down
-✔ Spek tinggi (fast response)
-✔ Support NodeJS, Python, dll
-✔ Cocok untuk bot WhatsApp / Telegram
-✔ Garansi & support aktif
-
-🔥 Keunggulan V1Pedia Store:
-✔ Fast respon admin
-✔ Proses cepat & terpercaya
-✔ Banyak testimoni
-✔ Harga ramah pelajar
-✔ Support via WhatsApp`,
-
-"Jasa":`✔ Bisa request fitur sesuai kebutuhan
-✔ Support berbagai bahasa (JS / Python / dll)
-✔ Clean code & mudah digunakan
-✔ Free revisi
-✔ Cocok untuk bot, tools, website
-
-🔥 Keunggulan V1Pedia Store:
-✔ Fast respon admin
-✔ Proses cepat & terpercaya
-✔ Banyak testimoni
-✔ Harga ramah pelajar
-✔ Support via WhatsApp`
+"Sosial Media":"✔ Real user Indonesia\n✔ Aman & tanpa password\n✔ Proses cepat & stabil\n✔ Garansi refill",
+"Hosting":"✔ Server stabil\n✔ Fast response\n✔ Support NodeJS Python\n✔ Cocok bot",
+"Jasa":"✔ Request fitur\n✔ Clean code\n✔ Free revisi\n✔ Flexible"
 };
 
 const faq = [
-{q:"Apakah V1Pedia Store terpercaya?",a:"Ya, kami mengutamakan kepercayaan dengan banyak pelanggan dan pelayanan aktif."},
-{q:"Bagaimana cara order?",a:"Pilih produk → klik order → otomatis diarahkan ke WhatsApp admin."},
-{q:"Apakah bisa order 24 jam?",a:"Bisa, namun proses mengikuti jam operasional admin."},
-{q:"Metode pembayaran apa saja?",a:"Transfer bank, e-wallet (DANA, OVO, GoPay), dll."},
-{q:"Apakah bisa COD?",a:"Tidak, semua layanan bersifat digital."},
-{q:"Apakah followers real?",a:"Ya, kami menyediakan followers berkualitas sesuai deskripsi."},
-{q:"Apakah aman?",a:"Aman, karena tidak memerlukan password."},
-{q:"Apakah ada garansi?",a:"Ada, jika terjadi penurunan sesuai ketentuan."},
-{q:"Apakah panel stabil?",a:"Ya, menggunakan server berkualitas tinggi."},
-{q:"Bisa untuk bot apa saja?",a:"WhatsApp, Telegram, dll."},
-{q:"Bisa request script?",a:"Bisa sesuai kebutuhan."},
-{q:"Berapa lama pengerjaan?",a:"Tergantung tingkat kesulitan."}
+{q:"Apakah V1Pedia Store terpercaya?",a:"Ya terpercaya"},
+{q:"Cara order?",a:"Klik produk lalu ke WhatsApp"},
+{q:"Apakah followers real?",a:"Ya sesuai deskripsi"}
 ];
 
 const notifText = [
-"Andi baru saja membeli Followers IG",
-"Rizky baru order Panel 2GB",
-"Budi order TikTok Followers"
+"Kenzo baru membeli Followers IG",
+"Helga order Panel 2GB",
+"Cinta beli TikTok Followers"
 ];
